@@ -1,0 +1,52 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "copy-webpack-plugin": "^5.0.3",
+    "jsonwebtoken": "^8.5.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "^3.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.0",
+    "@babel/preset-react": "^7.0.0",
+    "@types/jsonwebtoken": "^8.3.2",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.4",
+    "@types/webpack-env": "^1.13.9",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "concurrently": "^4.1.1",
+    "node-sass": "^4.12.0",
+    "nodemon": "^1.19.1",
+    "sass-loader": "^7.1.0",
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^6.0.4",
+    "tslint": "^5.18.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.5.2",
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "start:all": "concurrently \"npm run build:dev:watch\" \"npm run sass:compress:watch\" \"npm run start\"",
+    "sass:compress": "node-sass --output-style compressed --input-path scss \"./src/app/scss/all.scss\"  --output \"./dist/css/bundle.min.css\"",
+    "sass:compress:watch": "nodemon -e scss -x \"npm run sass:compress\"",
+    "lint:fix": "tslint --fix -c ./tslint.json './src/**/*{.ts,.tsx}'",
+    "build:dev": "webpack --mode development",
+    "build:dev:watch": "nodemon \"./src/index.tsx\"  -x \"npm run build:dev\"",
+    "build:prod": "webpack --mode production",
+    "build:prod:watch": "nodemon \"./src/index.tsx\"  -x \"npm run build:prod\"",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
