@@ -1,5 +1,5 @@
 import { InitialProps, LoginState } from '../../propType';
-import * as React from 'react';
+import React from 'react';
 import Input from './input';
 import * as jwt from 'jsonwebtoken';
 import { ERRORMSG } from '../../data/messages';

@@ -1,4 +1,7 @@
+import React from 'react';
+
 export interface InitialProps {
+  history: History;
   token: string;
   setToken: Function;
 }
@@ -11,17 +14,8 @@ export interface LoginState {
   error: string;
 }
 
-export interface InputState {
-  input: string;
-}
-
 export interface InputProps {
   label: string;
   type: string;
   inputRef: React.RefObject<HTMLInputElement>;
-}
-
-export interface ButtonProps {
-  label: string;
-  func: Function;
 }

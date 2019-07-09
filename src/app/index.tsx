@@ -1,7 +1,8 @@
-import * as React  from 'react';
+import React  from 'react';
 import { Context } from './context';
-import MainContainer from './containers/mainContainer';
-import Login from './components/form/login';
+// import MainContainer from './containers/mainContainer';
+// import Login from './components/form/login';
+import Routes from './routes';
 
 export default class App extends React.Component {
 
@@ -14,10 +15,11 @@ export default class App extends React.Component {
   }
 
   render() {
-    const content = this.state.token ? <MainContainer /> : <Login />;
+    // const content = this.state.token ? <MainContainer /> : <Login />;
     return (
       <Context.Provider value={{ ...this.state, setToken: this.setToken }} >
-        {content as JSX.Element}
+        {/* {content} */}
+        <Routes/>
       </Context.Provider>
     );
   }

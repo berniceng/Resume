@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { InitialProps } from './initialProps';
 
 export const Context = React.createContext(InitialProps);

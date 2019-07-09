@@ -1,10 +1,10 @@
-import { InputState, InputProps } from '../../propType';
-import * as React from 'react';
+import { InputProps } from '../../propType';
+import React from 'react';
 
-export default class Input extends React.Component<InputProps, InputState>{
-  state = {
-    input: '',
-  };
+export default class Input extends React.Component<InputProps, {}>{
+  constructor(props: InputProps) {
+    super(props);
+  }
 
   render() {
     const { label, type, inputRef } = this.props;

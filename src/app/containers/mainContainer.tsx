@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { InitialProps, MainState } from '../propType';
 import { AppContext } from '../context';
 
