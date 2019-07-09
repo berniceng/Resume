@@ -6,6 +6,9 @@ import { ERRORMSG } from '../../data/messages';
 import { USER } from '../../data/user';
 import { AppContext } from '../../context';
 
+// import styles from '../scss/login.scss';
+import { withRouter } from 'react-router-dom';
+
 class Login extends React.Component<InitialProps, LoginState> {
   private usernameRef: React.RefObject<HTMLInputElement>;
   private passwordRef: React.RefObject<HTMLInputElement>;
@@ -49,22 +52,27 @@ class Login extends React.Component<InitialProps, LoginState> {
 
       this.props.setToken(token);
 
-      // TODO: Redirect
+      this.props.history.push("/aboutme");
     }
   }
 
   render() {
     return(
       <div>
-        <Input label="Username" type="text" inputRef={this.usernameRef} />
-        <Input label="Password" type="password" inputRef={this.passwordRef} />
-        <Input label="Secret Key" type="password" inputRef={this.secretRef} />
         <div>
-          <div onClick={this.login}>Login</div>
+
+        </div>
+        <div>
+          <Input label="Username" type="text" inputRef={this.usernameRef} />
+          <Input label="Password" type="password" inputRef={this.passwordRef} />
+          <Input label="Secret Key" type="password" inputRef={this.secretRef} />
+          <div>
+            <div onClick={this.login}>Login</div>
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default AppContext(Login);
+export default withRouter(AppContext(Login));

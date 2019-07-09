@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface InitialProps {
-  history: History;
+  history: any;
   token: string;
   setToken: Function;
 }
