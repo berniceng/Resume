@@ -1,13 +1,15 @@
 import { InitialProps, LoginState } from '../../propType';
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import Input from './input';
 import * as jwt from 'jsonwebtoken';
 import { ERRORMSG } from '../../data/messages';
 import { USER } from '../../data/user';
 import { AppContext } from '../../context';
 
-// import styles from '../scss/login.scss';
-import { withRouter } from 'react-router-dom';
+import '../../scss/variable.scss';
+import * as styles from '../../scss/login.scss';
+
 
 class Login extends React.Component<InitialProps, LoginState> {
   private usernameRef: React.RefObject<HTMLInputElement>;
@@ -58,11 +60,16 @@ class Login extends React.Component<InitialProps, LoginState> {
 
   render() {
     return(
-      <div>
-        <div>
+      <div className={styles.background}>
+        <div className={styles.left}>
+          <div>
+            
+          </div>
+          <div>
 
+          </div>
         </div>
-        <div>
+        <div className={styles.right}> 
           <Input label="Username" type="text" inputRef={this.usernameRef} />
           <Input label="Password" type="password" inputRef={this.passwordRef} />
           <Input label="Secret Key" type="password" inputRef={this.secretRef} />

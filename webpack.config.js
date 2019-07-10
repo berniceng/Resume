@@ -1,11 +1,14 @@
 const CopyPlugin = require('copy-webpack-plugin');
-const webpack = require('webpack');
 
 module.exports = {
   devtool: "source-map",
   entry: './src/index.tsx',
   module: {
     rules: [
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: 'file-loader'
+      },
       {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
@@ -27,8 +30,20 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           'style-loader',
-          'css-loader',
-          'sass-loader'
+          { 
+            loader: 'css-loader', 
+            options: { 
+              modules: true
+            }
+          },
+          { 
+            loader: 'sass-loader', 
+            options: { 
+              sourceMap: true,
+              modules: true, 
+              localIdentName: "[name]__local]__[hash:base64:5]"
+            }
+          }
         ]
       },
       {
@@ -48,7 +63,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.ts', '.tsx', '.js', '.jsx']
+    extensions: ['*', '.ts', '.tsx', '.js', '.jsx', '.scss']
   },
   output: {
     path: __dirname + '/dist',

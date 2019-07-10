@@ -1,0 +1,15 @@
+
+.background{
+    background-image: url('../../assets/seaside.jpg');
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    .left {
+        width: 50%;
+    }
+
+    .right {
+        width: 50%;
+    }
+}
