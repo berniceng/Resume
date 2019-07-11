@@ -1,1 +1,15 @@
-$base-color: #000;
+@import './font.scss';
+
+//color
+$color-black: #000;
+$color-white: #fff;
+
+//font-family
+$font-wensley: 'Wensley';
+
+//font-size
+$font-xl: 2.5rem;
+$font-l: 2rem;
+$font-m: 1.5rem;
+$font-s: 1rem;
+$font-xs: 0.5rem;

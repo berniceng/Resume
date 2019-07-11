@@ -62,14 +62,14 @@ class Login extends React.Component<InitialProps, LoginState> {
     return(
       <div className={styles.background}>
         <div className={styles.left}>
-          <div>
-            
+          <div className={styles.title}>
+            Hi There, I am Bernice
           </div>
-          <div>
-
+          <div className={styles.content}>
+            ~ Developer ~
           </div>
         </div>
-        <div className={styles.right}> 
+        <div className={styles.right}>
           <Input label="Username" type="text" inputRef={this.usernameRef} />
           <Input label="Password" type="password" inputRef={this.passwordRef} />
           <Input label="Secret Key" type="password" inputRef={this.secretRef} />

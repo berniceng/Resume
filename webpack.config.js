@@ -6,7 +6,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|svg|jpg|gif|woff|eot)$/,
         use: 'file-loader'
       },
       {
@@ -63,7 +63,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.ts', '.tsx', '.js', '.jsx', '.scss']
+    extensions: ['*', '.ts', '.tsx', '.js', '.jsx', '.scss', '.eot', 'woff']
   },
   output: {
     path: __dirname + '/dist',

@@ -9984,13 +9984,17 @@ exports.constants = {
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Imports
 var getUrl = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
-var ___CSS_LOADER_URL___0___ = getUrl(__webpack_require__(/*! ../../assets/seaside.jpg */ "./src/assets/seaside.jpg"));
+var ___CSS_LOADER_URL___0___ = getUrl(__webpack_require__(/*! ../../assets/font/WensleyDemo.eot */ "./src/assets/font/WensleyDemo.eot"));
+var ___CSS_LOADER_URL___1___ = getUrl(__webpack_require__(/*! ../../assets/font/WensleyDemo.woff */ "./src/assets/font/WensleyDemo.woff"));
+var ___CSS_LOADER_URL___2___ = getUrl(__webpack_require__(/*! ../../assets/img/background-lalang.jpg */ "./src/assets/img/background-lalang.jpg"));
 // Module
-exports.push([module.i, "._1Q305CejX7nvPJbUdIAxkL {\n  background-image: url(" + ___CSS_LOADER_URL___0___ + ");\n  width: 100%;\n  height: 100%;\n  display: flex; }\n  ._1Q305CejX7nvPJbUdIAxkL ._36yUYfmzL4qOV7yT5ceKLN {\n    width: 50%; }\n  ._1Q305CejX7nvPJbUdIAxkL ._1TlWvFRC5UcURICf2zHliW {\n    width: 50%; }\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: 'Wensley';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n._1Q305CejX7nvPJbUdIAxkL {\n  width: 100%;\n  height: 100%;\n  display: flex; }\n  ._1Q305CejX7nvPJbUdIAxkL ._36yUYfmzL4qOV7yT5ceKLN {\n    width: 50%;\n    background-image: url(" + ___CSS_LOADER_URL___2___ + "); }\n    ._1Q305CejX7nvPJbUdIAxkL ._36yUYfmzL4qOV7yT5ceKLN ._3_pk2u2i_5Jm3GfhZqwaYL {\n      font-family: \"Wensley\";\n      font-size: 1.5rem;\n      color: #fff; }\n    ._1Q305CejX7nvPJbUdIAxkL ._36yUYfmzL4qOV7yT5ceKLN ._1L9Nva5LrLV0EIkybZ1Wet {\n      font-family: \"Wensley\";\n      font-size: 1rem;\n      color: #fff; }\n  ._1Q305CejX7nvPJbUdIAxkL ._1TlWvFRC5UcURICf2zHliW {\n    width: 50%;\n    background-color: #ffffff; }\n", ""]);
 // Exports
 exports.locals = {
 	"background": "_1Q305CejX7nvPJbUdIAxkL",
 	"left": "_36yUYfmzL4qOV7yT5ceKLN",
+	"title": "_3_pk2u2i_5Jm3GfhZqwaYL",
+	"content": "_1L9Nva5LrLV0EIkybZ1Wet",
 	"right": "_1TlWvFRC5UcURICf2zHliW"
 };
 
@@ -10004,8 +10008,12 @@ exports.locals = {
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Imports
+var getUrl = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
+var ___CSS_LOADER_URL___0___ = getUrl(__webpack_require__(/*! ../../assets/font/WensleyDemo.eot */ "./src/assets/font/WensleyDemo.eot"));
+var ___CSS_LOADER_URL___1___ = getUrl(__webpack_require__(/*! ../../assets/font/WensleyDemo.woff */ "./src/assets/font/WensleyDemo.woff"));
 // Module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "@font-face {\n  font-family: 'Wensley';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n", ""]);
 
 
 /***/ }),
@@ -58638,7 +58646,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scss_variable_scss__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_scss_variable_scss__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _scss_login_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../scss/login.scss */ "./src/app/scss/login.scss");
 /* harmony import */ var _scss_login_scss__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_scss_login_scss__WEBPACK_IMPORTED_MODULE_8__);
-function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var Login=/*#__PURE__*/function(_React$Component){_inherits(Login,_React$Component);function Login(props){var _this;_classCallCheck(this,Login);_this=_possibleConstructorReturn(this,_getPrototypeOf(Login).call(this,props));_this.state={error:''};_this.login=function(){var username=_this.usernameRef.current?_this.usernameRef.current.value:'';var password=_this.passwordRef.current?_this.passwordRef.current.value:'';var secret=_this.secretRef.current?_this.secretRef.current.value:'';if(!username||!password||!secret){_this.setState({error:_data_messages__WEBPACK_IMPORTED_MODULE_4__["ERRORMSG"].LOGIN_EMPTY});return;}if(_data_user__WEBPACK_IMPORTED_MODULE_5__["USER"].PASSWORD!==password||_data_user__WEBPACK_IMPORTED_MODULE_5__["USER"].USERNAME!==username){_this.setState({error:_data_messages__WEBPACK_IMPORTED_MODULE_4__["ERRORMSG"].LOGIN_INVALID});return;}if(_this.props.token.length<=0){var opts={username:username,password:password};var token=jsonwebtoken__WEBPACK_IMPORTED_MODULE_3__["sign"](opts,secret,{expiresIn:60*60*24});_this.props.setToken(token);_this.props.history.push("/aboutme");}};_this.usernameRef=react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();_this.passwordRef=react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();_this.secretRef=react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();return _this;}_createClass(Login,[{key:"render",value:function render(){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_login_scss__WEBPACK_IMPORTED_MODULE_8__["background"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_login_scss__WEBPACK_IMPORTED_MODULE_8__["left"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null)),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_login_scss__WEBPACK_IMPORTED_MODULE_8__["right"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_input__WEBPACK_IMPORTED_MODULE_2__["default"],{label:"Username",type:"text",inputRef:this.usernameRef}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_input__WEBPACK_IMPORTED_MODULE_2__["default"],{label:"Password",type:"password",inputRef:this.passwordRef}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_input__WEBPACK_IMPORTED_MODULE_2__["default"],{label:"Secret Key",type:"password",inputRef:this.secretRef}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{onClick:this.login},"Login"))));}}]);return Login;}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(_context__WEBPACK_IMPORTED_MODULE_6__["AppContext"])(Login)));
+function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var Login=/*#__PURE__*/function(_React$Component){_inherits(Login,_React$Component);function Login(props){var _this;_classCallCheck(this,Login);_this=_possibleConstructorReturn(this,_getPrototypeOf(Login).call(this,props));_this.state={error:''};_this.login=function(){var username=_this.usernameRef.current?_this.usernameRef.current.value:'';var password=_this.passwordRef.current?_this.passwordRef.current.value:'';var secret=_this.secretRef.current?_this.secretRef.current.value:'';if(!username||!password||!secret){_this.setState({error:_data_messages__WEBPACK_IMPORTED_MODULE_4__["ERRORMSG"].LOGIN_EMPTY});return;}if(_data_user__WEBPACK_IMPORTED_MODULE_5__["USER"].PASSWORD!==password||_data_user__WEBPACK_IMPORTED_MODULE_5__["USER"].USERNAME!==username){_this.setState({error:_data_messages__WEBPACK_IMPORTED_MODULE_4__["ERRORMSG"].LOGIN_INVALID});return;}if(_this.props.token.length<=0){var opts={username:username,password:password};var token=jsonwebtoken__WEBPACK_IMPORTED_MODULE_3__["sign"](opts,secret,{expiresIn:60*60*24});_this.props.setToken(token);_this.props.history.push("/aboutme");}};_this.usernameRef=react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();_this.passwordRef=react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();_this.secretRef=react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();return _this;}_createClass(Login,[{key:"render",value:function render(){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_login_scss__WEBPACK_IMPORTED_MODULE_8__["background"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_login_scss__WEBPACK_IMPORTED_MODULE_8__["left"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_login_scss__WEBPACK_IMPORTED_MODULE_8__["title"]},"Hi There, I am Bernice"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_login_scss__WEBPACK_IMPORTED_MODULE_8__["content"]},"~ Developer ~")),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_login_scss__WEBPACK_IMPORTED_MODULE_8__["right"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_input__WEBPACK_IMPORTED_MODULE_2__["default"],{label:"Username",type:"text",inputRef:this.usernameRef}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_input__WEBPACK_IMPORTED_MODULE_2__["default"],{label:"Password",type:"password",inputRef:this.passwordRef}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_input__WEBPACK_IMPORTED_MODULE_2__["default"],{label:"Secret Key",type:"password",inputRef:this.secretRef}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{onClick:this.login},"Login"))));}}]);return Login;}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(_context__WEBPACK_IMPORTED_MODULE_6__["AppContext"])(Login)));
 
 /***/ }),
 
@@ -58827,14 +58835,36 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./src/assets/seaside.jpg":
-/*!********************************!*\
-  !*** ./src/assets/seaside.jpg ***!
-  \********************************/
+/***/ "./src/assets/font/WensleyDemo.eot":
+/*!*****************************************!*\
+  !*** ./src/assets/font/WensleyDemo.eot ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "ad37c8df43d9d1679691e0fcad99ceda.jpg";
+module.exports = __webpack_require__.p + "05abb9379f589161c925625a0eef62f2.eot";
+
+/***/ }),
+
+/***/ "./src/assets/font/WensleyDemo.woff":
+/*!******************************************!*\
+  !*** ./src/assets/font/WensleyDemo.woff ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "564d83112e0f61a03d25b7cbf29ea4f9.woff";
+
+/***/ }),
+
+/***/ "./src/assets/img/background-lalang.jpg":
+/*!**********************************************!*\
+  !*** ./src/assets/img/background-lalang.jpg ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "39f5da70a9e460898522891e676da066.jpg";
 
 /***/ }),
 
