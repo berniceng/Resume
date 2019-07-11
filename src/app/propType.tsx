@@ -18,4 +18,5 @@ export interface InputProps {
   label: string;
   type: string;
   inputRef: React.RefObject<HTMLInputElement>;
+  placeholder: string;
 }

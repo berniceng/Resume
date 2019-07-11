@@ -42,9 +42,9 @@
   },
   "scripts": {
     "start": "node server.js",
-    "start:all": "concurrently \"npm run start\" \"npm run build:dev:watch\" \"npm run sass:compress:watch\"",
+    "start:all": "concurrently \"npm run build:dev:watch\" \"npm run sass:compress:watch\" \"npm run start\"",
     "sass:compress": "node-sass --output-style compressed --input-path scss \"./src/app/scss/all.scss\"  --output \"./dist/css/bundle.min.css\"",
-    "sass:compress:watch": "nodemon -e scss -x \"npm run sass:compress\"",
+    "sass:compress:watch": "nodemon -e scss -x \"npm run build:dev && npm run sass:compress\"",
     "lint:fix": "tslint --fix -c ./tslint.json './src/**/*{.ts,.tsx}'",
     "build:dev": "webpack --mode development",
     "build:dev:watch": "nodemon \"./src/index.tsx\"  -x \"npm run build:dev\"",

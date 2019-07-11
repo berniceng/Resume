@@ -10,6 +10,8 @@ import { AppContext } from '../../context';
 import '../../scss/variable.scss';
 import * as styles from '../../scss/login.scss';
 
+const logo = require('../../../assets/img/logo.png');
+
 
 class Login extends React.Component<InitialProps, LoginState> {
   private usernameRef: React.RefObject<HTMLInputElement>;
@@ -63,18 +65,33 @@ class Login extends React.Component<InitialProps, LoginState> {
       <div className={styles.background}>
         <div className={styles.left}>
           <div className={styles.title}>
-            Hi There, I am Bernice
+            Hi There,<br/>I am Bernice
           </div>
           <div className={styles.content}>
             ~ Developer ~
           </div>
         </div>
         <div className={styles.right}>
-          <Input label="Username" type="text" inputRef={this.usernameRef} />
-          <Input label="Password" type="password" inputRef={this.passwordRef} />
-          <Input label="Secret Key" type="password" inputRef={this.secretRef} />
-          <div>
-            <div onClick={this.login}>Login</div>
+          <div className={styles.container}>
+            <div className={styles.logo}>
+              <div>
+                <img src={logo}/>
+              </div>
+              <div>
+                Bernice Ng <br/> Kai Ling
+              </div>
+            </div>
+            <div className={styles.title}>
+              Login with the credentials provided
+            </div>
+            <div className={styles.form}>
+              <Input label="Username" type="text" inputRef={this.usernameRef} placeholder="Enter Username Provided"/>
+              <Input label="Password" type="password" inputRef={this.passwordRef} placeholder="Enter Password Provided"/>
+              <Input label="Secret Key" type="password" inputRef={this.secretRef} placeholder="Enter Any Secret Key"/>
+              <div onClick={this.login}>
+                <span>Login</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
