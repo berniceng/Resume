@@ -12,7 +12,6 @@ import * as styles from '../../scss/login.scss';
 
 const logo = require('../../../assets/img/logo.png');
 
-
 class Login extends React.Component<InitialProps, LoginState> {
   private usernameRef: React.RefObject<HTMLInputElement>;
   private passwordRef: React.RefObject<HTMLInputElement>;
@@ -56,7 +55,7 @@ class Login extends React.Component<InitialProps, LoginState> {
 
       this.props.setToken(token);
 
-      this.props.history.push("/aboutme");
+      this.props.history.push('/aboutme');
     }
   }
 

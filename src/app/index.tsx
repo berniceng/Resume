@@ -5,7 +5,7 @@ import Routes from './routes';
 export default class App extends React.Component {
 
   state = {
-    token: ''
+    token: '',
   };
 
   setToken = (token: string) => {

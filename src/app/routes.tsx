@@ -6,7 +6,7 @@ import { AppContext } from './context';
 import React from 'react';
 
 const Routes = (props: InitialProps): any => {
-    return (
+  return (
         <BrowserRouter>
             <Switch>
                 <Route exact={true} path="/login"  key="login" render={() => <Login />}/>
@@ -17,8 +17,8 @@ const Routes = (props: InitialProps): any => {
                     render={() => <MainContainer/>}
                 />
                 {
-                    props.token === '' 
-                    ? 
+                    props.token === ''
+                    ?
                     <Redirect to="/login"/>
                     :
                     <Redirect to="/aboutme"/>
