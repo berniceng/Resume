@@ -6,181 +6,113 @@
     height: 100%;
     display: flex;
     flex-direction: row;
+    background: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('../../assets/img/background.jpg');
+    justify-content: center;
+    align-items: center;
 
     @media screen and (max-width: 505px){
         flex-direction: column;
     }
 
-    .left {
-        width: 40%;
-        background-image: url('../../assets/img/background-lalang.jpg');
-        opacity: 0.7;
+    .container {
+        display: flex;
+        flex-direction: column;
+        width: 30%;    
+        background-color: #fff;
+        height: fit-content;
+        max-height: 90%;
+        padding: 40px;
+        border-radius: 5px;
+        
+        .logo, .title, .form {
+            padding: 10px 0;
+        }
 
-        @media screen and (max-width: 505px){
-            width: 100%;
+        .logo {
+            height: 7rem;
+            display: flex;
+            justify-content: center;
+
+            * {
+                justify-content: center;
+                align-items: center;
+                display: flex;
+            }
+
+            img {
+                height: 50%;
+            }
+
+            div:last-child {
+                @include font($font-abel, $font-m, $color-orange, $weight-bold);
+                padding: 10px 0 10px 15px;
+            }
+
+            @media screen and (max-width: 554px){
+                div:last-child {
+                    @include font($font-abel, $font-s, $color-orange, $weight-bold);
+                }
+            }
         }
 
         .title {
-            @include font($font-abel, $font-xl, $color-white, $weight-bold);
-            font-style: italic;
-            text-align: center;    
-            padding: 20%;
-            margin-top: 15%;
-
-            @media screen and (max-width: 505px){
-                padding: 2%;
-                margin-top: 0;
-            }
-
-            > :first-child {
-                text-align: left;
-                @include font($font-abel, $font-xxl, $color-white, $weight-bold);
-            }
-
-            > :last-child {
-                text-align: right;
-                @include font($font-abel, $font-xxl, $color-white, $weight-bold);
-            }
-
-            @media screen and (max-width: 665px){
-                @include font($font-abel, $font-l, $color-white, $weight-bold);
-
-                > :first-child {
-                    text-align: left;
-                    @include font($font-abel, $font-xl, $color-white, $weight-bold);
-                }
-
-                > :last-child {
-                    text-align: right;
-                    @include font($font-abel, $font-xl, $color-white, $weight-bold);
-                }
-            }
-
-
-            @media screen and (max-width: 554px){
-                @include font($font-abel, $font-m, $color-white, $weight-bold);
-
-                > :first-child {
-                    text-align: left;
-                    @include font($font-abel, $font-l, $color-white, $weight-bold);
-                }
-
-                > :last-child {
-                    text-align: right;
-                    @include font($font-abel, $font-l, $color-white, $weight-bold);
-                }
-            }
-        }
-    }
-
-    .right {
-        width: 60%;
-        background-color: #ffffff;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        @media screen and (max-width: 505px){
-            width: 100%;
+            @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
+            text-align: center;
         }
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            width: 66%;    
-            
-            .logo, .title, .form {
-                padding: 10px 0;
-            }
-
-            .logo {
-                height: 7rem;
-                display: flex;
-                justify-content: center;
-
-                * {
-                    justify-content: center;
-                    align-items: center;
-                    display: flex;
-                }
-
-                img {
-                    height: 50%;
-                }
-
-                div:last-child {
-                    @include font($font-abel, $font-m, $color-orange, $weight-bold);
-                    padding: 10px 0 10px 15px;
-                    border-left: 4px solid $color-orange;
-                }
-
-                @media screen and (max-width: 554px){
-                    div:last-child {
-                        @include font($font-abel, $font-s, $color-orange, $weight-bold);
-                    }
-                }
-            }
-
-            .title {
-                @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
-                text-align: center;
-            }
-
-            .form {
-                > div:not(:last-child) {
-                    border: 1px solid $color-light-grey;
-                    border-radius: 9px;
-                    overflow: hidden;
-                    margin-bottom: 25px;
-                    
-                    * {
-                        padding: 10px;
-                        width: 100%;
-                    }
-    
-                    div {
-                        @include font($font-abel, $font-s, $color-medium-grey, $weight-light);
-                        border-bottom: 1px solid $color-light-grey;
-                    }
-                    
-                    input {
-                        border: 0;
-                    }
-                }
+        .form {
+            > div:not(:last-child) {
+                margin-bottom: 25px;
+                border: 1px solid $color-light-grey;
+                border-radius: 9px;
+                overflow: hidden;
                 
-                > div:last-child {
-                    margin-bottom: 25px;
-                    border-radius: 5px;
-                    background-color: $color-blue;
-                    padding: 5px;
-                    text-align: center;
-                    @include font($font-abel, $font-m, $color-white, $weight-light);
-                    
-                    div:after {
-                        content: '\00bb';
-                        position: relative;
-                        padding-left: 0px;
-                        visibility: hidden;
-                        transition: all ease-in 0.3s;
-                    }
-
-                    &:hover {
-                        div:after {
-                            visibility: visible;
-                            padding-left: 10px;
-                        }
-                    }
+                * {
+                    padding: 10px;
+                    width: 100%;
                 }
 
                 div {
-                    input:focus {
-                        outline: none;
-                    }
+                    @include font($font-abel, $font-s, $color-medium-grey, $weight-light);
+                    border-bottom: 1px solid $color-light-grey;
+                }
+                
+                input {
+                    @include font($font-abel, $font-s, $color-black, $weight-light);
+                    border: 0;
+                }
+            }
+            
+            > div:last-child {
+                border-radius: 5px;
+                background-color: $color-blue;
+                padding: 5px;
+                text-align: center;
+                @include font($font-abel, $font-m, $color-white, $weight-light);
+                
+                div:after {
+                    content: '\00bb';
+                    position: relative;
+                    padding-left: 0px;
+                    visibility: hidden;
+                    transition: all ease-in 0.3s;
+                }
 
-                    input::placeholder {
-                        @include font($font-abel, $font-s, $color-grey, $weight-light);
+                &:hover {
+                    div:after {
+                        visibility: visible;
+                        padding-left: 10px;
                     }
+                }
+            }
+
+            div {
+                input:focus {
+                    outline: none;
+                }
+
+                input::placeholder {
+                    @include font($font-abel, $font-s, $color-grey, $weight-light);
                 }
             }
         }
