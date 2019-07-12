@@ -65,10 +65,13 @@ class Login extends React.Component<InitialProps, LoginState> {
       <div className={styles.background}>
         <div className={styles.left}>
           <div className={styles.title}>
-            Hi There,<br/>I am Bernice
-          </div>
-          <div className={styles.content}>
-            ~ Developer ~
+            <div>
+              "
+            </div>
+            Hop on to a journey with me
+            <div>
+              "
+            </div>
           </div>
         </div>
         <div className={styles.right}>
@@ -89,7 +92,7 @@ class Login extends React.Component<InitialProps, LoginState> {
               <Input label="Password" type="password" inputRef={this.passwordRef} placeholder="Enter Password Provided"/>
               <Input label="Secret Key" type="password" inputRef={this.secretRef} placeholder="Enter Any Secret Key"/>
               <div onClick={this.login}>
-                <span>Login</span>
+                <div>Login</div>
               </div>
             </div>
           </div>
