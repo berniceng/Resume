@@ -1,7 +1,6 @@
 import { InitialProps, LoginState } from '../../propType';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import Input from './input';
 import { ERRORMSG } from '../../data/messages';
 import { AppContext } from '../../context';
 
@@ -63,24 +62,27 @@ class Login extends React.Component<InitialProps, LoginState> {
             Login with the credentials provided
           </div>
           <div className={styles.form}>
-            <Input
-              label="Username"
-              type="text"
-              inputRef={this.usernameRef}
-              placeholder="Enter Username Provided"
-            />
-            <Input
-              label="Password"
-              type="password"
-              inputRef={this.passwordRef}
-              placeholder="Enter Password Provided"
-            />
-            <Input
-              label="Secret Key"
-              type="password"
-              inputRef={this.secretRef}
-              placeholder="Enter Any Secret Key"
-            />
+            <div>
+              <input
+                type="text"
+                ref={this.usernameRef}
+                placeholder="Enter Username Provided"
+              />
+            </div>
+            <div>
+              <input
+                type="password"
+                ref={this.passwordRef}
+                placeholder="Enter Password Provided"
+              />
+            </div>
+            <div>
+              <input
+                type="password"
+                ref={this.secretRef}
+                placeholder="Enter Any Secret Key"
+              />
+            </div>
             <div onClick={this.login}>
               <div>Login</div>
             </div>
