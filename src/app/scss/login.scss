@@ -5,123 +5,114 @@
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: row;
+    background: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('../../assets/img/background.jpg');
+    justify-content: center;
+    align-items: center;
 
-    .left {
-        width: 50%;
-        background-image: url('../../assets/img/background-lalang.jpg');
-        opacity: 0.7;
-
-        .title {
-            @include font($font-abel, $font-m, $color-white, $weight-bold);
-        }
-
-        .content {
-            @include font($font-abel, $font-m, $color-white, $weight-light);
-        }
+    @media screen and (max-width: 505px){
+        flex-direction: column;
     }
 
-    .right {
-        width: 50%;
-        background-color: #ffffff;
+    .container {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        width: 30%;    
+        background-color: #fff;
+        height: fit-content;
+        max-height: 90%;
+        padding: 40px;
+        border-radius: 5px;
+        
+        .logo, .title, .form {
+            padding: 10px 0;
+        }
 
-        .container {
+        .logo {
+            height: 7rem;
             display: flex;
-            flex-direction: column;
-            width: 66%;    
-            
-            .logo, .title, .form {
-                padding: 10px 0;
-            }
+            justify-content: center;
 
-            .logo {
-                height: 7rem;
-                display: flex;
+            * {
                 justify-content: center;
+                align-items: center;
+                display: flex;
+            }
 
-                * {
-                    justify-content: center;
-                    align-items: center;
-                    display: flex;
-                }
+            img {
+                height: 50%;
+            }
 
-                img {
-                    height: 50%;
-                }
+            div:last-child {
+                @include font($font-abel, $font-m, $color-orange, $weight-bold);
+                padding: 10px 0 10px 15px;
+            }
 
+            @media screen and (max-width: 554px){
                 div:last-child {
-                    @include font($font-abel, $font-m, $color-orange, $weight-bold);
-                    padding: 10px 0 10px 15px;
-                    border-left: 4px solid $color-orange;
+                    @include font($font-abel, $font-s, $color-orange, $weight-bold);
                 }
             }
+        }
 
-            .title {
-                @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
-                text-align: center;
-            }
+        .title {
+            @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
+            text-align: center;
+        }
 
-            .form {
-                > div:not(:last-child) {
-                    border: 1px solid $color-light-grey;
-                    border-radius: 9px;
-                    overflow: hidden;
-                    margin-bottom: 25px;
-                    
-                    * {
-                        padding: 10px;
-                        width: 100%;
-                    }
-    
-                    div {
-                        @include font($font-abel, $font-s, $color-medium-grey, $weight-light);
-                        border-bottom: 1px solid $color-light-grey;
-                    }
-                    
-                    input {
-                        border: 0;
-                    }
-                }
+        .form {
+            > div:not(:last-child) {
+                margin-bottom: 25px;
+                border: 1px solid $color-light-grey;
+                border-radius: 9px;
+                overflow: hidden;
                 
-                >:last-child {
-                    margin-bottom: 25px;
-                    border-radius: 5px;
-                    background-color: $color-blue;
-                    padding: 5px;
-                    text-align: center;
-                    @include font($font-abel, $font-m, $color-white, $weight-light);
-                    
-                    div:after {
-                        content: '\00bb';
-                        position: relative;
-                        // opacity: 0;
-                        display: none;
-                        padding-left: 0px;
-                        transition: 1s;
-                    }
-
-                    &:hover {
-                        padding-left: 10px;
-
-                        div:after{
-                            // opacity: 1;
-                            display: flex;
-                            flex-direction: row;
-                        }
-                    }
+                * {
+                    padding: 10px;
+                    width: 100%;
                 }
 
                 div {
-                    input:focus {
-                        outline: none;
-                    }
+                    @include font($font-abel, $font-s, $color-medium-grey, $weight-light);
+                    border-bottom: 1px solid $color-light-grey;
+                }
+                
+                input {
+                    @include font($font-abel, $font-s, $color-black, $weight-light);
+                    border: 0;
+                }
+            }
+            
+            > div:last-child {
+                border-radius: 5px;
+                background-color: $color-blue;
+                padding: 5px;
+                text-align: center;
+                @include font($font-abel, $font-m, $color-white, $weight-light);
+                
+                div:after {
+                    content: '\00bb';
+                    position: relative;
+                    padding-left: 0px;
+                    visibility: hidden;
+                    transition: all ease-in 0.3s;
+                }
 
-                    input::placeholder {
-                        @include font($font-abel, $font-s, $color-grey, $weight-light);
+                &:hover {
+                    div:after {
+                        visibility: visible;
+                        padding-left: 10px;
                     }
+                }
+            }
+
+            div {
+                input:focus {
+                    outline: none;
+                }
+
+                input::placeholder {
+                    @include font($font-abel, $font-s, $color-grey, $weight-light);
                 }
             }
         }
