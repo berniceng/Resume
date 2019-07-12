@@ -25,7 +25,7 @@ const Routes = (props: InitialProps): any => {
                 }
             </Switch>
         </BrowserRouter>
-    );
+  );
 };
 
 export default AppContext(Routes);

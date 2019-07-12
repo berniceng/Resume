@@ -2,13 +2,12 @@ import { InitialProps, LoginState } from '../../propType';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Input from './input';
-import * as jwt from 'jsonwebtoken';
 import { ERRORMSG } from '../../data/messages';
-import { USER } from '../../data/user';
 import { AppContext } from '../../context';
 
 import '../../scss/variable.scss';
 import * as styles from '../../scss/login.scss';
+import axios from 'axios';
 
 const logo = require('../../../assets/img/logo.png');
 
@@ -38,24 +37,13 @@ class Login extends React.Component<InitialProps, LoginState> {
       return;
     }
 
-    if (USER.PASSWORD !== password || USER.USERNAME !== username) {
-      this.setState({ error: ERRORMSG.LOGIN_INVALID });
-      return;
-    }
-
     if (this.props.token.length <= 0) {
-      const opts = {
-        username,
-        password,
-      };
-
-      const token = jwt.sign(opts, secret, {
-        expiresIn: 60 * 60 * 24, // expires in 24 hours
+      axios.post('http://localhost:3000/api/users/getToken', {
+        username, password, secret,
+      }).then((res) => {
+        this.props.setToken(res.data.token);
+        this.props.history.push('/aboutme');
       });
-
-      this.props.setToken(token);
-
-      this.props.history.push('/aboutme');
     }
   }
 
@@ -75,26 +63,29 @@ class Login extends React.Component<InitialProps, LoginState> {
             Login with the credentials provided
           </div>
           <div className={styles.form}>
-            <Input label="Username" type="text" inputRef={this.usernameRef} placeholder="Enter Username Provided"/>
-            <Input label="Password" type="password" inputRef={this.passwordRef} placeholder="Enter Password Provided"/>
-            <Input label="Secret Key" type="password" inputRef={this.secretRef} placeholder="Enter Any Secret Key"/>
+            <Input
+              label="Username"
+              type="text"
+              inputRef={this.usernameRef}
+              placeholder="Enter Username Provided"
+            />
+            <Input
+              label="Password"
+              type="password"
+              inputRef={this.passwordRef}
+              placeholder="Enter Password Provided"
+            />
+            <Input
+              label="Secret Key"
+              type="password"
+              inputRef={this.secretRef}
+              placeholder="Enter Any Secret Key"
+            />
             <div onClick={this.login}>
               <div>Login</div>
             </div>
           </div>
         </div>
-        {/* <div className={styles.left}>
-          <div className={styles.title}>
-            <div>
-              "
-            </div>
-            Hop on to a journey with me
-            <div>
-              "
-            </div>
-          </div>
-        </div>
-        <div className={styles.right}> */}
       </div>
     );
   }
