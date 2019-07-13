@@ -6,6 +6,10 @@ export interface InitialProps {
   setToken: Function;
 }
 
+export interface InitialState {
+  token: string;
+}
+
 export interface MainState {
   test1: number;
 }
@@ -14,9 +18,6 @@ export interface LoginState {
   error: string;
 }
 
-export interface InputProps {
-  label: string;
-  type: string;
-  inputRef: React.RefObject<HTMLInputElement>;
-  placeholder: string;
+export interface RouteState {
+  isValid: boolean
 }

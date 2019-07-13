@@ -26,6 +26,19 @@ class Login extends React.Component<InitialProps, LoginState> {
     error: '',
   };
 
+  componentDidMount(){
+    const token = localStorage.getItem('resume-token');
+    this.props.setToken(token == null ? '' : token);
+    
+    axios.post('http://localhost:3000/api/users/verifyToken', {
+      token: token
+    }).then((res) => {
+      if(res.data.valid) {
+        this.props.history.push('/aboutme');
+      }
+    });
+  }
+
   login = () => {
     const username = this.usernameRef.current ? this.usernameRef.current.value : '';
     const password = this.passwordRef.current ? this.passwordRef.current.value : '';
@@ -41,6 +54,7 @@ class Login extends React.Component<InitialProps, LoginState> {
         username, password, secret,
       }).then((res) => {
         this.props.setToken(res.data.token);
+        localStorage.setItem("resume-token", res.data.token);
         this.props.history.push('/aboutme');
       });
     }

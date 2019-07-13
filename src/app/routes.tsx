@@ -6,7 +6,7 @@ import { AppContext } from './context';
 import React from 'react';
 
 const Routes = (props: InitialProps): any => {
-  return (
+    return (
         <BrowserRouter>
             <Switch>
                 <Route exact={true} path="/login"  key="login" render={() => <Login />}/>
@@ -25,7 +25,7 @@ const Routes = (props: InitialProps): any => {
                 }
             </Switch>
         </BrowserRouter>
-  );
+    );
 };
 
 export default AppContext(Routes);
