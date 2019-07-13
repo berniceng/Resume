@@ -90,7 +90,7 @@
                 }
             }
             
-            > div:last-child {
+            > div:nth-last-child(2) {
                 border-radius: 5px;
                 background-color: $color-blue;
                 padding: 5px;
@@ -101,6 +101,10 @@
                 align-items: center;
                 @include font($font-abel, $font-m, $color-white, $weight-light);
                 
+                &:active {
+                    background-color: $color-dark-blue;
+                }
+
                 div:after {
                     content: '\00bb';
                     position: relative;
@@ -116,6 +120,21 @@
                     }
                 }
             }
+
+            > div:last-child {
+                .hide { 
+                    visibility: hidden;
+                }
+
+                .show {
+                    visibility: visible;
+                }
+
+                div {
+                    @include font($font-abel, $font-s, $color-red, $weight-bold);
+                    text-align: center;
+                }
+            } 
         }
     }
 }

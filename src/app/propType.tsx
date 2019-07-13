@@ -19,5 +19,5 @@ export interface LoginState {
 }
 
 export interface RouteState {
-  isValid: boolean
+  isValid: boolean;
 }

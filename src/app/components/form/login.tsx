@@ -26,35 +26,46 @@ class Login extends React.Component<InitialProps, LoginState> {
     error: '',
   };
 
-  componentDidMount(){
+  componentDidMount() {
+    document.addEventListener('keydown', this.keyb, false);
+
     const token = localStorage.getItem('resume-token');
     this.props.setToken(token == null ? '' : token);
-    
+
     axios.post('http://localhost:3000/api/users/verifyToken', {
-      token: token
+      token,
     }).then((res) => {
-      if(res.data.valid) {
+      if (res.data.valid) {
         this.props.history.push('/aboutme');
       }
     });
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.keyb, false);
+  }
+
+  keyb = (e: any) => {
+    if (e.keyCode === 13) {
+      this.login();
+    }
+  }
+
   login = () => {
     const username = this.usernameRef.current ? this.usernameRef.current.value : '';
     const password = this.passwordRef.current ? this.passwordRef.current.value : '';
-    const secret = this.secretRef.current ? this.secretRef.current.value : '';
 
-    if (!username || !password || !secret) {
+    if (!username || !password) {
       this.setState({ error: ERRORMSG.LOGIN_EMPTY });
       return;
     }
 
     if (this.props.token.length <= 0) {
       axios.post('http://localhost:3000/api/users/getToken', {
-        username, password, secret,
+        username, password,
       }).then((res) => {
         this.props.setToken(res.data.token);
-        localStorage.setItem("resume-token", res.data.token);
+        localStorage.setItem('resume-token', res.data.token);
         this.props.history.push('/aboutme');
       });
     }
@@ -90,15 +101,11 @@ class Login extends React.Component<InitialProps, LoginState> {
                 placeholder="Enter Password Provided"
               />
             </div>
-            <div>
-              <input
-                type="password"
-                ref={this.secretRef}
-                placeholder="Enter Any Secret Key"
-              />
-            </div>
             <div onClick={this.login}>
               <div>Login</div>
+            </div>
+            <div className={this.state.error ? styles.show : styles.hide}>
+              <div>{this.state.error}</div>
             </div>
           </div>
         </div>
