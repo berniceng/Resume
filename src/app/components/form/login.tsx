@@ -37,6 +37,7 @@ class Login extends React.Component<InitialProps, LoginState> {
     }).then((res) => {
       if (res.data.valid) {
         this.props.history.push('/aboutme');
+        localStorage.removeItem("resume-token");
       }
     });
   }
