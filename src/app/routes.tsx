@@ -10,21 +10,15 @@ const Routes = (props: InitialProps): any => {
     <BrowserRouter>
       <Switch>
         <Route exact={true} path="/login"  key="login" render={() => <Login />}/>
-          <Route
-            exact={true}
-            path="/aboutme"
-            key="about me"
-            render={() => <MainContainer/>}
-          />
-          {
-            props.token === ''
-            ?
-            <Redirect to="/login"/>
-            :
-            <Redirect to="/aboutme"/>
-          }
-          </Switch>
-      </BrowserRouter>
+        <Route
+          exact={true}
+          path="/aboutme"
+          key="about me"
+          render={() => <MainContainer/>}
+        />
+        <Redirect to="/login"/>
+      </Switch>
+    </BrowserRouter>
   );
 };
 

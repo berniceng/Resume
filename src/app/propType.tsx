@@ -11,7 +11,8 @@ export interface InitialState {
 }
 
 export interface MainState {
-  test1: number;
+  currentPage: String;
+  headerClass: string;
 }
 
 export interface LoginState {
@@ -20,4 +21,9 @@ export interface LoginState {
 
 export interface RouteState {
   isValid: boolean;
+}
+
+export interface HeaderProps {
+  currentPage: string;
+  className: string;
 }

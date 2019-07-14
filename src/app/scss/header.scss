@@ -1,0 +1,20 @@
+@import './mixin.scss';
+@import './variable.scss';
+
+
+.header {
+    @include font($font-abel, $font-m, $color-dark-grey, $weight-light);
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    transition: all ease-in 0.3s;
+
+    > div {
+        padding: 24px 30px;
+    }
+}
+
+.sticky_header {
+    box-shadow: 10px 10px 30px -26px $color-medium-grey;
+}

@@ -1,0 +1,7 @@
+@import './mixin.scss';
+@import './variable.scss';
+
+.footer {
+    @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
+    padding: 25px;
+}
