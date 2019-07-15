@@ -6,16 +6,30 @@ import Footer from '../components/footer';
 import * as headerStyles from '../scss/header.scss';
 import * as styles from '../scss/mainContainer.scss';
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 
-class MainContainer extends React.Component<InitialProps & MainProps, MainState>{
+class MainContainer extends React.Component<MainProps & InitialProps, MainState>{
   state = {
-    currentPage: 'aboutme',
     headerClass: 'false',
   };
 
   componentDidMount() {
     document.addEventListener('scroll', this.showStickyHeader, false);
-    this.props.history.push(`/main/${this.state.currentPage}`);
+
+    const token = localStorage.getItem('resume-token');
+    this.props.setToken(token == null ? '' : token);
+
+    axios.post('http://localhost:3000/api/users/verifyToken', {
+      token,
+    }).then((res: any) => {
+      if (res.data.valid) { 
+        this.props.history.push(`/main/${this.props.children.page}`); 
+      }
+      else { 
+        localStorage.removeItem('resume-token'); 
+        this.props.history.push('/login');
+      }
+    });
   }
 
   componentWillUnmount() {
@@ -30,9 +44,9 @@ class MainContainer extends React.Component<InitialProps & MainProps, MainState>
   render() {
     return(
       <div className={styles.container}>
-        <Header currentPage={this.state.currentPage} className={this.state.headerClass}/>
+        <Header currentPage={this.props.children.page} className={this.state.headerClass}/>
         <div className={styles.main_content}>
-          {this.props.children}
+          {this.props.children.component}
         </div>
         <Footer />
       </div>

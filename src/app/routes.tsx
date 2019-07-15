@@ -1,9 +1,10 @@
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import Login from './components/form/login';
-import MainContainer from './containers/mainContainer';
 import React from 'react';
+import MainContainer from './containers/mainContainer';
 import Skills from './containers/skills';
 import Aboutme from './containers/aboutme';
+import { AppContext } from './context';
 
 const Routes = () => {
   return (
@@ -13,18 +14,19 @@ const Routes = () => {
         <Route exact={true} path="/login"  key="login" render={() => <Login />}/>
         <Route
           exact={true}
-          path="/main"
-          key="main"
-          render={
-            () => <MainContainer/>
-          }
-        />
-        <Route
-          exact={true}
           path="/main/aboutme"
           key="about me"
           render={
-            () => <MainContainer children={<Aboutme/>}/>
+            () => <MainContainer
+              children={{
+                page: 'aboutme',
+                component: <Aboutme/>
+              }} 
+              // page='aboutme' 
+              // children={
+              //   <Aboutme/>
+              // }
+            />
           }
         />
         <Route
@@ -32,7 +34,12 @@ const Routes = () => {
           path="/skills"
           key="skills"
           render={
-            () => <MainContainer children={<Skills/>}/>
+            () => <MainContainer
+              children={{
+                page: 'skills',
+                component: <Skills/>
+              }}
+            />
           }
         />
       </Switch>

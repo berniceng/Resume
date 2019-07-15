@@ -1,5 +1,4 @@
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
 
 export interface InitialProps {
   history: any;
@@ -12,11 +11,15 @@ export interface InitialState {
 }
 
 export interface MainProps {
-  children: React.Component;
+  children: SubProps;
+}
+
+export interface SubProps {
+  page: string;
+  component: React.Component;
 }
 
 export interface MainState {
-  currentPage: String;
   headerClass: string;
 }
 

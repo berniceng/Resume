@@ -33,7 +33,7 @@ class Login extends React.Component<InitialProps, LoginState> {
     axios.post('http://localhost:3000/api/users/verifyToken', {
       token,
     }).then((res) => {
-      if (res.data.valid) { this.props.history.push('/main'); }
+      if (res.data.valid) { this.props.history.push('/main/aboutme'); }
       else { localStorage.removeItem('resume-token'); }
     });
   }
@@ -63,7 +63,7 @@ class Login extends React.Component<InitialProps, LoginState> {
       }).then((res) => {
         this.props.setToken(res.data.token);
         localStorage.setItem('resume-token', res.data.token);
-        this.props.history.push('/aboutme');
+        this.props.history.push('/main/aboutme');
       });
     }
   }

@@ -1,0 +1,67 @@
+@import './variable.scss';
+@import './mixin.scss';
+
+.aboutme_container{
+    min-height: inherit;
+
+    .content{
+        min-height: inherit;
+
+        .contact{
+            background-image: linear-gradient(rgba(255,255,255,.3), rgba(255,255,255,.3)), url('../../assets/img/background-laptop-2.jpg');
+            padding: 225px 200px 0 200px;
+            height: calc(100% - 100px);
+            display: flex;
+            justify-content: center;
+
+            .left{
+                >:nth-child(1){
+                    @include font($font-abel, $font-l, $color-dark-grey, $weight-light);
+                    padding-bottom: 15px;
+                }
+
+                >:nth-child(2){
+                    @include font($font-abel, $font-xxl, $color-dark-grey, $weight-bold);
+                }
+
+                >:nth-child(3){
+                    @include font($font-abel, $font-xl, $color-dark-grey, $weight-bold);
+                    padding-bottom: 30px;
+                }
+                
+
+                >:nth-child(4){
+                    @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
+
+                    > div {
+                        display: flex;
+                        padding: 10px 0;
+
+                        img{
+                            width: 20px;
+                        }
+                        
+                        div, a {
+                            padding: 0px 20px;
+                        }
+
+                        a{
+                            text-decoration: underline;
+                            color: $color-blue;
+                        }
+                    }
+                }
+            }
+
+            .right{
+                padding-left: 150px;
+
+                img {    
+                    width: 300px;
+                    border-radius: 1000px;
+                    border: 20px solid rgba(255,255,255,0.4); 
+                }
+            }
+        }
+    }
+}
