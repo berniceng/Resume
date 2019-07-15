@@ -13,13 +13,11 @@ const logo = require('../../../assets/img/logo.png');
 class Login extends React.Component<InitialProps, LoginState> {
   private usernameRef: React.RefObject<HTMLInputElement>;
   private passwordRef: React.RefObject<HTMLInputElement>;
-  private secretRef: React.RefObject<HTMLInputElement>;
 
   constructor(props: InitialProps) {
     super(props);
     this.usernameRef = React.createRef();
     this.passwordRef = React.createRef();
-    this.secretRef = React.createRef();
   }
 
   state = {
@@ -35,10 +33,8 @@ class Login extends React.Component<InitialProps, LoginState> {
     axios.post('http://localhost:3000/api/users/verifyToken', {
       token,
     }).then((res) => {
-      if (res.data.valid) {
-        this.props.history.push('/aboutme');
-        localStorage.removeItem('resume-token');
-      }
+      if (res.data.valid) { this.props.history.push('/main'); }
+      else { localStorage.removeItem('resume-token'); }
     });
   }
 

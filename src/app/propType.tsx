@@ -1,4 +1,5 @@
 import React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 
 export interface InitialProps {
   history: any;
@@ -8,6 +9,10 @@ export interface InitialProps {
 
 export interface InitialState {
   token: string;
+}
+
+export interface MainProps {
+  children: React.Component;
 }
 
 export interface MainState {

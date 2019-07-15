@@ -2,6 +2,7 @@ import React  from 'react';
 import { Context } from './context';
 import Routes from './routes';
 import { InitialState } from './propType';
+import { BrowserRouter } from 'react-router-dom';
 
 export default class App extends React.Component<{}, InitialState> {
 

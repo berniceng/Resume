@@ -1,12 +1,13 @@
 import React from 'react';
-import { InitialProps, MainState } from '../propType';
+import { InitialProps, MainState, MainProps } from '../propType';
 import { AppContext } from '../context';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import * as headerStyles from '../scss/header.scss';
 import * as styles from '../scss/mainContainer.scss';
+import { withRouter } from 'react-router-dom';
 
-class MainContainer extends React.Component<InitialProps, MainState>{
+class MainContainer extends React.Component<InitialProps & MainProps, MainState>{
   state = {
     currentPage: 'aboutme',
     headerClass: 'false',
@@ -14,6 +15,7 @@ class MainContainer extends React.Component<InitialProps, MainState>{
 
   componentDidMount() {
     document.addEventListener('scroll', this.showStickyHeader, false);
+    this.props.history.push(`/main/${this.state.currentPage}`);
   }
 
   componentWillUnmount() {
@@ -29,14 +31,16 @@ class MainContainer extends React.Component<InitialProps, MainState>{
     return(
       <div className={styles.container}>
         <Header currentPage={this.state.currentPage} className={this.state.headerClass}/>
-        <div className={styles.main_content}/>
+        <div className={styles.main_content}>
+          {this.props.children}
+        </div>
         <Footer />
       </div>
     );
   }
 }
 
-export default AppContext(MainContainer);
+export default withRouter(AppContext(MainContainer));
 
 // function MainContainer(props: any) {
 //     const [test, setTest] = React.useState(1)
