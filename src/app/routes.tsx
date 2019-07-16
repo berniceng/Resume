@@ -20,9 +20,9 @@ const Routes = () => {
             () => <MainContainer
               children={{
                 page: 'aboutme',
-                component: <Aboutme/>
-              }} 
-              // page='aboutme' 
+                component: <Aboutme/>,
+              }}
+              // page='aboutme'
               // children={
               //   <Aboutme/>
               // }
@@ -37,7 +37,7 @@ const Routes = () => {
             () => <MainContainer
               children={{
                 page: 'skills',
-                component: <Skills/>
+                component: <Skills/>,
               }}
             />
           }

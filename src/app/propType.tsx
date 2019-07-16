@@ -35,3 +35,8 @@ export interface HeaderProps {
   currentPage: string;
   className: string;
 }
+
+export interface HeaderState {
+  width: number;
+  isOpen: boolean;
+}

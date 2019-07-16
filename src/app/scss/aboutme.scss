@@ -1,51 +1,82 @@
 @import './variable.scss';
 @import './mixin.scss';
 
-.aboutme_container{
+.aboutme_container {
     min-height: inherit;
 
-    .content{
+    .content {
         min-height: inherit;
 
-        .contact{
+        .contact {
             background-image: linear-gradient(rgba(255,255,255,.3), rgba(255,255,255,.3)), url('../../assets/img/background-laptop-2.jpg');
-            padding: 225px 200px 0 200px;
+            padding: 78px;
             height: calc(100% - 100px);
-            display: flex;
-            justify-content: center;
+            display: flex;    
+            justify-content: space-evenly;
+            align-items: center;
+            
+            @include media-max(650px) {
+                flex-direction: column-reverse;
+                padding: 10%;
+            }
 
-            .left{
-                >:nth-child(1){
-                    @include font($font-abel, $font-l, $color-dark-grey, $weight-light);
+            .left {
+                height: fit-content;
+
+                @include media-max(650px) {
+                    text-align: center;
+                }
+
+                >:nth-child(1) {
+                    @include font($font-abel, $font-l, $color-orange, $weight-light);
                     padding-bottom: 15px;
+            
+                    @include media-max(754px) {
+                        @include font($font-abel, $font-m, $color-orange, $weight-light);
+                    }
                 }
 
-                >:nth-child(2){
+                >:nth-child(2) {
                     @include font($font-abel, $font-xxl, $color-dark-grey, $weight-bold);
+            
+                    @include media-max(754px) {
+                        @include font($font-abel, $font-xl, $color-dark-grey, $weight-bold);
+                    }
                 }
 
-                >:nth-child(3){
+                >:nth-child(3) {
                     @include font($font-abel, $font-xl, $color-dark-grey, $weight-bold);
                     padding-bottom: 30px;
+            
+                    @include media-max(754px) {
+                        @include font($font-abel, $font-l, $color-dark-grey, $weight-bold);
+                    }
                 }
                 
 
-                >:nth-child(4){
+                >:nth-child(4) {
                     @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
+                    display: flex;
+                    flex-direction: column;
+
+                    @include media-max(650px) {
+                        align-items: center;
+                    }
 
                     > div {
                         display: flex;
                         padding: 10px 0;
 
-                        img{
+                        img {
                             width: 20px;
+                            height: 20px;
                         }
                         
                         div, a {
                             padding: 0px 20px;
                         }
 
-                        a{
+                        a {
                             text-decoration: underline;
                             color: $color-blue;
                         }
@@ -53,15 +84,24 @@
                 }
             }
 
-            .right{
-                padding-left: 150px;
+            .right {
+                height: fit-content;
 
                 img {    
                     width: 300px;
                     border-radius: 1000px;
                     border: 20px solid rgba(255,255,255,0.4); 
+
+                    @include media-max(500px) {
+                        width: 90%;
+                        border: 20px solid rgba(255,255,255,0.4);
+                    }
                 }
             }
+        }
+        
+        .summary{
+
         }
     }
 }

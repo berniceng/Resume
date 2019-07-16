@@ -9,6 +9,7 @@
     position: fixed;
     width: 100%;
     transition: all ease-in 0.3s;
+    cursor: pointer;
 
     > div {
         padding: 24px 30px;
@@ -16,6 +17,80 @@
 }
 
 .sticky_header {
-    box-shadow: 10px 10px 30px -26px $color-medium-grey;
+    box-shadow: 10px 10px 30px -17px $color-medium-grey;
     background-color: $color-white;
+}
+
+.menubar {
+    @include font($font-abel, $font-m, $color-dark-grey, $weight-light);
+    display: flex;
+    position: fixed;
+    width: 100%;
+    transition: all ease-in 0.3s;
+
+    @include media-max(850px){
+        height: 100%;
+    }
+    
+    .burger {
+        padding: 10px;
+        height: 28px;
+        border-bottom-right-radius: 16px;
+
+        span {
+            display: block;
+            margin: 5px;
+            height: 3px;
+            width: 33px;
+            background: #d3531a;
+            border-radius: 9px;
+            transform: rotate(0deg);
+            transition: transform ease-in-out 0.2s, margin-top ease-in-out 0.2s, visibility ease-in 0.05s;
+            border-radius: 10px;
+        }
+    }
+    
+    .sidebar {
+        width: 0px;
+        overflow-x: hidden;
+        background-color: $color-white;
+        @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
+        transition: width ease 0.2s;
+
+        div {
+            padding: 20px 10px;
+        }
+
+        div:last-child {
+            bottom: 0px;
+            position: absolute;
+        }
+    }
+}
+
+.open {
+    .burger {
+        box-shadow: 10px 10px 30px -17px $color-medium-grey;
+        background-color: $color-white;
+
+        span:nth-child(1) {    
+            transform: rotate(45deg);    
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        span:nth-child(2) {  
+            visibility: hidden;
+        }
+
+        span:nth-child(3) {    
+            transform: rotate(-45deg);    
+            margin-top: -21px;
+            margin-bottom: 10px;
+        }
+    }
+
+    .sidebar {
+        width: 50%;
+    }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import * as styles from '../scss/aboutme.scss';
+import { withRouter } from 'react-router-dom';
 
 const email = require('../../assets/img/email-icon.png');
 const hp = require('../../assets/img/phone-icon.png');
@@ -8,7 +9,7 @@ const profile = require('../../assets/img/profile-pic.png');
 
 const openInNewTab = () => {
   window.open('https://www.linkedin.com/in/bernice-ng-kai-ling', '_blank');
-}
+};
 
 const Aboutme = () => {
   return(
@@ -30,7 +31,7 @@ const Aboutme = () => {
               </div>
               <div>
                 <img src={linkedin}/>
-                <a onClick={openInNewTab}>www.linkedin.com/in/bernice-ng-kai-ling</a>
+                <a onClick={openInNewTab}>Visit my Linkedin</a>
               </div>
             </div>
           </div>
@@ -38,9 +39,7 @@ const Aboutme = () => {
             <img src={profile}/>
           </div>
         </div>
-        <div>
-
-        </div>
+        <div/>
       </div>
     </div>
   );

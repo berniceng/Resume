@@ -22,11 +22,10 @@ class MainContainer extends React.Component<MainProps & InitialProps, MainState>
     axios.post('http://localhost:3000/api/users/verifyToken', {
       token,
     }).then((res: any) => {
-      if (res.data.valid) { 
-        this.props.history.push(`/main/${this.props.children.page}`); 
-      }
-      else { 
-        localStorage.removeItem('resume-token'); 
+      if (res.data.valid) {
+        this.props.history.push(`/main/${this.props.children.page}`);
+      } else {
+        localStorage.removeItem('resume-token');
         this.props.history.push('/login');
       }
     });

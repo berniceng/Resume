@@ -4,3 +4,15 @@
     color: $font-color;
     font-weight: $font-weight;
 }
+
+@mixin media-min($min-width) {
+    @media screen and (min-width: $min-width){
+        @content;
+    }
+}
+
+@mixin media-max($max-width) {
+    @media screen and (max-width: $max-width){
+        @content;
+    }
+}
