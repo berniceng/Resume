@@ -40,6 +40,21 @@ const Aboutme = () => {
           </div>
         </div>
         <div/>
+        <div className={styles.summary}>
+          <div className={styles.icon}>
+            <div/>
+            <div/>
+          </div>
+          <div className={styles.text}>
+            A fourth year Information Systems undergraduate in
+            Singapore Management University (SMU) with strong
+            interest in full stack development.
+            Being a conscientious worker and quick learner
+            who is flexible and a team player as well.
+            Experienced working with ReactJS mainly and was
+            exposed to several other languages like Java and PHP.
+          </div>
+        </div>
       </div>
     </div>
   );

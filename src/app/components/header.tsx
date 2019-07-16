@@ -5,7 +5,7 @@ import * as styles from '../scss/header.scss';
 class Header extends Component<HeaderProps, HeaderState>{
   state = {
     width: window.innerWidth,
-    isOpen: false
+    isOpen: false,
   };
 
   componentWillMount() {
@@ -34,24 +34,24 @@ class Header extends Component<HeaderProps, HeaderState>{
 
   render() {
     const menuObj = [
-      {key: "aboutme", title: "About Me"},
-      {key: "skills", title: "Skills"},
-      {key: "edu", title: "Education"},
-      {key: "exp", title: "Experiences"},
-      {key: "recommendation", title: "Recommendation"},
-      {key: "logout", title: "Logout"}
+      { key: 'aboutme', title: 'About Me' },
+      { key: 'skills', title: 'Skills' },
+      { key: 'edu', title: 'Education' },
+      { key: 'exp', title: 'Experiences' },
+      { key: 'recommendation', title: 'Recommendation' },
+      { key: 'logout', title: 'Logout' },
     ];
-    
+
     const menu = menuObj.map((obj) => {
-        if(this.props.currentPage === obj.key){
-          return(
+      if (this.props.currentPage === obj.key) {
+        return(
             <div className={styles.underline}>{obj.title}</div>
-          )
-        } else{
-          return(
-            <div>{obj.title}</div>
-          )
-        }
+        );
+      }
+      return(
+            <div key={obj.key}>{obj.title}</div>
+      );
+
     });
 
     return(
@@ -59,21 +59,24 @@ class Header extends Component<HeaderProps, HeaderState>{
       ?
       (
         <div className={`${styles.header} ${this.props.className}`}>
-          { menu }
+          {menu}
         </div>
       )
       :
       (
         <div className={`${styles.menubar} ${this.state.isOpen ? styles.open : null}`}>
           <div className={styles.sidebar}>
-            { menu }
+            {menu}
           </div>
-          <div className={`${styles.burger} ${this.props.className}`} onClick={this.toggleBurgerMenu}>
+          <div
+            className={`${styles.burger} ${this.props.className}`}
+            onClick={this.toggleBurgerMenu}
+          >
             <span/>
             <span/>
             <span/>
           </div>
-          <div className={styles.background} onClick={this.toggleBurgerMenu}></div>
+          <div className={styles.background} onClick={this.toggleBurgerMenu}/>
         </div>
       )
     );

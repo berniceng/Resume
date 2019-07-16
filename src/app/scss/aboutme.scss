@@ -99,5 +99,30 @@
                 }
             }
         }
+
+        .summary {
+            .icon {
+                display: flex;
+                align-items: baseline;
+
+                div:first-child {
+                    width: 200px;
+                    height: 200px;
+                    background-color: purple;
+                    border-radius: 80px 80px 0 80px;
+                }
+
+                div:last-child {    
+                    width: 50px;
+                    height: 50px;
+                    background-color: green;
+                    border-radius: 20px 20px 20px 0;
+                }
+            }
+
+            .text {
+                @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
+            }
+        }
     }
 }
