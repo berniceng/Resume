@@ -13,6 +13,18 @@
 
     > div {
         padding: 24px 30px;
+
+        &:hover {
+            @include font($font-abel, $font-m, $color-orange, $weight-bold);
+        }
+    }
+
+    .underline {
+        border-bottom: 2px solid $color-medium-grey;
+
+        &:hover {
+            @include font($font-abel, $font-m, $color-white, $weight-bold);
+        }
     }
 }
 
@@ -28,11 +40,12 @@
     width: 100%;
     transition: all ease-in 0.3s;
 
-    @include media-max(850px){
+    @include media-max(875px){
         height: 100%;
     }
     
     .burger {
+        z-index: 10;
         padding: 10px;
         height: 28px;
         border-bottom-right-radius: 16px;
@@ -42,7 +55,7 @@
             margin: 5px;
             height: 3px;
             width: 33px;
-            background: #d3531a;
+            background: $color-orange;
             border-radius: 9px;
             transform: rotate(0deg);
             transition: transform ease-in-out 0.2s, margin-top ease-in-out 0.2s, visibility ease-in 0.05s;
@@ -51,20 +64,60 @@
     }
     
     .sidebar {
+        z-index: 10;
         width: 0px;
         overflow-x: hidden;
         background-color: $color-white;
-        @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
+        @include font($font-abel, $font-m, $color-dark-grey, $weight-light);
         transition: width ease 0.2s;
 
         div {
-            padding: 20px 10px;
+            padding: 15px; 
+            margin: 15px;
+
+            &:hover {
+                @include font($font-abel, $font-m, $color-orange, $weight-bold);
+            }
         }
 
         div:last-child {
             bottom: 0px;
             position: absolute;
+            visibility: hidden;
+
+            &:after {
+                content: '\00bb';
+                position: relative;
+                padding-left: 0px;
+                visibility: hidden;
+                transition: all ease-in 0.1s;
+            }
+
+            &:hover {
+                &:after {
+                    visibility: visible;
+                    padding-left: 10px;
+                }
+            }
         }
+
+        .underline {
+            @include font($font-abel, $font-m, $color-white, $weight-bold);
+            background-color: $color-orange;
+
+            &:hover {
+                @include font($font-abel, $font-m, $color-white, $weight-bold);
+            }
+        }
+    }
+
+    .background {
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        position: fixed;
+        opacity: 0;
+        transition: ease 0.3s;
     }
 }
 
@@ -92,5 +145,13 @@
 
     .sidebar {
         width: 50%;
+        
+        >div:last-child {
+            visibility: visible;
+        }
+    }
+
+    .background {
+        opacity: 1;
     }
 }

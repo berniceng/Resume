@@ -15,7 +15,7 @@
             justify-content: space-evenly;
             align-items: center;
             
-            @include media-max(650px) {
+            @include media-max(770px) {
                 flex-direction: column-reverse;
                 padding: 10%;
             }
@@ -23,7 +23,7 @@
             .left {
                 height: fit-content;
 
-                @include media-max(650px) {
+                @include media-max(770px) {
                     text-align: center;
                 }
 
@@ -31,7 +31,7 @@
                     @include font($font-abel, $font-l, $color-orange, $weight-light);
                     padding-bottom: 15px;
             
-                    @include media-max(754px) {
+                    @include media-max(770px) {
                         @include font($font-abel, $font-m, $color-orange, $weight-light);
                     }
                 }
@@ -39,7 +39,7 @@
                 >:nth-child(2) {
                     @include font($font-abel, $font-xxl, $color-dark-grey, $weight-bold);
             
-                    @include media-max(754px) {
+                    @include media-max(770px) {
                         @include font($font-abel, $font-xl, $color-dark-grey, $weight-bold);
                     }
                 }
@@ -48,7 +48,7 @@
                     @include font($font-abel, $font-xl, $color-dark-grey, $weight-bold);
                     padding-bottom: 30px;
             
-                    @include media-max(754px) {
+                    @include media-max(770px) {
                         @include font($font-abel, $font-l, $color-dark-grey, $weight-bold);
                     }
                 }
@@ -59,7 +59,7 @@
                     display: flex;
                     flex-direction: column;
 
-                    @include media-max(650px) {
+                    @include media-max(770px) {
                         align-items: center;
                     }
 
@@ -98,10 +98,6 @@
                     }
                 }
             }
-        }
-        
-        .summary{
-
         }
     }
 }
