@@ -22,10 +22,6 @@ const Routes = () => {
                 page: 'aboutme',
                 component: <Aboutme/>,
               }}
-              // page='aboutme'
-              // children={
-              //   <Aboutme/>
-              // }
             />
           }
         />

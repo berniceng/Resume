@@ -6,6 +6,7 @@ const email = require('../../assets/img/email-icon.png');
 const hp = require('../../assets/img/phone-icon.png');
 const linkedin = require('../../assets/img/linkedin-icon.png');
 const profile = require('../../assets/img/profile-pic.png');
+const badminton = require('../../assets/img/badminton.png');
 
 const openInNewTab = () => {
   window.open('https://www.linkedin.com/in/bernice-ng-kai-ling', '_blank');
@@ -41,18 +42,38 @@ const Aboutme = () => {
         </div>
         <div/>
         <div className={styles.summary}>
-          <div className={styles.icon}>
-            <div/>
-            <div/>
+          <div className={styles.title}>
+            A little more about me...
           </div>
           <div className={styles.text}>
             A fourth year Information Systems undergraduate in
             Singapore Management University (SMU) with strong
             interest in full stack development.
             Being a conscientious worker and quick learner
-            who is flexible and a team player as well.
+            who is flexible as well as a team player.
             Experienced working with ReactJS mainly and was
             exposed to several other languages like Java and PHP.
+          </div>
+        </div>
+        <div className={styles.interests}>
+          <div className={styles.title}>
+            Interests
+          </div>
+          <div className={styles.container}>
+            <div className={styles.card}>
+              <div>
+                <img src={badminton}/>
+              </div>
+              <div>
+                Badminton
+              </div>
+            </div>
+            <div className={styles.card}>
+              Dance
+            </div>
+            <div className={styles.card}>
+              
+            </div>
           </div>
         </div>
       </div>

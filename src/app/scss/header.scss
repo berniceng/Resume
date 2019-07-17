@@ -117,6 +117,7 @@
         background: rgba(0,0,0,0.5);
         position: fixed;
         opacity: 0;
+        display: none;
         transition: ease 0.3s;
     }
 }
@@ -153,5 +154,6 @@
 
     .background {
         opacity: 1;
+        display: block;
     }
 }

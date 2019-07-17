@@ -1943,35 +1943,6 @@ module.exports = function isBuffer (obj) {
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/aboutme.scss":
-/*!**************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/sass-loader/lib/loader.js??ref--6-2!./src/app/scss/aboutme.scss ***!
-  \**************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
-// Imports
-var getUrl = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
-var ___CSS_LOADER_URL___0___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.eot */ "./src/assets/font/abel-regular-webfont.eot"));
-var ___CSS_LOADER_URL___1___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.woff */ "./src/assets/font/abel-regular-webfont.woff"));
-var ___CSS_LOADER_URL___2___ = getUrl(__webpack_require__(/*! ../../assets/img/background-laptop-2.jpg */ "./src/assets/img/background-laptop-2.jpg"));
-// Module
-exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n._2olbO_KMiJ4kRji0s-shLn {\n  min-height: inherit; }\n  ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi {\n    min-height: inherit; }\n    ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm {\n      background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(" + ___CSS_LOADER_URL___2___ + ");\n      padding: 78px;\n      height: calc(100% - 100px);\n      display: flex;\n      justify-content: space-evenly;\n      align-items: center; }\n      @media screen and (max-width: 770px) {\n        ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm {\n          flex-direction: column-reverse;\n          padding: 10%; } }\n      ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 {\n        height: fit-content; }\n        @media screen and (max-width: 770px) {\n          ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 {\n            text-align: center; } }\n        ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(1) {\n          font-family: \"Abel\";\n          font-size: 1.6rem;\n          color: #ea9767;\n          font-weight: 400;\n          padding-bottom: 15px; }\n          @media screen and (max-width: 770px) {\n            ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(1) {\n              font-family: \"Abel\";\n              font-size: 1.3rem;\n              color: #ea9767;\n              font-weight: 400; } }\n        ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(2) {\n          font-family: \"Abel\";\n          font-size: 2.2rem;\n          color: #444445;\n          font-weight: 600; }\n          @media screen and (max-width: 770px) {\n            ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(2) {\n              font-family: \"Abel\";\n              font-size: 1.9rem;\n              color: #444445;\n              font-weight: 600; } }\n        ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(3) {\n          font-family: \"Abel\";\n          font-size: 1.9rem;\n          color: #444445;\n          font-weight: 600;\n          padding-bottom: 30px; }\n          @media screen and (max-width: 770px) {\n            ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(3) {\n              font-family: \"Abel\";\n              font-size: 1.6rem;\n              color: #444445;\n              font-weight: 600; } }\n        ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(4) {\n          font-family: \"Abel\";\n          font-size: 1rem;\n          color: #444445;\n          font-weight: 400;\n          display: flex;\n          flex-direction: column; }\n          @media screen and (max-width: 770px) {\n            ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(4) {\n              align-items: center; } }\n          ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(4) > div {\n            display: flex;\n            padding: 10px 0; }\n            ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(4) > div img {\n              width: 20px;\n              height: 20px; }\n            ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(4) > div div, ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(4) > div a {\n              padding: 0px 20px; }\n            ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(4) > div a {\n              text-decoration: underline;\n              color: #3273dc; }\n      ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1DL1PqC2zq8EF1jwvEUZm9 {\n        height: fit-content; }\n        ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1DL1PqC2zq8EF1jwvEUZm9 img {\n          width: 300px;\n          border-radius: 1000px;\n          border: 20px solid rgba(255, 255, 255, 0.4); }\n          @media screen and (max-width: 500px) {\n            ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1DL1PqC2zq8EF1jwvEUZm9 img {\n              width: 90%;\n              border: 20px solid rgba(255, 255, 255, 0.4); } }\n    ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._1esp0GCmHkVa-KgmlLX3dN ._3rRdRvTWbekuh0aq7EqBrV {\n      display: flex;\n      align-items: baseline; }\n      ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._1esp0GCmHkVa-KgmlLX3dN ._3rRdRvTWbekuh0aq7EqBrV div:first-child {\n        width: 200px;\n        height: 200px;\n        background-color: purple;\n        border-radius: 80px 80px 0 80px; }\n      ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._1esp0GCmHkVa-KgmlLX3dN ._3rRdRvTWbekuh0aq7EqBrV div:last-child {\n        width: 50px;\n        height: 50px;\n        background-color: green;\n        border-radius: 20px 20px 20px 0; }\n    ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._1esp0GCmHkVa-KgmlLX3dN .Qx6Enck4LcvZ3raMOqcH- {\n      font-family: \"Abel\";\n      font-size: 1rem;\n      color: #444445;\n      font-weight: 400; }\n", ""]);
-// Exports
-exports.locals = {
-	"aboutme_container": "_2olbO_KMiJ4kRji0s-shLn",
-	"content": "_1Poxo-RR2wnIsb03jjHLXi",
-	"contact": "_24YlJ-GnXoyx-sTmT00yTm",
-	"left": "_1Uvt41SPkdKrBXKxIYUvL4",
-	"right": "_1DL1PqC2zq8EF1jwvEUZm9",
-	"summary": "_1esp0GCmHkVa-KgmlLX3dN",
-	"icon": "_3rRdRvTWbekuh0aq7EqBrV",
-	"text": "Qx6Enck4LcvZ3raMOqcH-"
-};
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/footer.scss":
 /*!*************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/sass-loader/lib/loader.js??ref--6-2!./src/app/scss/footer.scss ***!
@@ -1984,8 +1955,12 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 var getUrl = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
 var ___CSS_LOADER_URL___0___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.eot */ "./src/assets/font/abel-regular-webfont.eot"));
 var ___CSS_LOADER_URL___1___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.woff */ "./src/assets/font/abel-regular-webfont.woff"));
+var ___CSS_LOADER_URL___2___ = getUrl(__webpack_require__(/*! ../../assets/font/Windsong-webfont.eot */ "./src/assets/font/Windsong-webfont.eot"));
+var ___CSS_LOADER_URL___3___ = getUrl(__webpack_require__(/*! ../../assets/font/Windsong-webfont.woff */ "./src/assets/font/Windsong-webfont.woff"));
+var ___CSS_LOADER_URL___4___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.eot */ "./src/assets/font/Burlington_Script.eot"));
+var ___CSS_LOADER_URL___5___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.woff */ "./src/assets/font/Burlington_Script.woff"));
 // Module
-exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n._2Mqy7UfwA2XOCzb-ZNJiCY {\n  font-family: \"Abel\";\n  font-size: 1rem;\n  color: #444445;\n  font-weight: 400;\n  padding: 25px; }\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Windsong';\n  src: url(" + ___CSS_LOADER_URL___2___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___3___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Burlington';\n  src: url(" + ___CSS_LOADER_URL___4___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___5___ + ") format(\"woff\"); }\n\n._2Mqy7UfwA2XOCzb-ZNJiCY {\n  font-family: \"Abel\";\n  font-size: 1rem;\n  color: #444445;\n  font-weight: 400;\n  padding: 25px; }\n", ""]);
 // Exports
 exports.locals = {
 	"footer": "_2Mqy7UfwA2XOCzb-ZNJiCY"
@@ -2005,8 +1980,12 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 var getUrl = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
 var ___CSS_LOADER_URL___0___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.eot */ "./src/assets/font/abel-regular-webfont.eot"));
 var ___CSS_LOADER_URL___1___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.woff */ "./src/assets/font/abel-regular-webfont.woff"));
+var ___CSS_LOADER_URL___2___ = getUrl(__webpack_require__(/*! ../../assets/font/Windsong-webfont.eot */ "./src/assets/font/Windsong-webfont.eot"));
+var ___CSS_LOADER_URL___3___ = getUrl(__webpack_require__(/*! ../../assets/font/Windsong-webfont.woff */ "./src/assets/font/Windsong-webfont.woff"));
+var ___CSS_LOADER_URL___4___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.eot */ "./src/assets/font/Burlington_Script.eot"));
+var ___CSS_LOADER_URL___5___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.woff */ "./src/assets/font/Burlington_Script.woff"));
 // Module
-exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n._1UZ8FLqLf8Xj1bq4XVJVVF {\n  font-family: \"Abel\";\n  font-size: 1.3rem;\n  color: #444445;\n  font-weight: 400;\n  display: flex;\n  justify-content: center;\n  position: fixed;\n  width: 100%;\n  transition: all ease-in 0.3s;\n  cursor: pointer; }\n  ._1UZ8FLqLf8Xj1bq4XVJVVF > div {\n    padding: 24px 30px; }\n    ._1UZ8FLqLf8Xj1bq4XVJVVF > div:hover {\n      font-family: \"Abel\";\n      font-size: 1.3rem;\n      color: #ea9767;\n      font-weight: 600; }\n  ._1UZ8FLqLf8Xj1bq4XVJVVF ._3ntYjKTuxfDeSEAyZrCh2o {\n    border-bottom: 2px solid #6e6e70; }\n    ._1UZ8FLqLf8Xj1bq4XVJVVF ._3ntYjKTuxfDeSEAyZrCh2o:hover {\n      font-family: \"Abel\";\n      font-size: 1.3rem;\n      color: #fff;\n      font-weight: 600; }\n\n._1gLQWw8rR8G1IVE9YeznU {\n  box-shadow: 10px 10px 30px -17px #6e6e70;\n  background-color: #fff; }\n\n._10i3M8hm2RCVjAVToXVzp5 {\n  font-family: \"Abel\";\n  font-size: 1.3rem;\n  color: #444445;\n  font-weight: 400;\n  display: flex;\n  position: fixed;\n  width: 100%;\n  transition: all ease-in 0.3s; }\n  @media screen and (max-width: 875px) {\n    ._10i3M8hm2RCVjAVToXVzp5 {\n      height: 100%; } }\n  ._10i3M8hm2RCVjAVToXVzp5 ._1-IZ6mU0cC-3tYzBa8jWJX {\n    z-index: 10;\n    padding: 10px;\n    height: 28px;\n    border-bottom-right-radius: 16px; }\n    ._10i3M8hm2RCVjAVToXVzp5 ._1-IZ6mU0cC-3tYzBa8jWJX span {\n      display: block;\n      margin: 5px;\n      height: 3px;\n      width: 33px;\n      background: #ea9767;\n      border-radius: 9px;\n      transform: rotate(0deg);\n      transition: transform ease-in-out 0.2s, margin-top ease-in-out 0.2s, visibility ease-in 0.05s;\n      border-radius: 10px; }\n  ._10i3M8hm2RCVjAVToXVzp5 .EAHVbwYZ9byodw3r1D9wy {\n    z-index: 10;\n    width: 0px;\n    overflow-x: hidden;\n    background-color: #fff;\n    font-family: \"Abel\";\n    font-size: 1.3rem;\n    color: #444445;\n    font-weight: 400;\n    transition: width ease 0.2s; }\n    ._10i3M8hm2RCVjAVToXVzp5 .EAHVbwYZ9byodw3r1D9wy div {\n      padding: 15px;\n      margin: 15px; }\n      ._10i3M8hm2RCVjAVToXVzp5 .EAHVbwYZ9byodw3r1D9wy div:hover {\n        font-family: \"Abel\";\n        font-size: 1.3rem;\n        color: #ea9767;\n        font-weight: 600; }\n    ._10i3M8hm2RCVjAVToXVzp5 .EAHVbwYZ9byodw3r1D9wy div:last-child {\n      bottom: 0px;\n      position: absolute;\n      visibility: hidden; }\n      ._10i3M8hm2RCVjAVToXVzp5 .EAHVbwYZ9byodw3r1D9wy div:last-child:after {\n        content: '\\00bb';\n        position: relative;\n        padding-left: 0px;\n        visibility: hidden;\n        transition: all ease-in 0.1s; }\n      ._10i3M8hm2RCVjAVToXVzp5 .EAHVbwYZ9byodw3r1D9wy div:last-child:hover:after {\n        visibility: visible;\n        padding-left: 10px; }\n    ._10i3M8hm2RCVjAVToXVzp5 .EAHVbwYZ9byodw3r1D9wy ._3ntYjKTuxfDeSEAyZrCh2o {\n      font-family: \"Abel\";\n      font-size: 1.3rem;\n      color: #fff;\n      font-weight: 600;\n      background-color: #ea9767; }\n      ._10i3M8hm2RCVjAVToXVzp5 .EAHVbwYZ9byodw3r1D9wy ._3ntYjKTuxfDeSEAyZrCh2o:hover {\n        font-family: \"Abel\";\n        font-size: 1.3rem;\n        color: #fff;\n        font-weight: 600; }\n  ._10i3M8hm2RCVjAVToXVzp5 ._3ZU8EBfKga18sNkr7FHjfQ {\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.5);\n    position: fixed;\n    opacity: 0;\n    transition: ease 0.3s; }\n\n._9gSxXX2lA4UPesoTyw9pB ._1-IZ6mU0cC-3tYzBa8jWJX {\n  box-shadow: 10px 10px 30px -17px #6e6e70;\n  background-color: #fff; }\n  ._9gSxXX2lA4UPesoTyw9pB ._1-IZ6mU0cC-3tYzBa8jWJX span:nth-child(1) {\n    transform: rotate(45deg);\n    margin-top: 10px;\n    margin-bottom: 10px; }\n  ._9gSxXX2lA4UPesoTyw9pB ._1-IZ6mU0cC-3tYzBa8jWJX span:nth-child(2) {\n    visibility: hidden; }\n  ._9gSxXX2lA4UPesoTyw9pB ._1-IZ6mU0cC-3tYzBa8jWJX span:nth-child(3) {\n    transform: rotate(-45deg);\n    margin-top: -21px;\n    margin-bottom: 10px; }\n\n._9gSxXX2lA4UPesoTyw9pB .EAHVbwYZ9byodw3r1D9wy {\n  width: 50%; }\n  ._9gSxXX2lA4UPesoTyw9pB .EAHVbwYZ9byodw3r1D9wy > div:last-child {\n    visibility: visible; }\n\n._9gSxXX2lA4UPesoTyw9pB ._3ZU8EBfKga18sNkr7FHjfQ {\n  opacity: 1; }\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Windsong';\n  src: url(" + ___CSS_LOADER_URL___2___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___3___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Burlington';\n  src: url(" + ___CSS_LOADER_URL___4___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___5___ + ") format(\"woff\"); }\n\n._1UZ8FLqLf8Xj1bq4XVJVVF {\n  font-family: \"Abel\";\n  font-size: 1.3rem;\n  color: #444445;\n  font-weight: 400;\n  display: flex;\n  justify-content: center;\n  position: fixed;\n  width: 100%;\n  transition: all ease-in 0.3s;\n  cursor: pointer; }\n  ._1UZ8FLqLf8Xj1bq4XVJVVF > div {\n    padding: 24px 30px; }\n    ._1UZ8FLqLf8Xj1bq4XVJVVF > div:hover {\n      font-family: \"Abel\";\n      font-size: 1.3rem;\n      color: #ea9767;\n      font-weight: 600; }\n  ._1UZ8FLqLf8Xj1bq4XVJVVF ._3ntYjKTuxfDeSEAyZrCh2o {\n    border-bottom: 2px solid #6e6e70; }\n    ._1UZ8FLqLf8Xj1bq4XVJVVF ._3ntYjKTuxfDeSEAyZrCh2o:hover {\n      font-family: \"Abel\";\n      font-size: 1.3rem;\n      color: #fff;\n      font-weight: 600; }\n\n._1gLQWw8rR8G1IVE9YeznU {\n  box-shadow: 10px 10px 30px -17px #6e6e70;\n  background-color: #fff; }\n\n._10i3M8hm2RCVjAVToXVzp5 {\n  font-family: \"Abel\";\n  font-size: 1.3rem;\n  color: #444445;\n  font-weight: 400;\n  display: flex;\n  position: fixed;\n  width: 100%;\n  transition: all ease-in 0.3s; }\n  @media screen and (max-width: 875px) {\n    ._10i3M8hm2RCVjAVToXVzp5 {\n      height: 100%; } }\n  ._10i3M8hm2RCVjAVToXVzp5 ._1-IZ6mU0cC-3tYzBa8jWJX {\n    z-index: 10;\n    padding: 10px;\n    height: 28px;\n    border-bottom-right-radius: 16px; }\n    ._10i3M8hm2RCVjAVToXVzp5 ._1-IZ6mU0cC-3tYzBa8jWJX span {\n      display: block;\n      margin: 5px;\n      height: 3px;\n      width: 33px;\n      background: #ea9767;\n      border-radius: 9px;\n      transform: rotate(0deg);\n      transition: transform ease-in-out 0.2s, margin-top ease-in-out 0.2s, visibility ease-in 0.05s;\n      border-radius: 10px; }\n  ._10i3M8hm2RCVjAVToXVzp5 .EAHVbwYZ9byodw3r1D9wy {\n    z-index: 10;\n    width: 0px;\n    overflow-x: hidden;\n    background-color: #fff;\n    font-family: \"Abel\";\n    font-size: 1.3rem;\n    color: #444445;\n    font-weight: 400;\n    transition: width ease 0.2s; }\n    ._10i3M8hm2RCVjAVToXVzp5 .EAHVbwYZ9byodw3r1D9wy div {\n      padding: 15px;\n      margin: 15px; }\n      ._10i3M8hm2RCVjAVToXVzp5 .EAHVbwYZ9byodw3r1D9wy div:hover {\n        font-family: \"Abel\";\n        font-size: 1.3rem;\n        color: #ea9767;\n        font-weight: 600; }\n    ._10i3M8hm2RCVjAVToXVzp5 .EAHVbwYZ9byodw3r1D9wy div:last-child {\n      bottom: 0px;\n      position: absolute;\n      visibility: hidden; }\n      ._10i3M8hm2RCVjAVToXVzp5 .EAHVbwYZ9byodw3r1D9wy div:last-child:after {\n        content: '\\00bb';\n        position: relative;\n        padding-left: 0px;\n        visibility: hidden;\n        transition: all ease-in 0.1s; }\n      ._10i3M8hm2RCVjAVToXVzp5 .EAHVbwYZ9byodw3r1D9wy div:last-child:hover:after {\n        visibility: visible;\n        padding-left: 10px; }\n    ._10i3M8hm2RCVjAVToXVzp5 .EAHVbwYZ9byodw3r1D9wy ._3ntYjKTuxfDeSEAyZrCh2o {\n      font-family: \"Abel\";\n      font-size: 1.3rem;\n      color: #fff;\n      font-weight: 600;\n      background-color: #ea9767; }\n      ._10i3M8hm2RCVjAVToXVzp5 .EAHVbwYZ9byodw3r1D9wy ._3ntYjKTuxfDeSEAyZrCh2o:hover {\n        font-family: \"Abel\";\n        font-size: 1.3rem;\n        color: #fff;\n        font-weight: 600; }\n  ._10i3M8hm2RCVjAVToXVzp5 ._3ZU8EBfKga18sNkr7FHjfQ {\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.5);\n    position: fixed;\n    opacity: 0;\n    display: none;\n    transition: ease 0.3s; }\n\n._9gSxXX2lA4UPesoTyw9pB ._1-IZ6mU0cC-3tYzBa8jWJX {\n  box-shadow: 10px 10px 30px -17px #6e6e70;\n  background-color: #fff; }\n  ._9gSxXX2lA4UPesoTyw9pB ._1-IZ6mU0cC-3tYzBa8jWJX span:nth-child(1) {\n    transform: rotate(45deg);\n    margin-top: 10px;\n    margin-bottom: 10px; }\n  ._9gSxXX2lA4UPesoTyw9pB ._1-IZ6mU0cC-3tYzBa8jWJX span:nth-child(2) {\n    visibility: hidden; }\n  ._9gSxXX2lA4UPesoTyw9pB ._1-IZ6mU0cC-3tYzBa8jWJX span:nth-child(3) {\n    transform: rotate(-45deg);\n    margin-top: -21px;\n    margin-bottom: 10px; }\n\n._9gSxXX2lA4UPesoTyw9pB .EAHVbwYZ9byodw3r1D9wy {\n  width: 50%; }\n  ._9gSxXX2lA4UPesoTyw9pB .EAHVbwYZ9byodw3r1D9wy > div:last-child {\n    visibility: visible; }\n\n._9gSxXX2lA4UPesoTyw9pB ._3ZU8EBfKga18sNkr7FHjfQ {\n  opacity: 1;\n  display: block; }\n", ""]);
 // Exports
 exports.locals = {
 	"header": "_1UZ8FLqLf8Xj1bq4XVJVVF",
@@ -2033,9 +2012,13 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 var getUrl = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
 var ___CSS_LOADER_URL___0___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.eot */ "./src/assets/font/abel-regular-webfont.eot"));
 var ___CSS_LOADER_URL___1___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.woff */ "./src/assets/font/abel-regular-webfont.woff"));
-var ___CSS_LOADER_URL___2___ = getUrl(__webpack_require__(/*! ../../assets/img/background.jpg */ "./src/assets/img/background.jpg"));
+var ___CSS_LOADER_URL___2___ = getUrl(__webpack_require__(/*! ../../assets/font/Windsong-webfont.eot */ "./src/assets/font/Windsong-webfont.eot"));
+var ___CSS_LOADER_URL___3___ = getUrl(__webpack_require__(/*! ../../assets/font/Windsong-webfont.woff */ "./src/assets/font/Windsong-webfont.woff"));
+var ___CSS_LOADER_URL___4___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.eot */ "./src/assets/font/Burlington_Script.eot"));
+var ___CSS_LOADER_URL___5___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.woff */ "./src/assets/font/Burlington_Script.woff"));
+var ___CSS_LOADER_URL___6___ = getUrl(__webpack_require__(/*! ../../assets/img/background.jpg */ "./src/assets/img/background.jpg"));
 // Module
-exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n._1Q305CejX7nvPJbUdIAxkL {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: row;\n  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(" + ___CSS_LOADER_URL___2___ + ");\n  background-repeat: round;\n  justify-content: center;\n  align-items: center; }\n  @media screen and (max-width: 505px) {\n    ._1Q305CejX7nvPJbUdIAxkL {\n      flex-direction: column; } }\n  ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u {\n    display: flex;\n    flex-direction: column;\n    width: 30%;\n    background-color: #fff;\n    height: fit-content;\n    max-height: 90%;\n    padding: 40px;\n    border-radius: 5px;\n    box-shadow: 1px 1px 33px 1px rgba(0, 0, 0, 0.5); }\n    ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u .uqP5rAO2dajfgmLH_Bag_, ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._3_pk2u2i_5Jm3GfhZqwaYL, ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P {\n      padding: 10px 0; }\n    ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u .uqP5rAO2dajfgmLH_Bag_ {\n      height: 7rem;\n      display: flex;\n      justify-content: center; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u .uqP5rAO2dajfgmLH_Bag_ * {\n        justify-content: center;\n        align-items: center;\n        display: flex; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u .uqP5rAO2dajfgmLH_Bag_ img {\n        height: 50%; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u .uqP5rAO2dajfgmLH_Bag_ div:last-child {\n        font-family: \"Abel\";\n        font-size: 1.3rem;\n        color: #ea9767;\n        font-weight: 600;\n        padding: 10px 0 10px 15px; }\n      @media screen and (max-width: 554px) {\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u .uqP5rAO2dajfgmLH_Bag_ div:last-child {\n          font-family: \"Abel\";\n          font-size: 1rem;\n          color: #ea9767;\n          font-weight: 600; } }\n    ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._3_pk2u2i_5Jm3GfhZqwaYL {\n      font-family: \"Abel\";\n      font-size: 1rem;\n      color: #444445;\n      font-weight: 400;\n      text-align: center; }\n    ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P {\n      display: flex;\n      flex-direction: column; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:not(:last-child) {\n        margin-bottom: 25px;\n        border: 1px solid #d9dadb;\n        border-radius: 9px;\n        overflow: hidden;\n        height: 50px;\n        font-family: \"Abel\";\n        font-size: 1rem;\n        color: #000;\n        font-weight: 400; }\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:not(:last-child) input {\n          border: 0;\n          width: 100%;\n          height: 100%;\n          padding: 0px 15px; }\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:not(:last-child) input:focus {\n          outline: none; }\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:not(:last-child) input::placeholder {\n          font-family: \"Abel\";\n          font-size: 1rem;\n          color: #929294;\n          font-weight: 400; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:nth-last-child(2) {\n        border-radius: 5px;\n        background-color: #3273dc;\n        padding: 5px;\n        text-align: center;\n        height: 38px;\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        font-family: \"Abel\";\n        font-size: 1.3rem;\n        color: #fff;\n        font-weight: 400; }\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:nth-last-child(2):active {\n          background-color: #1f498b; }\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:nth-last-child(2) div:after {\n          content: '\\00bb';\n          position: relative;\n          padding-left: 0px;\n          visibility: hidden;\n          transition: all ease-in 0.1s; }\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:nth-last-child(2):hover div:after {\n          visibility: visible;\n          padding-left: 10px; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:last-child ._8a9XuebwuPwdVMTE7wlX_ {\n        visibility: hidden; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:last-child ._1sXHPa8Xu2TyBSD0LplA35 {\n        visibility: visible; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:last-child div {\n        font-family: \"Abel\";\n        font-size: 1rem;\n        color: #ff3860;\n        font-weight: 600;\n        text-align: center; }\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Windsong';\n  src: url(" + ___CSS_LOADER_URL___2___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___3___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Burlington';\n  src: url(" + ___CSS_LOADER_URL___4___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___5___ + ") format(\"woff\"); }\n\n._1Q305CejX7nvPJbUdIAxkL {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: row;\n  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(" + ___CSS_LOADER_URL___6___ + ");\n  background-repeat: round;\n  justify-content: center;\n  align-items: center; }\n  @media screen and (max-width: 505px) {\n    ._1Q305CejX7nvPJbUdIAxkL {\n      flex-direction: column; } }\n  ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u {\n    display: flex;\n    flex-direction: column;\n    width: 30%;\n    background-color: #fff;\n    height: fit-content;\n    max-height: 90%;\n    padding: 40px;\n    border-radius: 5px;\n    box-shadow: 1px 1px 33px 1px rgba(0, 0, 0, 0.5); }\n    ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u .uqP5rAO2dajfgmLH_Bag_, ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._3_pk2u2i_5Jm3GfhZqwaYL, ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P {\n      padding: 10px 0; }\n    ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u .uqP5rAO2dajfgmLH_Bag_ {\n      height: 7rem;\n      display: flex;\n      justify-content: center; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u .uqP5rAO2dajfgmLH_Bag_ * {\n        justify-content: center;\n        align-items: center;\n        display: flex; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u .uqP5rAO2dajfgmLH_Bag_ img {\n        height: 50%; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u .uqP5rAO2dajfgmLH_Bag_ div:last-child {\n        font-family: \"Abel\";\n        font-size: 1.3rem;\n        color: #ea9767;\n        font-weight: 600;\n        padding: 10px 0 10px 15px; }\n      @media screen and (max-width: 554px) {\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u .uqP5rAO2dajfgmLH_Bag_ div:last-child {\n          font-family: \"Abel\";\n          font-size: 1rem;\n          color: #ea9767;\n          font-weight: 600; } }\n    ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._3_pk2u2i_5Jm3GfhZqwaYL {\n      font-family: \"Abel\";\n      font-size: 1rem;\n      color: #444445;\n      font-weight: 400;\n      text-align: center; }\n    ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P {\n      display: flex;\n      flex-direction: column; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:not(:last-child) {\n        margin-bottom: 25px;\n        border: 1px solid #d9dadb;\n        border-radius: 9px;\n        overflow: hidden;\n        height: 50px;\n        font-family: \"Abel\";\n        font-size: 1rem;\n        color: #000;\n        font-weight: 400; }\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:not(:last-child) input {\n          border: 0;\n          width: 100%;\n          height: 100%;\n          padding: 0px 15px; }\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:not(:last-child) input:focus {\n          outline: none; }\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:not(:last-child) input::placeholder {\n          font-family: \"Abel\";\n          font-size: 1rem;\n          color: #929294;\n          font-weight: 400; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:nth-last-child(2) {\n        border-radius: 5px;\n        background-color: #3273dc;\n        padding: 5px;\n        text-align: center;\n        height: 38px;\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        font-family: \"Abel\";\n        font-size: 1.3rem;\n        color: #fff;\n        font-weight: 400; }\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:nth-last-child(2):active {\n          background-color: #1f498b; }\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:nth-last-child(2) div:after {\n          content: '\\00bb';\n          position: relative;\n          padding-left: 0px;\n          visibility: hidden;\n          transition: all ease-in 0.1s; }\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:nth-last-child(2):hover div:after {\n          visibility: visible;\n          padding-left: 10px; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:last-child ._8a9XuebwuPwdVMTE7wlX_ {\n        visibility: hidden; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:last-child ._1sXHPa8Xu2TyBSD0LplA35 {\n        visibility: visible; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:last-child div {\n        font-family: \"Abel\";\n        font-size: 1rem;\n        color: #ff3860;\n        font-weight: 600;\n        text-align: center; }\n", ""]);
 // Exports
 exports.locals = {
 	"background": "_1Q305CejX7nvPJbUdIAxkL",
@@ -2079,8 +2062,12 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 var getUrl = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
 var ___CSS_LOADER_URL___0___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.eot */ "./src/assets/font/abel-regular-webfont.eot"));
 var ___CSS_LOADER_URL___1___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.woff */ "./src/assets/font/abel-regular-webfont.woff"));
+var ___CSS_LOADER_URL___2___ = getUrl(__webpack_require__(/*! ../../assets/font/Windsong-webfont.eot */ "./src/assets/font/Windsong-webfont.eot"));
+var ___CSS_LOADER_URL___3___ = getUrl(__webpack_require__(/*! ../../assets/font/Windsong-webfont.woff */ "./src/assets/font/Windsong-webfont.woff"));
+var ___CSS_LOADER_URL___4___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.eot */ "./src/assets/font/Burlington_Script.eot"));
+var ___CSS_LOADER_URL___5___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.woff */ "./src/assets/font/Burlington_Script.woff"));
 // Module
-exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Windsong';\n  src: url(" + ___CSS_LOADER_URL___2___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___3___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Burlington';\n  src: url(" + ___CSS_LOADER_URL___4___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___5___ + ") format(\"woff\"); }\n", ""]);
 
 
 /***/ }),
@@ -31468,9 +31455,9 @@ function valueEqual(a, b) {
 /***/ }),
 
 /***/ "./node_modules/webpack/buildin/global.js":
-/*!************************************************!*\
-  !*** ./node_modules/webpack/buildin/global.js ***!
-  \************************************************/
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -31552,24 +31539,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _scss_header_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../scss/header.scss */ "./src/app/scss/header.scss");
 /* harmony import */ var _scss_header_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scss_header_scss__WEBPACK_IMPORTED_MODULE_1__);
-function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var Header=/*#__PURE__*/function(_Component){_inherits(Header,_Component);function Header(){var _this;_classCallCheck(this,Header);_this=_possibleConstructorReturn(this,_getPrototypeOf(Header).apply(this,arguments));_this.state={width:window.innerWidth,isOpen:false};_this.onResize=function(){_this.setState({width:window.innerWidth});};_this.toggleBurgerMenu=function(){_this.setState({isOpen:_this.state.isOpen?false:true});};return _this;}_createClass(Header,[{key:"componentWillMount",value:function componentWillMount(){this.onResize();}},{key:"componentDidMount",value:function componentDidMount(){window.addEventListener('resize',this.onResize);}},{key:"componentWillUnmount",value:function componentWillUnmount(){window.removeEventListener('resize',this.onResize);}},{key:"render",value:function render(){var _this2=this;var menuObj=[{key:"aboutme",title:"About Me"},{key:"skills",title:"Skills"},{key:"edu",title:"Education"},{key:"exp",title:"Experiences"},{key:"recommendation",title:"Recommendation"},{key:"logout",title:"Logout"}];var menu=menuObj.map(function(obj){if(_this2.props.currentPage===obj.key){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_header_scss__WEBPACK_IMPORTED_MODULE_1__["underline"]},obj.title);}else{return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,obj.title);}});return this.state.width>849?react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"".concat(_scss_header_scss__WEBPACK_IMPORTED_MODULE_1__["header"]," ").concat(this.props.className)},menu):react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"".concat(_scss_header_scss__WEBPACK_IMPORTED_MODULE_1__["menubar"]," ").concat(this.state.isOpen?_scss_header_scss__WEBPACK_IMPORTED_MODULE_1__["open"]:null)},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_header_scss__WEBPACK_IMPORTED_MODULE_1__["sidebar"]},menu),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"".concat(_scss_header_scss__WEBPACK_IMPORTED_MODULE_1__["burger"]," ").concat(this.props.className),onClick:this.toggleBurgerMenu},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",null),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",null),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",null)),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_header_scss__WEBPACK_IMPORTED_MODULE_1__["background"],onClick:this.toggleBurgerMenu}));}}]);return Header;}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);/* harmony default export */ __webpack_exports__["default"] = (Header);
-
-/***/ }),
-
-/***/ "./src/app/containers/aboutme.tsx":
-/*!****************************************!*\
-  !*** ./src/app/containers/aboutme.tsx ***!
-  \****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../scss/aboutme.scss */ "./src/app/scss/aboutme.scss");
-/* harmony import */ var _scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__);
-var email=__webpack_require__(/*! ../../assets/img/email-icon.png */ "./src/assets/img/email-icon.png");var hp=__webpack_require__(/*! ../../assets/img/phone-icon.png */ "./src/assets/img/phone-icon.png");var linkedin=__webpack_require__(/*! ../../assets/img/linkedin-icon.png */ "./src/assets/img/linkedin-icon.png");var profile=__webpack_require__(/*! ../../assets/img/profile-pic.png */ "./src/assets/img/profile-pic.png");var openInNewTab=function openInNewTab(){window.open('https://www.linkedin.com/in/bernice-ng-kai-ling','_blank');};var Aboutme=function Aboutme(){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["aboutme_container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["content"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["contact"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["left"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Hello, I am"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Ng Kai Ling Bernice"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Developer"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:email}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"bernice-ng@hotmail.com")),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:hp}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"+65 91195763")),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:linkedin}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{onClick:openInNewTab},"Visit my Linkedin")))),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["right"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:profile}))),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["summary"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["icon"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null)),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["text"]},"A fourth year Information Systems undergraduate in Singapore Management University (SMU) with strong interest in full stack development. Being a conscientious worker and quick learner who is flexible and a team player as well. Experienced working with ReactJS mainly and was exposed to several other languages like Java and PHP."))));};/* harmony default export */ __webpack_exports__["default"] = (Aboutme);
+function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var Header=/*#__PURE__*/function(_Component){_inherits(Header,_Component);function Header(){var _this;_classCallCheck(this,Header);_this=_possibleConstructorReturn(this,_getPrototypeOf(Header).apply(this,arguments));_this.state={width:window.innerWidth,isOpen:false};_this.onResize=function(){_this.setState({width:window.innerWidth});};_this.toggleBurgerMenu=function(){_this.setState({isOpen:_this.state.isOpen?false:true});};return _this;}_createClass(Header,[{key:"componentWillMount",value:function componentWillMount(){this.onResize();}},{key:"componentDidMount",value:function componentDidMount(){window.addEventListener('resize',this.onResize);}},{key:"componentWillUnmount",value:function componentWillUnmount(){window.removeEventListener('resize',this.onResize);}},{key:"render",value:function render(){var _this2=this;var menuObj=[{key:'aboutme',title:'About Me'},{key:'edu',title:'Education'},{key:'exp',title:'Experiences'},{key:'projects',title:'Projects'},{key:'recommendation',title:'Recommendation'},{key:'logout',title:'Logout'}];var menu=menuObj.map(function(obj){if(_this2.props.currentPage===obj.key){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_header_scss__WEBPACK_IMPORTED_MODULE_1__["underline"]},obj.title);}return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{key:obj.key},obj.title);});return this.state.width>849?react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"".concat(_scss_header_scss__WEBPACK_IMPORTED_MODULE_1__["header"]," ").concat(this.props.className)},menu):react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"".concat(_scss_header_scss__WEBPACK_IMPORTED_MODULE_1__["menubar"]," ").concat(this.state.isOpen?_scss_header_scss__WEBPACK_IMPORTED_MODULE_1__["open"]:null)},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_header_scss__WEBPACK_IMPORTED_MODULE_1__["sidebar"]},menu),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"".concat(_scss_header_scss__WEBPACK_IMPORTED_MODULE_1__["burger"]," ").concat(this.props.className),onClick:this.toggleBurgerMenu},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",null),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",null),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",null)),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_header_scss__WEBPACK_IMPORTED_MODULE_1__["background"],onClick:this.toggleBurgerMenu}));}}]);return Header;}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);/* harmony default export */ __webpack_exports__["default"] = (Header);
 
 /***/ }),
 
@@ -31606,21 +31576,6 @@ function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="s
 //         </div>
 //     )
 // }
-
-/***/ }),
-
-/***/ "./src/app/containers/skills.tsx":
-/*!***************************************!*\
-  !*** ./src/app/containers/skills.tsx ***!
-  \***************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var Skills=function Skills(){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"test skills");};/* harmony default export */ __webpack_exports__["default"] = (Skills);
 
 /***/ }),
 
@@ -31702,39 +31657,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _containers_mainContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./containers/mainContainer */ "./src/app/containers/mainContainer.tsx");
-/* harmony import */ var _containers_skills__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./containers/skills */ "./src/app/containers/skills.tsx");
-/* harmony import */ var _containers_aboutme__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./containers/aboutme */ "./src/app/containers/aboutme.tsx");
-var Routes=function Routes(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["BrowserRouter"],null,react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Switch"],null,react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"],{exact:true,path:"/",key:"login",render:function render(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_form_login__WEBPACK_IMPORTED_MODULE_1__["default"],null);}}),react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"],{exact:true,path:"/login",key:"login",render:function render(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_form_login__WEBPACK_IMPORTED_MODULE_1__["default"],null);}}),react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"],{exact:true,path:"/main/aboutme",key:"about me",render:function render(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_containers_mainContainer__WEBPACK_IMPORTED_MODULE_3__["default"],{children:{page:'aboutme',component:react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_containers_aboutme__WEBPACK_IMPORTED_MODULE_5__["default"],null)}});}}),react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"],{exact:true,path:"/skills",key:"skills",render:function render(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_containers_mainContainer__WEBPACK_IMPORTED_MODULE_3__["default"],{children:{page:'skills',component:react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_containers_skills__WEBPACK_IMPORTED_MODULE_4__["default"],null)}});}})));};/* harmony default export */ __webpack_exports__["default"] = (Routes);
-
-/***/ }),
-
-/***/ "./src/app/scss/aboutme.scss":
-/*!***********************************!*\
-  !*** ./src/app/scss/aboutme.scss ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-1!../../../node_modules/sass-loader/lib/loader.js??ref--6-2!./aboutme.scss */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/aboutme.scss");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
+var Routes=function Routes(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["BrowserRouter"],null,react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Switch"],null,react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"],{exact:true,path:"/",key:"login",render:function render(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_form_login__WEBPACK_IMPORTED_MODULE_1__["default"],null);}}),react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"],{exact:true,path:"/login",key:"login",render:function render(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_form_login__WEBPACK_IMPORTED_MODULE_1__["default"],null);}}),react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"],{exact:true,path:"/main/aboutme",key:"about me",render:function render(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_containers_mainContainer__WEBPACK_IMPORTED_MODULE_3__["default"],null);}})));};/* harmony default export */ __webpack_exports__["default"] = (Routes);
 
 /***/ }),
 
@@ -31888,6 +31811,50 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./src/assets/font/Burlington_Script.eot":
+/*!***********************************************!*\
+  !*** ./src/assets/font/Burlington_Script.eot ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "7f4be0812dd0967367f95f5ae3c8f9bd.eot";
+
+/***/ }),
+
+/***/ "./src/assets/font/Burlington_Script.woff":
+/*!************************************************!*\
+  !*** ./src/assets/font/Burlington_Script.woff ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "8633303601168c3cbcf182766b8dd29e.woff";
+
+/***/ }),
+
+/***/ "./src/assets/font/Windsong-webfont.eot":
+/*!**********************************************!*\
+  !*** ./src/assets/font/Windsong-webfont.eot ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "d7da8d02190a871b701b03c2b5bed2f5.eot";
+
+/***/ }),
+
+/***/ "./src/assets/font/Windsong-webfont.woff":
+/*!***********************************************!*\
+  !*** ./src/assets/font/Windsong-webfont.woff ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "f87bc249be7590b3d607b9d4aacc3762.woff";
+
+/***/ }),
+
 /***/ "./src/assets/font/abel-regular-webfont.eot":
 /*!**************************************************!*\
   !*** ./src/assets/font/abel-regular-webfont.eot ***!
@@ -31910,17 +31877,6 @@ module.exports = __webpack_require__.p + "e10e6e822429b362ee6103760b7528ae.woff"
 
 /***/ }),
 
-/***/ "./src/assets/img/background-laptop-2.jpg":
-/*!************************************************!*\
-  !*** ./src/assets/img/background-laptop-2.jpg ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "d03ce518b7315268767322d6b2f28836.jpg";
-
-/***/ }),
-
 /***/ "./src/assets/img/background.jpg":
 /*!***************************************!*\
   !*** ./src/assets/img/background.jpg ***!
@@ -31932,28 +31888,6 @@ module.exports = __webpack_require__.p + "5cdeaefc86fa905cd1711fe0e81f8e83.jpg";
 
 /***/ }),
 
-/***/ "./src/assets/img/email-icon.png":
-/*!***************************************!*\
-  !*** ./src/assets/img/email-icon.png ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "4b3038921fc85097dd048fc2d2e45da5.png";
-
-/***/ }),
-
-/***/ "./src/assets/img/linkedin-icon.png":
-/*!******************************************!*\
-  !*** ./src/assets/img/linkedin-icon.png ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "8696abca799ff82551f619e0acafc3fd.png";
-
-/***/ }),
-
 /***/ "./src/assets/img/logo.png":
 /*!*********************************!*\
   !*** ./src/assets/img/logo.png ***!
@@ -31962,28 +31896,6 @@ module.exports = __webpack_require__.p + "8696abca799ff82551f619e0acafc3fd.png";
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "09cedda52f3544bacf16fd0b318cee33.png";
-
-/***/ }),
-
-/***/ "./src/assets/img/phone-icon.png":
-/*!***************************************!*\
-  !*** ./src/assets/img/phone-icon.png ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "13b4a70ec199394a1008a9d4381ead37.png";
-
-/***/ }),
-
-/***/ "./src/assets/img/profile-pic.png":
-/*!****************************************!*\
-  !*** ./src/assets/img/profile-pic.png ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "bf739991de8ee3b2a55ec19d255eeb76.png";
 
 /***/ }),
 

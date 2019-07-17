@@ -35,9 +35,9 @@ class Header extends Component<HeaderProps, HeaderState>{
   render() {
     const menuObj = [
       { key: 'aboutme', title: 'About Me' },
-      { key: 'skills', title: 'Skills' },
       { key: 'edu', title: 'Education' },
       { key: 'exp', title: 'Experiences' },
+      { key: 'projects', title: 'Projects' },
       { key: 'recommendation', title: 'Recommendation' },
       { key: 'logout', title: 'Logout' },
     ];
