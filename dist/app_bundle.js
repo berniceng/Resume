@@ -1943,6 +1943,42 @@ module.exports = function isBuffer (obj) {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/aboutme.scss":
+/*!**************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/sass-loader/lib/loader.js??ref--6-2!./src/app/scss/aboutme.scss ***!
+  \**************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Imports
+var getUrl = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
+var ___CSS_LOADER_URL___0___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.eot */ "./src/assets/font/abel-regular-webfont.eot"));
+var ___CSS_LOADER_URL___1___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.woff */ "./src/assets/font/abel-regular-webfont.woff"));
+var ___CSS_LOADER_URL___2___ = getUrl(__webpack_require__(/*! ../../assets/font/Windsong-webfont.eot */ "./src/assets/font/Windsong-webfont.eot"));
+var ___CSS_LOADER_URL___3___ = getUrl(__webpack_require__(/*! ../../assets/font/Windsong-webfont.woff */ "./src/assets/font/Windsong-webfont.woff"));
+var ___CSS_LOADER_URL___4___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.eot */ "./src/assets/font/Burlington_Script.eot"));
+var ___CSS_LOADER_URL___5___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.woff */ "./src/assets/font/Burlington_Script.woff"));
+var ___CSS_LOADER_URL___6___ = getUrl(__webpack_require__(/*! ../../assets/img/background-laptop-2.jpg */ "./src/assets/img/background-laptop-2.jpg"));
+// Module
+exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Windsong';\n  src: url(" + ___CSS_LOADER_URL___2___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___3___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Burlington';\n  src: url(" + ___CSS_LOADER_URL___4___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___5___ + ") format(\"woff\"); }\n\n._2olbO_KMiJ4kRji0s-shLn {\n  min-height: inherit; }\n  ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi {\n    min-height: inherit; }\n    ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm {\n      background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(" + ___CSS_LOADER_URL___6___ + ");\n      padding: 78px;\n      height: calc(100% - 100px);\n      display: flex;\n      justify-content: space-evenly;\n      align-items: center; }\n      @media screen and (max-width: 770px) {\n        ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm {\n          flex-direction: column-reverse;\n          padding: 10%; } }\n      ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 {\n        height: fit-content; }\n        @media screen and (max-width: 770px) {\n          ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 {\n            text-align: center; } }\n        ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(1) {\n          font-family: \"Abel\";\n          font-size: 1.6rem;\n          color: #ea9767;\n          font-weight: 400;\n          padding-bottom: 15px; }\n          @media screen and (max-width: 770px) {\n            ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(1) {\n              font-family: \"Abel\";\n              font-size: 1.3rem;\n              color: #ea9767;\n              font-weight: 400; } }\n        ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(2) {\n          font-family: \"Abel\";\n          font-size: 2.2rem;\n          color: #444445;\n          font-weight: 600; }\n          @media screen and (max-width: 770px) {\n            ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(2) {\n              font-family: \"Abel\";\n              font-size: 1.9rem;\n              color: #444445;\n              font-weight: 600; } }\n        ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(3) {\n          font-family: \"Abel\";\n          font-size: 1.9rem;\n          color: #444445;\n          font-weight: 600;\n          padding-bottom: 30px; }\n          @media screen and (max-width: 770px) {\n            ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(3) {\n              font-family: \"Abel\";\n              font-size: 1.6rem;\n              color: #444445;\n              font-weight: 600; } }\n        ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(4) {\n          font-family: \"Abel\";\n          font-size: 1rem;\n          color: #444445;\n          font-weight: 400;\n          display: flex;\n          flex-direction: column; }\n          @media screen and (max-width: 770px) {\n            ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(4) {\n              align-items: center; } }\n          ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(4) > div {\n            display: flex;\n            padding: 10px 0; }\n            ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(4) > div img {\n              width: 20px;\n              height: 20px; }\n            ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(4) > div div, ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(4) > div a {\n              padding: 0px 20px; }\n            ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1Uvt41SPkdKrBXKxIYUvL4 > :nth-child(4) > div a {\n              text-decoration: underline;\n              color: #3273dc; }\n      ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1DL1PqC2zq8EF1jwvEUZm9 {\n        height: fit-content; }\n        ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1DL1PqC2zq8EF1jwvEUZm9 img {\n          width: 300px;\n          border-radius: 1000px;\n          border: 20px solid rgba(255, 255, 255, 0.4); }\n          @media screen and (max-width: 500px) {\n            ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1DL1PqC2zq8EF1jwvEUZm9 img {\n              width: 90%;\n              border: 20px solid rgba(255, 255, 255, 0.4); } }\n    ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._1esp0GCmHkVa-KgmlLX3dN {\n      padding: 10% 20%; }\n      @media screen and (max-width: 870px) {\n        ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._1esp0GCmHkVa-KgmlLX3dN {\n          padding: 10%; } }\n      ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._1esp0GCmHkVa-KgmlLX3dN ._2_wXTDpbE_CPZ2icO_jJOH {\n        font-family: \"Abel\";\n        font-size: 3.6rem;\n        color: #f0c1a5;\n        font-weight: 600; }\n        @media screen and (max-width: 783px) {\n          ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._1esp0GCmHkVa-KgmlLX3dN ._2_wXTDpbE_CPZ2icO_jJOH {\n            font-size: 3.3rem; } }\n      ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._1esp0GCmHkVa-KgmlLX3dN .Qx6Enck4LcvZ3raMOqcH- {\n        font-family: \"Abel\";\n        font-size: 1rem;\n        color: #6e6e70;\n        font-weight: 400; }\n    ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._2_wXTDpbE_CPZ2icO_jJOH {\n      font-family: \"Abel\";\n      font-size: 3.6rem;\n      color: #6e6e70;\n      font-weight: 600;\n      text-align: center; }\n    ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._1eHdil357nLbiYEOWe_b3b {\n      padding: 20px;\n      display: flex;\n      justify-content: center; }\n      ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._1eHdil357nLbiYEOWe_b3b > div {\n        display: flex;\n        flex-direction: row;\n        flex-wrap: wrap; }\n      ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._1eHdil357nLbiYEOWe_b3b ._3MPPrCW1wkY1yrAekrToNC {\n        padding: 20px;\n        box-shadow: 0px 0px 30px 0px #d9dadb;\n        border-radius: 20px;\n        display: flex;\n        flex-direction: column;\n        width: 16.5rem;\n        margin: 20px; }\n        ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._1eHdil357nLbiYEOWe_b3b ._3MPPrCW1wkY1yrAekrToNC > div:last-child {\n          padding: 20px;\n          width: initial; }\n          ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._1eHdil357nLbiYEOWe_b3b ._3MPPrCW1wkY1yrAekrToNC > div:last-child > :first-child {\n            font-family: \"Abel\";\n            font-size: 2.2rem;\n            color: #6e6e70;\n            font-weight: 600; }\n          ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._1eHdil357nLbiYEOWe_b3b ._3MPPrCW1wkY1yrAekrToNC > div:last-child > :last-child {\n            padding: 15px 0px;\n            font-family: \"Abel\";\n            font-size: 1rem;\n            color: #6e6e70;\n            font-weight: 400; }\n        ._2olbO_KMiJ4kRji0s-shLn ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._1eHdil357nLbiYEOWe_b3b ._3MPPrCW1wkY1yrAekrToNC img {\n          height: 16.5rem; }\n", ""]);
+// Exports
+exports.locals = {
+	"aboutme_container": "_2olbO_KMiJ4kRji0s-shLn",
+	"content": "_1Poxo-RR2wnIsb03jjHLXi",
+	"contact": "_24YlJ-GnXoyx-sTmT00yTm",
+	"left": "_1Uvt41SPkdKrBXKxIYUvL4",
+	"right": "_1DL1PqC2zq8EF1jwvEUZm9",
+	"summary": "_1esp0GCmHkVa-KgmlLX3dN",
+	"title": "_2_wXTDpbE_CPZ2icO_jJOH",
+	"text": "Qx6Enck4LcvZ3raMOqcH-",
+	"interest": "_3DXVsDoH2JMiHV8K4-aQ9L",
+	"container": "_1eHdil357nLbiYEOWe_b3b",
+	"card": "_3MPPrCW1wkY1yrAekrToNC"
+};
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/footer.scss":
 /*!*************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/sass-loader/lib/loader.js??ref--6-2!./src/app/scss/footer.scss ***!
@@ -31543,6 +31579,23 @@ function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="s
 
 /***/ }),
 
+/***/ "./src/app/containers/aboutme.tsx":
+/*!****************************************!*\
+  !*** ./src/app/containers/aboutme.tsx ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../scss/aboutme.scss */ "./src/app/scss/aboutme.scss");
+/* harmony import */ var _scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__);
+var email=__webpack_require__(/*! ../../assets/img/email-icon.png */ "./src/assets/img/email-icon.png");var hp=__webpack_require__(/*! ../../assets/img/phone-icon.png */ "./src/assets/img/phone-icon.png");var linkedin=__webpack_require__(/*! ../../assets/img/linkedin-icon.png */ "./src/assets/img/linkedin-icon.png");var profile=__webpack_require__(/*! ../../assets/img/profile-pic.png */ "./src/assets/img/profile-pic.png");var badminton=__webpack_require__(/*! ../../assets/img/badminton.png */ "./src/assets/img/badminton.png");var dance=__webpack_require__(/*! ../../assets/img/dance.png */ "./src/assets/img/dance.png");var openInNewTab=function openInNewTab(){window.open('https://www.linkedin.com/in/bernice-ng-kai-ling','_blank');};var Aboutme=function Aboutme(){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["aboutme_container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["content"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["contact"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["left"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Hello, I am"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Ng Kai Ling Bernice"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Developer"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:email}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"bernice-ng@hotmail.com")),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:hp}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"+65 91195763")),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:linkedin}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{onClick:openInNewTab},"Visit my Linkedin")))),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["right"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:profile}))),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["summary"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["title"]},"A little more about me..."),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["text"]},"A fourth year Information Systems undergraduate in Singapore Management University (SMU) with strong interest in full stack development. Being a conscientious worker and quick learner who is flexible as well as a team player. Experienced working with ReactJS mainly and was exposed to several other languages like Java and PHP.")),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["interest"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["title"]},"Interests"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["card"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:badminton})),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Badminton"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Playing badminton is something that I like to do during free time or even as an activity when meeting up with friends. I started playing badminton in Secondary School (NOTE: I am not a professional badminton player) where my friends and I would play after school for hours continuously. The reason I like badminton is that it is fun and you can play with anyone unlike soccer which female have less preference for in general."))),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["card"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:dance})),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Dance"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Playing badminton is something that I like to do during free time or even as an activity when meeting up with friends. I started playing badminton in Secondary School (NOTE: I am not a professional badminton player) where my friends and I would play after school for hours continuously. The reason I like badminton is that it is fun and you can play with anyone unlike soccer which female have less preference for in general."))),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["card"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:dance})),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Dance"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Playing badminton is something that I like to do during free time or even as an activity when meeting up with friends. I started playing badminton in Secondary School (NOTE: I am not a professional badminton player) where my friends and I would play after school for hours continuously. The reason I like badminton is that it is fun and you can play with anyone unlike soccer which female have less preference for in general."))))))));};/* harmony default export */ __webpack_exports__["default"] = (Aboutme);
+
+/***/ }),
+
 /***/ "./src/app/containers/mainContainer.tsx":
 /*!**********************************************!*\
   !*** ./src/app/containers/mainContainer.tsx ***!
@@ -31576,6 +31629,21 @@ function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="s
 //         </div>
 //     )
 // }
+
+/***/ }),
+
+/***/ "./src/app/containers/skills.tsx":
+/*!***************************************!*\
+  !*** ./src/app/containers/skills.tsx ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var Skills=function Skills(){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"test skills");};/* harmony default export */ __webpack_exports__["default"] = (Skills);
 
 /***/ }),
 
@@ -31657,7 +31725,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _containers_mainContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./containers/mainContainer */ "./src/app/containers/mainContainer.tsx");
-var Routes=function Routes(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["BrowserRouter"],null,react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Switch"],null,react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"],{exact:true,path:"/",key:"login",render:function render(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_form_login__WEBPACK_IMPORTED_MODULE_1__["default"],null);}}),react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"],{exact:true,path:"/login",key:"login",render:function render(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_form_login__WEBPACK_IMPORTED_MODULE_1__["default"],null);}}),react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"],{exact:true,path:"/main/aboutme",key:"about me",render:function render(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_containers_mainContainer__WEBPACK_IMPORTED_MODULE_3__["default"],null);}})));};/* harmony default export */ __webpack_exports__["default"] = (Routes);
+/* harmony import */ var _containers_skills__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./containers/skills */ "./src/app/containers/skills.tsx");
+/* harmony import */ var _containers_aboutme__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./containers/aboutme */ "./src/app/containers/aboutme.tsx");
+var Routes=function Routes(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["BrowserRouter"],null,react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Switch"],null,react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"],{exact:true,path:"/",key:"login",render:function render(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_form_login__WEBPACK_IMPORTED_MODULE_1__["default"],null);}}),react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"],{exact:true,path:"/login",key:"login",render:function render(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_form_login__WEBPACK_IMPORTED_MODULE_1__["default"],null);}}),react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"],{exact:true,path:"/main/aboutme",key:"about me",render:function render(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_containers_mainContainer__WEBPACK_IMPORTED_MODULE_3__["default"],{children:{page:'aboutme',component:react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_containers_aboutme__WEBPACK_IMPORTED_MODULE_5__["default"],null)}});}}),react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"],{exact:true,path:"/main/skills",key:"skills",render:function render(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_containers_mainContainer__WEBPACK_IMPORTED_MODULE_3__["default"],{children:{page:'skills',component:react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_containers_skills__WEBPACK_IMPORTED_MODULE_4__["default"],null)}});}})));};/* harmony default export */ __webpack_exports__["default"] = (Routes);
+
+/***/ }),
+
+/***/ "./src/app/scss/aboutme.scss":
+/*!***********************************!*\
+  !*** ./src/app/scss/aboutme.scss ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-1!../../../node_modules/sass-loader/lib/loader.js??ref--6-2!./aboutme.scss */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/aboutme.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
 
 /***/ }),
 
@@ -31877,6 +31977,17 @@ module.exports = __webpack_require__.p + "e10e6e822429b362ee6103760b7528ae.woff"
 
 /***/ }),
 
+/***/ "./src/assets/img/background-laptop-2.jpg":
+/*!************************************************!*\
+  !*** ./src/assets/img/background-laptop-2.jpg ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "d03ce518b7315268767322d6b2f28836.jpg";
+
+/***/ }),
+
 /***/ "./src/assets/img/background.jpg":
 /*!***************************************!*\
   !*** ./src/assets/img/background.jpg ***!
@@ -31888,6 +31999,50 @@ module.exports = __webpack_require__.p + "5cdeaefc86fa905cd1711fe0e81f8e83.jpg";
 
 /***/ }),
 
+/***/ "./src/assets/img/badminton.png":
+/*!**************************************!*\
+  !*** ./src/assets/img/badminton.png ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "698b9aff679a6e22b309ac112817502e.png";
+
+/***/ }),
+
+/***/ "./src/assets/img/dance.png":
+/*!**********************************!*\
+  !*** ./src/assets/img/dance.png ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "67e949f243bfaebe049ae9b8c6dfeca8.png";
+
+/***/ }),
+
+/***/ "./src/assets/img/email-icon.png":
+/*!***************************************!*\
+  !*** ./src/assets/img/email-icon.png ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "4b3038921fc85097dd048fc2d2e45da5.png";
+
+/***/ }),
+
+/***/ "./src/assets/img/linkedin-icon.png":
+/*!******************************************!*\
+  !*** ./src/assets/img/linkedin-icon.png ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "8696abca799ff82551f619e0acafc3fd.png";
+
+/***/ }),
+
 /***/ "./src/assets/img/logo.png":
 /*!*********************************!*\
   !*** ./src/assets/img/logo.png ***!
@@ -31896,6 +32051,28 @@ module.exports = __webpack_require__.p + "5cdeaefc86fa905cd1711fe0e81f8e83.jpg";
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "09cedda52f3544bacf16fd0b318cee33.png";
+
+/***/ }),
+
+/***/ "./src/assets/img/phone-icon.png":
+/*!***************************************!*\
+  !*** ./src/assets/img/phone-icon.png ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "13b4a70ec199394a1008a9d4381ead37.png";
+
+/***/ }),
+
+/***/ "./src/assets/img/profile-pic.png":
+/*!****************************************!*\
+  !*** ./src/assets/img/profile-pic.png ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "bf739991de8ee3b2a55ec19d255eeb76.png";
 
 /***/ }),
 

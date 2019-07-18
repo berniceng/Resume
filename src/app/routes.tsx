@@ -27,7 +27,7 @@ const Routes = () => {
         />
         <Route
           exact={true}
-          path="/skills"
+          path="/main/skills"
           key="skills"
           render={
             () => <MainContainer

@@ -7,6 +7,7 @@ const hp = require('../../assets/img/phone-icon.png');
 const linkedin = require('../../assets/img/linkedin-icon.png');
 const profile = require('../../assets/img/profile-pic.png');
 const badminton = require('../../assets/img/badminton.png');
+const dance = require('../../assets/img/dance.png');
 
 const openInNewTab = () => {
   window.open('https://www.linkedin.com/in/bernice-ng-kai-ling', '_blank');
@@ -55,24 +56,69 @@ const Aboutme = () => {
             exposed to several other languages like Java and PHP.
           </div>
         </div>
-        <div className={styles.interests}>
+        <div className={styles.interest}>
           <div className={styles.title}>
             Interests
           </div>
           <div className={styles.container}>
-            <div className={styles.card}>
-              <div>
-                <img src={badminton}/>
+            <div>
+              <div className={styles.card}>
+                <div>
+                  <img src={badminton}/>
+                </div>
+                <div>
+                  <div>
+                    Badminton
+                  </div>
+                  <div>
+                    Playing badminton is something that I like to do during free time 
+                    or even as an activity when meeting up with friends. I started 
+                    playing badminton in Secondary School (NOTE: I am not a professional 
+                    badminton player) where my friends and I would play after school 
+                    for hours continuously. The reason I like badminton is that it is fun 
+                    and you can play with anyone unlike soccer which female have less preference 
+                    for in general.
+                  </div>
+                </div>
               </div>
-              <div>
-                Badminton
+              <div className={styles.card}>
+                <div>
+                  <img src={dance}/>
+                </div>
+                <div>
+                  <div>
+                    Dance
+                  </div>
+                  <div>
+                    Playing badminton is something that I like to do during free time 
+                    or even as an activity when meeting up with friends. I started 
+                    playing badminton in Secondary School (NOTE: I am not a professional 
+                    badminton player) where my friends and I would play after school 
+                    for hours continuously. The reason I like badminton is that it is fun 
+                    and you can play with anyone unlike soccer which female have less preference 
+                    for in general.
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className={styles.card}>
-              Dance
-            </div>
-            <div className={styles.card}>
-              
+              <div className={styles.card}>
+                <div>
+                  <img src={dance}/>
+                </div>
+                <div>
+                  <div>
+                    Dance
+                  </div>
+                  <div>
+                    Playing badminton is something that I like to do during free time 
+                    or even as an activity when meeting up with friends. I started 
+                    playing badminton in Secondary School (NOTE: I am not a professional 
+                    badminton player) where my friends and I would play after school 
+                    for hours continuously. The reason I like badminton is that it is fun 
+                    and you can play with anyone unlike soccer which female have less preference 
+                    for in general.
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
