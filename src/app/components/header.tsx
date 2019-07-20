@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { HeaderProps, HeaderState } from '../propType';
+import { withRouter } from 'react-router-dom';
+import { AppContext } from '../context';
+import { InitialProps, HeaderProps, HeaderState } from '../propType';
 import * as styles from '../scss/header.scss';
 
-class Header extends Component<HeaderProps, HeaderState>{
+class Header extends Component<HeaderProps & InitialProps, HeaderState>{
   state = {
     width: window.innerWidth,
     isOpen: false,
@@ -32,12 +34,16 @@ class Header extends Component<HeaderProps, HeaderState>{
     });
   }
 
+  navigate = (e: any) => {
+    const key = e.currentTarget.getAttribute("data-key");
+    this.props.history.push(`/main/${key}`);
+  }
+
   render() {
     const menuObj = [
       { key: 'aboutme', title: 'About Me' },
-      { key: 'edu', title: 'Education' },
-      { key: 'exp', title: 'Experiences' },
-      { key: 'projects', title: 'Projects' },
+      { key: 'education', title: 'Education' },
+      { key: 'experience', title: 'Experiences' },
       { key: 'recommendation', title: 'Recommendation' },
       { key: 'logout', title: 'Logout' },
     ];
@@ -45,11 +51,11 @@ class Header extends Component<HeaderProps, HeaderState>{
     const menu = menuObj.map((obj) => {
       if (this.props.currentPage === obj.key) {
         return(
-            <div className={styles.underline}>{obj.title}</div>
+            <div className={styles.underline} data-key={obj.key} key={obj.key} onClick={this.navigate}>{obj.title}</div>
         );
       }
       return(
-            <div key={obj.key}>{obj.title}</div>
+            <div data-key={obj.key} key={obj.key} onClick={this.navigate}>{obj.title}</div>
       );
 
     });
@@ -83,4 +89,4 @@ class Header extends Component<HeaderProps, HeaderState>{
   }
 }
 
-export default Header;
+export default AppContext(Header);

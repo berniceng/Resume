@@ -1,10 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-const Skills = () => {
+const Education = () => {
   return(
-    <div>test skills</div>
+    <div>test Education</div>
   );
 };
 
-export default Skills;
+export default Education;

@@ -28,13 +28,17 @@ class Login extends React.Component<InitialProps, LoginState> {
     document.addEventListener('keydown', this.keyb, false);
 
     const token = localStorage.getItem('resume-token');
-    this.props.setToken(token == null ? '' : token);
 
     axios.post('http://localhost:3000/api/users/verifyToken', {
       token,
     }).then((res) => {
-      if (res.data.valid) { this.props.history.push('/main/aboutme'); }
-      else { localStorage.removeItem('resume-token'); }
+      if (res.data.valid) { 
+        this.props.history.push('/main/aboutme'); 
+        this.props.setToken(token);
+      } else { 
+        localStorage.removeItem('resume-token'); 
+        this.props.setToken('');
+    }
     });
   }
 

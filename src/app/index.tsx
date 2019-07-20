@@ -2,12 +2,14 @@ import React  from 'react';
 import { Context } from './context';
 import Routes from './routes';
 import { InitialState } from './propType';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
+import { createBrowserHistory } from "history";
 
 export default class App extends React.Component<{}, InitialState> {
 
   state = {
     token: '',
+    history: createBrowserHistory()
   };
 
   setToken = (token: string) => {
@@ -15,10 +17,14 @@ export default class App extends React.Component<{}, InitialState> {
   }
 
   render() {
+    console.log(this.props);
     return (
-      <Context.Provider value={{ ...this.state, setToken: this.setToken }} >
-        <Routes/>
-      </Context.Provider>
+      <Router history={this.state.history}>
+        <Context.Provider value={{ ...this.state, setToken: this.setToken }} >
+          <Routes/>
+        </Context.Provider>
+      </Router>
     );
   }
 }
+

@@ -4,4 +4,8 @@
 .footer {
     @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
     padding: 25px;
+
+    @include media-max(340px){
+        @include font($font-abel, $font-xs, $color-dark-grey, $weight-light);    
+    }
 }

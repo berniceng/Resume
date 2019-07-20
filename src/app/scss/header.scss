@@ -20,10 +20,11 @@
     }
 
     .underline {
-        border-bottom: 2px solid $color-medium-grey;
+        @include font($font-abel, $font-m, $color-orange, $weight-bold);
+        border-bottom: 2px solid $color-orange;
 
         &:hover {
-            @include font($font-abel, $font-m, $color-white, $weight-bold);
+            @include font($font-abel, $font-m, $color-orange, $weight-bold);
         }
     }
 }
@@ -71,12 +72,21 @@
         @include font($font-abel, $font-m, $color-dark-grey, $weight-light);
         transition: width ease 0.2s;
 
+        @include media-max(425px){
+            @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
+        }
+
         div {
             padding: 15px; 
             margin: 15px;
 
             &:hover {
-                @include font($font-abel, $font-m, $color-orange, $weight-bold);
+                @include font($font-abel, $font-m, $color-dark-grey, $weight-bold);
+                background-color: $color-x-light-grey;
+
+                @include media-max(425px){
+                    @include font($font-abel, $font-s, $color-dark-grey, $weight-bold);
+                }
             }
         }
 
@@ -102,11 +112,14 @@
         }
 
         .underline {
-            @include font($font-abel, $font-m, $color-white, $weight-bold);
-            background-color: $color-orange;
+            @include font($font-abel, $font-m, $color-orange, $weight-bold);
 
             &:hover {
-                @include font($font-abel, $font-m, $color-white, $weight-bold);
+                @include font($font-abel, $font-m, $color-orange, $weight-bold);
+
+                @include media-max(425px){
+                    @include font($font-abel, $font-s, $color-orange, $weight-bold);
+                }
             }
         }
     }
