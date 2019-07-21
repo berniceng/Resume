@@ -1,5 +1,5 @@
 import { InitialProps, LoginState } from '../../propType';
-import React from 'react';
+import React, { Component, RefObject, createRef } from 'react';
 import { withRouter } from 'react-router-dom';
 import { ERRORMSG } from '../../data/messages';
 import { AppContext } from '../../context';
@@ -10,14 +10,14 @@ import axios from 'axios';
 
 const logo = require('../../../assets/img/logo.png');
 
-class Login extends React.Component<InitialProps, LoginState> {
-  private usernameRef: React.RefObject<HTMLInputElement>;
-  private passwordRef: React.RefObject<HTMLInputElement>;
+class Login extends Component<InitialProps, LoginState> {
+  private usernameRef: RefObject<HTMLInputElement>;
+  private passwordRef: RefObject<HTMLInputElement>;
 
   constructor(props: InitialProps) {
     super(props);
-    this.usernameRef = React.createRef();
-    this.passwordRef = React.createRef();
+    this.usernameRef = createRef();
+    this.passwordRef = createRef();
   }
 
   state = {
@@ -32,13 +32,13 @@ class Login extends React.Component<InitialProps, LoginState> {
     axios.post('http://localhost:3000/api/users/verifyToken', {
       token,
     }).then((res) => {
-      if (res.data.valid) { 
-        this.props.history.push('/main/aboutme'); 
+      if (res.data.valid) {
+        this.props.history.push('/main/aboutme');
         this.props.setToken(token);
-      } else { 
-        localStorage.removeItem('resume-token'); 
+      } else {
+        localStorage.removeItem('resume-token');
         this.props.setToken('');
-    }
+      }
     });
   }
 

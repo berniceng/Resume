@@ -1,7 +1,7 @@
 @import './variable.scss';
 @import './mixin.scss';
 
-.aboutme_container {
+.container {
     min-height: inherit;    
 
     .content {
@@ -9,93 +9,120 @@
         width: 100%;
 
         .contact {
-            background-image: linear-gradient(rgba(255,255,255,.3), rgba(255,255,255,.3)), url('../../assets/img/background-laptop-2.jpg');
-            padding: 78px;
+            background-image: linear-gradient(to right, rgba(255,255,255,0.3), rgba(255,255,255,0.7)), url('../../assets/img/background-laptop-2.jpg');
+            padding: 64px;
             height: calc(100% - 100px);
             display: flex;    
+            flex-direction: column;
             justify-content: space-evenly;
             align-items: center;
-            
-            @include media-max(770px) {
-                flex-direction: column-reverse;
+
+            @include media-max(358px) {
+                padding: 40px;
             }
 
-            .left {
-                height: fit-content;
+            .top {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
 
-                @include media-max(770px) {
-                    text-align: center;
-                    margin-top: 20px;
+                @include media-max(798px) {
+                    flex-direction: column;
                 }
 
-                >:nth-child(1) {
-                    @include font($font-abel, $font-l, $color-orange, $weight-light);
-                    padding-bottom: 15px;
-            
-                    @include media-max(770px) {
-                        @include font($font-abel, $font-m, $color-orange, $weight-light);
-                    }
-                }
-
-                >:nth-child(2) {
-                    @include font($font-abel, $font-xxl, $color-dark-grey, $weight-bold);
-            
-                    @include media-max(770px) {
-                        @include font($font-abel, $font-xl, $color-dark-grey, $weight-bold);
-                    }
-                }
-
-                >:nth-child(3) {
-                    @include font($font-abel, $font-xl, $color-dark-grey, $weight-bold);
-                    padding-bottom: 30px;
-            
-                    @include media-max(770px) {
-                        @include font($font-abel, $font-l, $color-dark-grey, $weight-bold);
+                .left {
+                    height: fit-content;
+    
+                    img {    
+                        width: 300px;
+                        border-radius: 1000px;
+                        border: 20px solid rgba(255,255,255,0.4); 
+    
+                        @include media-max(500px) {
+                            width: 90%;
+                            border: 20px solid rgba(255,255,255,0.4);
+                        }
                     }
                 }
                 
+                .right {
+                    height: fit-content;
+                    padding-left: 50px;
+                    
+                    @include media-max(798px) {
+                        padding-left: 0px;
+                    }
+    
+                    @include media-max(798px) {
+                        text-align: center;
+                        margin-top: 20px;
+                    }
+    
+                    >:nth-child(1) {
+                        @include font($font-abel, $font-l, $color-orange, $weight-light);
+                        padding-bottom: 15px;
+                
+                        @include media-max(770px) {
+                            @include font($font-abel, $font-m, $color-orange, $weight-light);
+                        }
+                    }
+    
+                    >:nth-child(2) {
+                        @include font($font-abel, $font-xxl, $color-dark-grey, $weight-bold);
+                
+                        @include media-max(770px) {
+                            @include font($font-abel, $font-xl, $color-dark-grey, $weight-bold);
+                        }
+                    }
+    
+                    >:nth-child(3) {
+                        @include font($font-abel, $font-xl, $color-dark-grey, $weight-bold);
+                
+                        @include media-max(770px) {
+                            @include font($font-abel, $font-l, $color-dark-grey, $weight-bold);
+                        }
+                    }
+                }    
+            }
 
-                >:nth-child(4) {
-                    @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
+            .bottom {
+                @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
+                display: flex;
+                width: fit-content;
+
+                > div {    
                     display: flex;
-                    flex-direction: column;
+                    flex-direction: row;
+                    padding: 10px 0;
+                    width: fit-content;
+                    border-top: 1px solid $color-grey;
 
-                    @include media-max(770px) {
+                    @include media-max(798px) {
                         align-items: center;
+                        flex-direction: column;
+                    }
+                    
+                    div, a {
+                        padding: 0px 20px;
                     }
 
                     > div {
                         display: flex;
-                        padding: 10px 0;
+                        flex-direction: row;
 
-                        img {
-                            width: 20px;
-                            height: 20px;
-                        }
-                        
-                        div, a {
-                            padding: 0px 20px;
-                        }
-
-                        a {
-                            text-decoration: underline;
-                            color: $color-blue;
+                        @include media-max(825px){
+                            padding: 0px 3%;
                         }
                     }
-                }
-            }
 
-            .right {
-                height: fit-content;
+                    img {
+                        width: 20px;
+                        height: 20px;
+                    }
 
-                img {    
-                    width: 300px;
-                    border-radius: 1000px;
-                    border: 20px solid rgba(255,255,255,0.4); 
-
-                    @include media-max(500px) {
-                        width: 90%;
-                        border: 20px solid rgba(255,255,255,0.4);
+                    a {
+                        text-decoration: underline;
+                        color: $color-blue;
                     }
                 }
             }
@@ -147,6 +174,7 @@
     
                 .card {
                     padding: 20px;
+                    background-color: $color-white;
                     box-shadow: 0px 0px 30px 0px $color-light-grey;
                     border-radius: 20px;
                     display: flex;

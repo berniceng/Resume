@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { AppContext } from '../context';
 import { InitialProps, HeaderProps, HeaderState } from '../propType';
 import * as styles from '../scss/header.scss';
@@ -30,12 +29,12 @@ class Header extends Component<HeaderProps & InitialProps, HeaderState>{
 
   toggleBurgerMenu = () => {
     this.setState({
-      isOpen: this.state.isOpen ? false : true,
+      isOpen: !this.state.isOpen,
     });
   }
 
   navigate = (e: any) => {
-    const key = e.currentTarget.getAttribute("data-key");
+    const key = e.currentTarget.getAttribute('data-key');
     this.props.history.push(`/main/${key}`);
   }
 
@@ -51,11 +50,24 @@ class Header extends Component<HeaderProps & InitialProps, HeaderState>{
     const menu = menuObj.map((obj) => {
       if (this.props.currentPage === obj.key) {
         return(
-            <div className={styles.underline} data-key={obj.key} key={obj.key} onClick={this.navigate}>{obj.title}</div>
+          <div
+            className={styles.underline}
+            data-key={obj.key}
+            key={obj.key}
+            onClick={this.navigate}
+          >
+            {obj.title}
+          </div>
         );
       }
       return(
-            <div data-key={obj.key} key={obj.key} onClick={this.navigate}>{obj.title}</div>
+        <div
+          data-key={obj.key}
+          key={obj.key}
+          onClick={this.navigate}
+        >
+          {obj.title}
+        </div>
       );
 
     });

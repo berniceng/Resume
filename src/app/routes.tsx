@@ -3,7 +3,7 @@ import Login from './components/form/login';
 import React from 'react';
 import MainContainer from './containers/mainContainer';
 import Education from './containers/education';
-import Aboutme from './containers/aboutme';
+import Aboutme from './containers/aboutMe';
 
 const Routes = () => {
   return (

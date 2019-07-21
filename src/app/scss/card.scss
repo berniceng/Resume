@@ -1,0 +1,62 @@
+@import './variable.scss';
+@import './mixin.scss';
+
+.panel {
+    box-shadow: 0px 0px 30px 0px $color-light-grey;
+    border-radius: 20px;
+    background-color: $color-white;
+    width: 50%;
+    overflow: hidden;
+    margin: 20px 0px;
+    
+    @include media-max(1200px) {
+        width: 80%;
+    }
+
+    .period {
+        padding: 20px;
+        background-color: #62acb5;
+        @include font($font-abel, $font-xxl, $color-white, $weight-bold);
+    }
+
+    .header {
+        display: flex;
+        flex-direction: row;
+
+        .title {   
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 90%;
+
+            img {
+                width: 50px;
+                height: 50px;
+                padding: 10px;
+            }
+        
+            > div {
+                .school {
+                    @include font($font-abel, $font-xl, $color-medium-grey, $weight-bold);
+                }
+
+                .cert {
+                    @include font($font-abel, $font-m, $color-medium-grey, $weight-light);
+                }
+            }
+        }
+
+        .arrow {
+            padding: 20px;
+            width: 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+                background-color: $color-beige;
+            }
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { InitialProps, MainState, MainProps } from '../propType';
 import { AppContext } from '../context';
 import Header from '../components/header';
@@ -8,7 +8,7 @@ import * as styles from '../scss/mainContainer.scss';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
-class MainContainer extends React.Component<MainProps & InitialProps, MainState>{
+class MainContainer extends Component<MainProps & InitialProps, MainState>{
   state = {
     headerClass: 'false',
   };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 export interface InitialProps {
   history: any;
@@ -17,7 +17,7 @@ export interface MainProps {
 
 export interface SubProps {
   page: string;
-  component: React.Component;
+  component: Component;
 }
 
 export interface MainState {
@@ -39,5 +39,16 @@ export interface HeaderProps {
 
 export interface HeaderState {
   width: number;
+  isOpen: boolean;
+}
+
+export interface CardProps {
+  range: string;
+  logo: string;
+  title: string;
+  subtitle: string;
+}
+
+export interface CardState {
   isOpen: boolean;
 }
