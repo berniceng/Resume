@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 export interface InitialProps {
   history: any;
+  match: any;
   token: string;
   setToken: Function;
 }
@@ -9,15 +10,6 @@ export interface InitialProps {
 export interface InitialState {
   token: string;
   history: any;
-}
-
-export interface MainProps {
-  children: SubProps;
-}
-
-export interface SubProps {
-  page: string;
-  component: Component;
 }
 
 export interface MainState {
@@ -47,8 +39,15 @@ export interface CardProps {
   logo: string;
   title: string;
   subtitle: string;
+  collapsible: boolean;
 }
 
 export interface CardState {
   isOpen: boolean;
+}
+
+export interface TileProps {
+  title: string;
+  image: string;
+  desc: string;
 }

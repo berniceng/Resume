@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { InitialProps, MainState, MainProps } from '../propType';
+import { InitialProps, MainState } from '../propType';
 import { AppContext } from '../context';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import * as headerStyles from '../scss/header.scss';
 import * as styles from '../scss/mainContainer.scss';
 import { withRouter } from 'react-router-dom';
-import axios from 'axios';
+import Aboutme from './aboutMe';
+import Education from './education';
 
-class MainContainer extends Component<MainProps & InitialProps, MainState>{
+class MainContainer extends Component<InitialProps, MainState>{
   state = {
     headerClass: 'false',
   };
@@ -16,19 +17,13 @@ class MainContainer extends Component<MainProps & InitialProps, MainState>{
   componentDidMount() {
     document.addEventListener('scroll', this.showStickyHeader, false);
 
-    const token = localStorage.getItem('resume-token');
-    this.props.setToken(token == null ? '' : token);
+    const main = 'aboutme';
+    const { history } = this.props;
+    const { pathname } = history.location;
 
-    axios.post('http://localhost:3000/api/users/verifyToken', {
-      token,
-    }).then((res: any) => {
-      if (res.data.valid) {
-        this.props.history.push(`/main/${this.props.children.page}`);
-      } else {
-        localStorage.removeItem('resume-token');
-        this.props.history.push('/login');
-      }
-    });
+    if (pathname.length === 1) {
+      history.push(`/main/${main}`);
+    }
   }
 
   componentWillUnmount() {
@@ -41,11 +36,20 @@ class MainContainer extends Component<MainProps & InitialProps, MainState>{
   }
 
   render() {
+    const { match } = this.props;
+
+    let page = 'aboutme';
+
+    if (match) {
+      page = match.params.page;
+    }
+
     return(
       <div className={styles.container}>
-        <Header currentPage={this.props.children.page} className={this.state.headerClass}/>
+        <Header currentPage={page} className={this.state.headerClass}/>
         <div className={styles.main_content}>
-          {this.props.children.component}
+          <Aboutme/>
+          <Education/>
         </div>
         <Footer />
       </div>

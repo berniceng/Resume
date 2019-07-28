@@ -1,0 +1,36 @@
+@import './variable.scss';
+@import './mixin.scss';
+
+.card {
+    padding: 20px;
+    background-color: $color-white;
+    box-shadow: 0px 0px 30px 0px $color-light-grey;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 16.5rem;
+    margin: 20px;
+
+    > div:last-child {
+        padding: 20px;        
+        width: initial;
+
+        > :first-child {
+            @include font($font-abel, $font-xxl, $color-medium-grey, $weight-bold);
+        }
+
+        > :last-child {
+            padding: 15px 0px;
+            @include font($font-abel, $font-s, $color-medium-grey, $weight-light);
+        }
+    }
+
+    img {    
+        height: 16.5rem;
+
+        @include media-max(440px) {
+            height: auto;
+            width: 100%;
+        }
+    }
+}

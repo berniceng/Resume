@@ -16,21 +16,29 @@ export default class Card extends Component<CardProps, CardState> {
   }
 
   render() {
-    const data = this.props;
+    const { collapsible, logo, range, title, subtitle } = this.props;
+    const { isOpen } = this.state;
+    const arrow = isOpen
+      ?
+      ArrowUp('#6e6e70', '32px', '32px')
+      :
+      ArrowDown('#6e6e70', '32px', '32px');
+    const showArrow = collapsible ? arrow : null;
+
     return(
       <div className={styles.panel}>
         <div className={styles.period}>
-          {data.range}
+          {range}
         </div>
         <div className={styles.header}>
           <div className={styles.title}>
-            <img src={data.logo}/>
+            <img src={logo}/>
             <div>
               <div className={styles.school}>
-                  {data.title}
+                  {title}
                 </div>
               <div className={styles.cert}>
-                  {data.subtitle}
+                  {subtitle}
                 </div>
             </div>
           </div>
@@ -38,13 +46,7 @@ export default class Card extends Component<CardProps, CardState> {
             className={styles.arrow}
             onClick={this.toggleIsOpen}
           >
-            {
-              this.state.isOpen
-              ?
-              ArrowUp('#6e6e70', '32px', '32px')
-              :
-              ArrowDown('#6e6e70', '32px', '32px')
-            }
+            {showArrow}
           </div>
         </div>
       </div>

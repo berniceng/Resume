@@ -11,18 +11,10 @@
         .education {
             min-height: inherit;
 
-            > .title {
-                background-image: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.7)), url('../../assets/img/learning.jpg');
-                text-decoration: underline;
-                min-height: inherit;
-                padding: 64px;
-                height: calc(100% - 100px);
-                display: flex;    
-                flex-direction: column;
-                justify-content: space-evenly;
-                align-items: center;
+            > .title {    
                 text-align: center;
-                @include font($font-abel, $font-m-title, $color-dark-grey, $weight-bold);
+                margin-top: 60px;
+                @include font($font-abel, $font-xs-title, $color-medium-grey, $weight-bold);
             }
 
             .journey {

@@ -10,6 +10,7 @@ export default class App extends React.Component<{}, InitialState> {
   state = {
     token: '',
     history: createBrowserHistory(),
+    match: [],
   };
 
   setToken = (token: string) => {

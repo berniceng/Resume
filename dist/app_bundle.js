@@ -178,1771 +178,6 @@ module.exports = _inheritsLoose;
 
 /***/ }),
 
-/***/ "./node_modules/axios/index.js":
-/*!*************************************!*\
-  !*** ./node_modules/axios/index.js ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! ./lib/axios */ "./node_modules/axios/lib/axios.js");
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/adapters/xhr.js":
-/*!************************************************!*\
-  !*** ./node_modules/axios/lib/adapters/xhr.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
-var settle = __webpack_require__(/*! ./../core/settle */ "./node_modules/axios/lib/core/settle.js");
-var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ "./node_modules/axios/lib/helpers/buildURL.js");
-var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ "./node_modules/axios/lib/helpers/parseHeaders.js");
-var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ "./node_modules/axios/lib/helpers/isURLSameOrigin.js");
-var createError = __webpack_require__(/*! ../core/createError */ "./node_modules/axios/lib/core/createError.js");
-
-module.exports = function xhrAdapter(config) {
-  return new Promise(function dispatchXhrRequest(resolve, reject) {
-    var requestData = config.data;
-    var requestHeaders = config.headers;
-
-    if (utils.isFormData(requestData)) {
-      delete requestHeaders['Content-Type']; // Let the browser set it
-    }
-
-    var request = new XMLHttpRequest();
-
-    // HTTP basic authentication
-    if (config.auth) {
-      var username = config.auth.username || '';
-      var password = config.auth.password || '';
-      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
-    }
-
-    request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
-
-    // Set the request timeout in MS
-    request.timeout = config.timeout;
-
-    // Listen for ready state
-    request.onreadystatechange = function handleLoad() {
-      if (!request || request.readyState !== 4) {
-        return;
-      }
-
-      // The request errored out and we didn't get a response, this will be
-      // handled by onerror instead
-      // With one exception: request that using file: protocol, most browsers
-      // will return status as 0 even though it's a successful request
-      if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
-        return;
-      }
-
-      // Prepare the response
-      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
-      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
-      var response = {
-        data: responseData,
-        status: request.status,
-        statusText: request.statusText,
-        headers: responseHeaders,
-        config: config,
-        request: request
-      };
-
-      settle(resolve, reject, response);
-
-      // Clean up request
-      request = null;
-    };
-
-    // Handle browser request cancellation (as opposed to a manual cancellation)
-    request.onabort = function handleAbort() {
-      if (!request) {
-        return;
-      }
-
-      reject(createError('Request aborted', config, 'ECONNABORTED', request));
-
-      // Clean up request
-      request = null;
-    };
-
-    // Handle low level network errors
-    request.onerror = function handleError() {
-      // Real errors are hidden from us by the browser
-      // onerror should only fire if it's a network error
-      reject(createError('Network Error', config, null, request));
-
-      // Clean up request
-      request = null;
-    };
-
-    // Handle timeout
-    request.ontimeout = function handleTimeout() {
-      reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED',
-        request));
-
-      // Clean up request
-      request = null;
-    };
-
-    // Add xsrf header
-    // This is only done if running in a standard browser environment.
-    // Specifically not if we're in a web worker, or react-native.
-    if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(/*! ./../helpers/cookies */ "./node_modules/axios/lib/helpers/cookies.js");
-
-      // Add xsrf header
-      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
-        cookies.read(config.xsrfCookieName) :
-        undefined;
-
-      if (xsrfValue) {
-        requestHeaders[config.xsrfHeaderName] = xsrfValue;
-      }
-    }
-
-    // Add headers to the request
-    if ('setRequestHeader' in request) {
-      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
-        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
-          // Remove Content-Type if data is undefined
-          delete requestHeaders[key];
-        } else {
-          // Otherwise add header to the request
-          request.setRequestHeader(key, val);
-        }
-      });
-    }
-
-    // Add withCredentials to request if needed
-    if (config.withCredentials) {
-      request.withCredentials = true;
-    }
-
-    // Add responseType to request if needed
-    if (config.responseType) {
-      try {
-        request.responseType = config.responseType;
-      } catch (e) {
-        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
-        // But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
-        if (config.responseType !== 'json') {
-          throw e;
-        }
-      }
-    }
-
-    // Handle progress if needed
-    if (typeof config.onDownloadProgress === 'function') {
-      request.addEventListener('progress', config.onDownloadProgress);
-    }
-
-    // Not all browsers support upload events
-    if (typeof config.onUploadProgress === 'function' && request.upload) {
-      request.upload.addEventListener('progress', config.onUploadProgress);
-    }
-
-    if (config.cancelToken) {
-      // Handle cancellation
-      config.cancelToken.promise.then(function onCanceled(cancel) {
-        if (!request) {
-          return;
-        }
-
-        request.abort();
-        reject(cancel);
-        // Clean up request
-        request = null;
-      });
-    }
-
-    if (requestData === undefined) {
-      requestData = null;
-    }
-
-    // Send the request
-    request.send(requestData);
-  });
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/axios.js":
-/*!*****************************************!*\
-  !*** ./node_modules/axios/lib/axios.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(/*! ./utils */ "./node_modules/axios/lib/utils.js");
-var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
-var Axios = __webpack_require__(/*! ./core/Axios */ "./node_modules/axios/lib/core/Axios.js");
-var mergeConfig = __webpack_require__(/*! ./core/mergeConfig */ "./node_modules/axios/lib/core/mergeConfig.js");
-var defaults = __webpack_require__(/*! ./defaults */ "./node_modules/axios/lib/defaults.js");
-
-/**
- * Create an instance of Axios
- *
- * @param {Object} defaultConfig The default config for the instance
- * @return {Axios} A new instance of Axios
- */
-function createInstance(defaultConfig) {
-  var context = new Axios(defaultConfig);
-  var instance = bind(Axios.prototype.request, context);
-
-  // Copy axios.prototype to instance
-  utils.extend(instance, Axios.prototype, context);
-
-  // Copy context to instance
-  utils.extend(instance, context);
-
-  return instance;
-}
-
-// Create the default instance to be exported
-var axios = createInstance(defaults);
-
-// Expose Axios class to allow class inheritance
-axios.Axios = Axios;
-
-// Factory for creating new instances
-axios.create = function create(instanceConfig) {
-  return createInstance(mergeConfig(axios.defaults, instanceConfig));
-};
-
-// Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(/*! ./cancel/Cancel */ "./node_modules/axios/lib/cancel/Cancel.js");
-axios.CancelToken = __webpack_require__(/*! ./cancel/CancelToken */ "./node_modules/axios/lib/cancel/CancelToken.js");
-axios.isCancel = __webpack_require__(/*! ./cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
-
-// Expose all/spread
-axios.all = function all(promises) {
-  return Promise.all(promises);
-};
-axios.spread = __webpack_require__(/*! ./helpers/spread */ "./node_modules/axios/lib/helpers/spread.js");
-
-module.exports = axios;
-
-// Allow use of default import syntax in TypeScript
-module.exports.default = axios;
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/cancel/Cancel.js":
-/*!*************************************************!*\
-  !*** ./node_modules/axios/lib/cancel/Cancel.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * A `Cancel` is an object that is thrown when an operation is canceled.
- *
- * @class
- * @param {string=} message The message.
- */
-function Cancel(message) {
-  this.message = message;
-}
-
-Cancel.prototype.toString = function toString() {
-  return 'Cancel' + (this.message ? ': ' + this.message : '');
-};
-
-Cancel.prototype.__CANCEL__ = true;
-
-module.exports = Cancel;
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/cancel/CancelToken.js":
-/*!******************************************************!*\
-  !*** ./node_modules/axios/lib/cancel/CancelToken.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var Cancel = __webpack_require__(/*! ./Cancel */ "./node_modules/axios/lib/cancel/Cancel.js");
-
-/**
- * A `CancelToken` is an object that can be used to request cancellation of an operation.
- *
- * @class
- * @param {Function} executor The executor function.
- */
-function CancelToken(executor) {
-  if (typeof executor !== 'function') {
-    throw new TypeError('executor must be a function.');
-  }
-
-  var resolvePromise;
-  this.promise = new Promise(function promiseExecutor(resolve) {
-    resolvePromise = resolve;
-  });
-
-  var token = this;
-  executor(function cancel(message) {
-    if (token.reason) {
-      // Cancellation has already been requested
-      return;
-    }
-
-    token.reason = new Cancel(message);
-    resolvePromise(token.reason);
-  });
-}
-
-/**
- * Throws a `Cancel` if cancellation has been requested.
- */
-CancelToken.prototype.throwIfRequested = function throwIfRequested() {
-  if (this.reason) {
-    throw this.reason;
-  }
-};
-
-/**
- * Returns an object that contains a new `CancelToken` and a function that, when called,
- * cancels the `CancelToken`.
- */
-CancelToken.source = function source() {
-  var cancel;
-  var token = new CancelToken(function executor(c) {
-    cancel = c;
-  });
-  return {
-    token: token,
-    cancel: cancel
-  };
-};
-
-module.exports = CancelToken;
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/cancel/isCancel.js":
-/*!***************************************************!*\
-  !*** ./node_modules/axios/lib/cancel/isCancel.js ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function isCancel(value) {
-  return !!(value && value.__CANCEL__);
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/core/Axios.js":
-/*!**********************************************!*\
-  !*** ./node_modules/axios/lib/core/Axios.js ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
-var buildURL = __webpack_require__(/*! ../helpers/buildURL */ "./node_modules/axios/lib/helpers/buildURL.js");
-var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ "./node_modules/axios/lib/core/InterceptorManager.js");
-var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ "./node_modules/axios/lib/core/dispatchRequest.js");
-var mergeConfig = __webpack_require__(/*! ./mergeConfig */ "./node_modules/axios/lib/core/mergeConfig.js");
-
-/**
- * Create a new instance of Axios
- *
- * @param {Object} instanceConfig The default config for the instance
- */
-function Axios(instanceConfig) {
-  this.defaults = instanceConfig;
-  this.interceptors = {
-    request: new InterceptorManager(),
-    response: new InterceptorManager()
-  };
-}
-
-/**
- * Dispatch a request
- *
- * @param {Object} config The config specific for this request (merged with this.defaults)
- */
-Axios.prototype.request = function request(config) {
-  /*eslint no-param-reassign:0*/
-  // Allow for axios('example/url'[, config]) a la fetch API
-  if (typeof config === 'string') {
-    config = arguments[1] || {};
-    config.url = arguments[0];
-  } else {
-    config = config || {};
-  }
-
-  config = mergeConfig(this.defaults, config);
-  config.method = config.method ? config.method.toLowerCase() : 'get';
-
-  // Hook up interceptors middleware
-  var chain = [dispatchRequest, undefined];
-  var promise = Promise.resolve(config);
-
-  this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
-    chain.unshift(interceptor.fulfilled, interceptor.rejected);
-  });
-
-  this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
-    chain.push(interceptor.fulfilled, interceptor.rejected);
-  });
-
-  while (chain.length) {
-    promise = promise.then(chain.shift(), chain.shift());
-  }
-
-  return promise;
-};
-
-Axios.prototype.getUri = function getUri(config) {
-  config = mergeConfig(this.defaults, config);
-  return buildURL(config.url, config.params, config.paramsSerializer).replace(/^\?/, '');
-};
-
-// Provide aliases for supported request methods
-utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
-  /*eslint func-names:0*/
-  Axios.prototype[method] = function(url, config) {
-    return this.request(utils.merge(config || {}, {
-      method: method,
-      url: url
-    }));
-  };
-});
-
-utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
-  /*eslint func-names:0*/
-  Axios.prototype[method] = function(url, data, config) {
-    return this.request(utils.merge(config || {}, {
-      method: method,
-      url: url,
-      data: data
-    }));
-  };
-});
-
-module.exports = Axios;
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/core/InterceptorManager.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/axios/lib/core/InterceptorManager.js ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
-
-function InterceptorManager() {
-  this.handlers = [];
-}
-
-/**
- * Add a new interceptor to the stack
- *
- * @param {Function} fulfilled The function to handle `then` for a `Promise`
- * @param {Function} rejected The function to handle `reject` for a `Promise`
- *
- * @return {Number} An ID used to remove interceptor later
- */
-InterceptorManager.prototype.use = function use(fulfilled, rejected) {
-  this.handlers.push({
-    fulfilled: fulfilled,
-    rejected: rejected
-  });
-  return this.handlers.length - 1;
-};
-
-/**
- * Remove an interceptor from the stack
- *
- * @param {Number} id The ID that was returned by `use`
- */
-InterceptorManager.prototype.eject = function eject(id) {
-  if (this.handlers[id]) {
-    this.handlers[id] = null;
-  }
-};
-
-/**
- * Iterate over all the registered interceptors
- *
- * This method is particularly useful for skipping over any
- * interceptors that may have become `null` calling `eject`.
- *
- * @param {Function} fn The function to call for each interceptor
- */
-InterceptorManager.prototype.forEach = function forEach(fn) {
-  utils.forEach(this.handlers, function forEachHandler(h) {
-    if (h !== null) {
-      fn(h);
-    }
-  });
-};
-
-module.exports = InterceptorManager;
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/core/createError.js":
-/*!****************************************************!*\
-  !*** ./node_modules/axios/lib/core/createError.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var enhanceError = __webpack_require__(/*! ./enhanceError */ "./node_modules/axios/lib/core/enhanceError.js");
-
-/**
- * Create an Error with the specified message, config, error code, request and response.
- *
- * @param {string} message The error message.
- * @param {Object} config The config.
- * @param {string} [code] The error code (for example, 'ECONNABORTED').
- * @param {Object} [request] The request.
- * @param {Object} [response] The response.
- * @returns {Error} The created error.
- */
-module.exports = function createError(message, config, code, request, response) {
-  var error = new Error(message);
-  return enhanceError(error, config, code, request, response);
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/core/dispatchRequest.js":
-/*!********************************************************!*\
-  !*** ./node_modules/axios/lib/core/dispatchRequest.js ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
-var transformData = __webpack_require__(/*! ./transformData */ "./node_modules/axios/lib/core/transformData.js");
-var isCancel = __webpack_require__(/*! ../cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
-var defaults = __webpack_require__(/*! ../defaults */ "./node_modules/axios/lib/defaults.js");
-var isAbsoluteURL = __webpack_require__(/*! ./../helpers/isAbsoluteURL */ "./node_modules/axios/lib/helpers/isAbsoluteURL.js");
-var combineURLs = __webpack_require__(/*! ./../helpers/combineURLs */ "./node_modules/axios/lib/helpers/combineURLs.js");
-
-/**
- * Throws a `Cancel` if cancellation has been requested.
- */
-function throwIfCancellationRequested(config) {
-  if (config.cancelToken) {
-    config.cancelToken.throwIfRequested();
-  }
-}
-
-/**
- * Dispatch a request to the server using the configured adapter.
- *
- * @param {object} config The config that is to be used for the request
- * @returns {Promise} The Promise to be fulfilled
- */
-module.exports = function dispatchRequest(config) {
-  throwIfCancellationRequested(config);
-
-  // Support baseURL config
-  if (config.baseURL && !isAbsoluteURL(config.url)) {
-    config.url = combineURLs(config.baseURL, config.url);
-  }
-
-  // Ensure headers exist
-  config.headers = config.headers || {};
-
-  // Transform request data
-  config.data = transformData(
-    config.data,
-    config.headers,
-    config.transformRequest
-  );
-
-  // Flatten headers
-  config.headers = utils.merge(
-    config.headers.common || {},
-    config.headers[config.method] || {},
-    config.headers || {}
-  );
-
-  utils.forEach(
-    ['delete', 'get', 'head', 'post', 'put', 'patch', 'common'],
-    function cleanHeaderConfig(method) {
-      delete config.headers[method];
-    }
-  );
-
-  var adapter = config.adapter || defaults.adapter;
-
-  return adapter(config).then(function onAdapterResolution(response) {
-    throwIfCancellationRequested(config);
-
-    // Transform response data
-    response.data = transformData(
-      response.data,
-      response.headers,
-      config.transformResponse
-    );
-
-    return response;
-  }, function onAdapterRejection(reason) {
-    if (!isCancel(reason)) {
-      throwIfCancellationRequested(config);
-
-      // Transform response data
-      if (reason && reason.response) {
-        reason.response.data = transformData(
-          reason.response.data,
-          reason.response.headers,
-          config.transformResponse
-        );
-      }
-    }
-
-    return Promise.reject(reason);
-  });
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/core/enhanceError.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/axios/lib/core/enhanceError.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Update an Error with the specified config, error code, and response.
- *
- * @param {Error} error The error to update.
- * @param {Object} config The config.
- * @param {string} [code] The error code (for example, 'ECONNABORTED').
- * @param {Object} [request] The request.
- * @param {Object} [response] The response.
- * @returns {Error} The error.
- */
-module.exports = function enhanceError(error, config, code, request, response) {
-  error.config = config;
-  if (code) {
-    error.code = code;
-  }
-
-  error.request = request;
-  error.response = response;
-  error.isAxiosError = true;
-
-  error.toJSON = function() {
-    return {
-      // Standard
-      message: this.message,
-      name: this.name,
-      // Microsoft
-      description: this.description,
-      number: this.number,
-      // Mozilla
-      fileName: this.fileName,
-      lineNumber: this.lineNumber,
-      columnNumber: this.columnNumber,
-      stack: this.stack,
-      // Axios
-      config: this.config,
-      code: this.code
-    };
-  };
-  return error;
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/core/mergeConfig.js":
-/*!****************************************************!*\
-  !*** ./node_modules/axios/lib/core/mergeConfig.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(/*! ../utils */ "./node_modules/axios/lib/utils.js");
-
-/**
- * Config-specific merge-function which creates a new config-object
- * by merging two configuration objects together.
- *
- * @param {Object} config1
- * @param {Object} config2
- * @returns {Object} New object resulting from merging config2 to config1
- */
-module.exports = function mergeConfig(config1, config2) {
-  // eslint-disable-next-line no-param-reassign
-  config2 = config2 || {};
-  var config = {};
-
-  utils.forEach(['url', 'method', 'params', 'data'], function valueFromConfig2(prop) {
-    if (typeof config2[prop] !== 'undefined') {
-      config[prop] = config2[prop];
-    }
-  });
-
-  utils.forEach(['headers', 'auth', 'proxy'], function mergeDeepProperties(prop) {
-    if (utils.isObject(config2[prop])) {
-      config[prop] = utils.deepMerge(config1[prop], config2[prop]);
-    } else if (typeof config2[prop] !== 'undefined') {
-      config[prop] = config2[prop];
-    } else if (utils.isObject(config1[prop])) {
-      config[prop] = utils.deepMerge(config1[prop]);
-    } else if (typeof config1[prop] !== 'undefined') {
-      config[prop] = config1[prop];
-    }
-  });
-
-  utils.forEach([
-    'baseURL', 'transformRequest', 'transformResponse', 'paramsSerializer',
-    'timeout', 'withCredentials', 'adapter', 'responseType', 'xsrfCookieName',
-    'xsrfHeaderName', 'onUploadProgress', 'onDownloadProgress', 'maxContentLength',
-    'validateStatus', 'maxRedirects', 'httpAgent', 'httpsAgent', 'cancelToken',
-    'socketPath'
-  ], function defaultToConfig2(prop) {
-    if (typeof config2[prop] !== 'undefined') {
-      config[prop] = config2[prop];
-    } else if (typeof config1[prop] !== 'undefined') {
-      config[prop] = config1[prop];
-    }
-  });
-
-  return config;
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/core/settle.js":
-/*!***********************************************!*\
-  !*** ./node_modules/axios/lib/core/settle.js ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var createError = __webpack_require__(/*! ./createError */ "./node_modules/axios/lib/core/createError.js");
-
-/**
- * Resolve or reject a Promise based on response status.
- *
- * @param {Function} resolve A function that resolves the promise.
- * @param {Function} reject A function that rejects the promise.
- * @param {object} response The response.
- */
-module.exports = function settle(resolve, reject, response) {
-  var validateStatus = response.config.validateStatus;
-  if (!validateStatus || validateStatus(response.status)) {
-    resolve(response);
-  } else {
-    reject(createError(
-      'Request failed with status code ' + response.status,
-      response.config,
-      null,
-      response.request,
-      response
-    ));
-  }
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/core/transformData.js":
-/*!******************************************************!*\
-  !*** ./node_modules/axios/lib/core/transformData.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
-
-/**
- * Transform the data for a request or a response
- *
- * @param {Object|String} data The data to be transformed
- * @param {Array} headers The headers for the request or response
- * @param {Array|Function} fns A single function or Array of functions
- * @returns {*} The resulting transformed data
- */
-module.exports = function transformData(data, headers, fns) {
-  /*eslint no-param-reassign:0*/
-  utils.forEach(fns, function transform(fn) {
-    data = fn(data, headers);
-  });
-
-  return data;
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/defaults.js":
-/*!********************************************!*\
-  !*** ./node_modules/axios/lib/defaults.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-var utils = __webpack_require__(/*! ./utils */ "./node_modules/axios/lib/utils.js");
-var normalizeHeaderName = __webpack_require__(/*! ./helpers/normalizeHeaderName */ "./node_modules/axios/lib/helpers/normalizeHeaderName.js");
-
-var DEFAULT_CONTENT_TYPE = {
-  'Content-Type': 'application/x-www-form-urlencoded'
-};
-
-function setContentTypeIfUnset(headers, value) {
-  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
-    headers['Content-Type'] = value;
-  }
-}
-
-function getDefaultAdapter() {
-  var adapter;
-  // Only Node.JS has a process variable that is of [[Class]] process
-  if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
-    // For node use HTTP adapter
-    adapter = __webpack_require__(/*! ./adapters/http */ "./node_modules/axios/lib/adapters/xhr.js");
-  } else if (typeof XMLHttpRequest !== 'undefined') {
-    // For browsers use XHR adapter
-    adapter = __webpack_require__(/*! ./adapters/xhr */ "./node_modules/axios/lib/adapters/xhr.js");
-  }
-  return adapter;
-}
-
-var defaults = {
-  adapter: getDefaultAdapter(),
-
-  transformRequest: [function transformRequest(data, headers) {
-    normalizeHeaderName(headers, 'Accept');
-    normalizeHeaderName(headers, 'Content-Type');
-    if (utils.isFormData(data) ||
-      utils.isArrayBuffer(data) ||
-      utils.isBuffer(data) ||
-      utils.isStream(data) ||
-      utils.isFile(data) ||
-      utils.isBlob(data)
-    ) {
-      return data;
-    }
-    if (utils.isArrayBufferView(data)) {
-      return data.buffer;
-    }
-    if (utils.isURLSearchParams(data)) {
-      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
-      return data.toString();
-    }
-    if (utils.isObject(data)) {
-      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
-      return JSON.stringify(data);
-    }
-    return data;
-  }],
-
-  transformResponse: [function transformResponse(data) {
-    /*eslint no-param-reassign:0*/
-    if (typeof data === 'string') {
-      try {
-        data = JSON.parse(data);
-      } catch (e) { /* Ignore */ }
-    }
-    return data;
-  }],
-
-  /**
-   * A timeout in milliseconds to abort a request. If set to 0 (default) a
-   * timeout is not created.
-   */
-  timeout: 0,
-
-  xsrfCookieName: 'XSRF-TOKEN',
-  xsrfHeaderName: 'X-XSRF-TOKEN',
-
-  maxContentLength: -1,
-
-  validateStatus: function validateStatus(status) {
-    return status >= 200 && status < 300;
-  }
-};
-
-defaults.headers = {
-  common: {
-    'Accept': 'application/json, text/plain, */*'
-  }
-};
-
-utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
-  defaults.headers[method] = {};
-});
-
-utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
-  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
-});
-
-module.exports = defaults;
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js")))
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/helpers/bind.js":
-/*!************************************************!*\
-  !*** ./node_modules/axios/lib/helpers/bind.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function bind(fn, thisArg) {
-  return function wrap() {
-    var args = new Array(arguments.length);
-    for (var i = 0; i < args.length; i++) {
-      args[i] = arguments[i];
-    }
-    return fn.apply(thisArg, args);
-  };
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/helpers/buildURL.js":
-/*!****************************************************!*\
-  !*** ./node_modules/axios/lib/helpers/buildURL.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
-
-function encode(val) {
-  return encodeURIComponent(val).
-    replace(/%40/gi, '@').
-    replace(/%3A/gi, ':').
-    replace(/%24/g, '$').
-    replace(/%2C/gi, ',').
-    replace(/%20/g, '+').
-    replace(/%5B/gi, '[').
-    replace(/%5D/gi, ']');
-}
-
-/**
- * Build a URL by appending params to the end
- *
- * @param {string} url The base of the url (e.g., http://www.google.com)
- * @param {object} [params] The params to be appended
- * @returns {string} The formatted url
- */
-module.exports = function buildURL(url, params, paramsSerializer) {
-  /*eslint no-param-reassign:0*/
-  if (!params) {
-    return url;
-  }
-
-  var serializedParams;
-  if (paramsSerializer) {
-    serializedParams = paramsSerializer(params);
-  } else if (utils.isURLSearchParams(params)) {
-    serializedParams = params.toString();
-  } else {
-    var parts = [];
-
-    utils.forEach(params, function serialize(val, key) {
-      if (val === null || typeof val === 'undefined') {
-        return;
-      }
-
-      if (utils.isArray(val)) {
-        key = key + '[]';
-      } else {
-        val = [val];
-      }
-
-      utils.forEach(val, function parseValue(v) {
-        if (utils.isDate(v)) {
-          v = v.toISOString();
-        } else if (utils.isObject(v)) {
-          v = JSON.stringify(v);
-        }
-        parts.push(encode(key) + '=' + encode(v));
-      });
-    });
-
-    serializedParams = parts.join('&');
-  }
-
-  if (serializedParams) {
-    var hashmarkIndex = url.indexOf('#');
-    if (hashmarkIndex !== -1) {
-      url = url.slice(0, hashmarkIndex);
-    }
-
-    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
-  }
-
-  return url;
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/helpers/combineURLs.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/axios/lib/helpers/combineURLs.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Creates a new URL by combining the specified URLs
- *
- * @param {string} baseURL The base URL
- * @param {string} relativeURL The relative URL
- * @returns {string} The combined URL
- */
-module.exports = function combineURLs(baseURL, relativeURL) {
-  return relativeURL
-    ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '')
-    : baseURL;
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/helpers/cookies.js":
-/*!***************************************************!*\
-  !*** ./node_modules/axios/lib/helpers/cookies.js ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
-
-module.exports = (
-  utils.isStandardBrowserEnv() ?
-
-  // Standard browser envs support document.cookie
-    (function standardBrowserEnv() {
-      return {
-        write: function write(name, value, expires, path, domain, secure) {
-          var cookie = [];
-          cookie.push(name + '=' + encodeURIComponent(value));
-
-          if (utils.isNumber(expires)) {
-            cookie.push('expires=' + new Date(expires).toGMTString());
-          }
-
-          if (utils.isString(path)) {
-            cookie.push('path=' + path);
-          }
-
-          if (utils.isString(domain)) {
-            cookie.push('domain=' + domain);
-          }
-
-          if (secure === true) {
-            cookie.push('secure');
-          }
-
-          document.cookie = cookie.join('; ');
-        },
-
-        read: function read(name) {
-          var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
-          return (match ? decodeURIComponent(match[3]) : null);
-        },
-
-        remove: function remove(name) {
-          this.write(name, '', Date.now() - 86400000);
-        }
-      };
-    })() :
-
-  // Non standard browser env (web workers, react-native) lack needed support.
-    (function nonStandardBrowserEnv() {
-      return {
-        write: function write() {},
-        read: function read() { return null; },
-        remove: function remove() {}
-      };
-    })()
-);
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/helpers/isAbsoluteURL.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Determines whether the specified URL is absolute
- *
- * @param {string} url The URL to test
- * @returns {boolean} True if the specified URL is absolute, otherwise false
- */
-module.exports = function isAbsoluteURL(url) {
-  // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
-  // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
-  // by any combination of letters, digits, plus, period, or hyphen.
-  return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/helpers/isURLSameOrigin.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
-
-module.exports = (
-  utils.isStandardBrowserEnv() ?
-
-  // Standard browser envs have full support of the APIs needed to test
-  // whether the request URL is of the same origin as current location.
-    (function standardBrowserEnv() {
-      var msie = /(msie|trident)/i.test(navigator.userAgent);
-      var urlParsingNode = document.createElement('a');
-      var originURL;
-
-      /**
-    * Parse a URL to discover it's components
-    *
-    * @param {String} url The URL to be parsed
-    * @returns {Object}
-    */
-      function resolveURL(url) {
-        var href = url;
-
-        if (msie) {
-        // IE needs attribute set twice to normalize properties
-          urlParsingNode.setAttribute('href', href);
-          href = urlParsingNode.href;
-        }
-
-        urlParsingNode.setAttribute('href', href);
-
-        // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
-        return {
-          href: urlParsingNode.href,
-          protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
-          host: urlParsingNode.host,
-          search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
-          hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
-          hostname: urlParsingNode.hostname,
-          port: urlParsingNode.port,
-          pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
-            urlParsingNode.pathname :
-            '/' + urlParsingNode.pathname
-        };
-      }
-
-      originURL = resolveURL(window.location.href);
-
-      /**
-    * Determine if a URL shares the same origin as the current location
-    *
-    * @param {String} requestURL The URL to test
-    * @returns {boolean} True if URL shares the same origin, otherwise false
-    */
-      return function isURLSameOrigin(requestURL) {
-        var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
-        return (parsed.protocol === originURL.protocol &&
-            parsed.host === originURL.host);
-      };
-    })() :
-
-  // Non standard browser envs (web workers, react-native) lack needed support.
-    (function nonStandardBrowserEnv() {
-      return function isURLSameOrigin() {
-        return true;
-      };
-    })()
-);
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/helpers/normalizeHeaderName.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/axios/lib/helpers/normalizeHeaderName.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(/*! ../utils */ "./node_modules/axios/lib/utils.js");
-
-module.exports = function normalizeHeaderName(headers, normalizedName) {
-  utils.forEach(headers, function processHeader(value, name) {
-    if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {
-      headers[normalizedName] = value;
-      delete headers[name];
-    }
-  });
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/helpers/parseHeaders.js":
-/*!********************************************************!*\
-  !*** ./node_modules/axios/lib/helpers/parseHeaders.js ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
-
-// Headers whose duplicates are ignored by node
-// c.f. https://nodejs.org/api/http.html#http_message_headers
-var ignoreDuplicateOf = [
-  'age', 'authorization', 'content-length', 'content-type', 'etag',
-  'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since',
-  'last-modified', 'location', 'max-forwards', 'proxy-authorization',
-  'referer', 'retry-after', 'user-agent'
-];
-
-/**
- * Parse headers into an object
- *
- * ```
- * Date: Wed, 27 Aug 2014 08:58:49 GMT
- * Content-Type: application/json
- * Connection: keep-alive
- * Transfer-Encoding: chunked
- * ```
- *
- * @param {String} headers Headers needing to be parsed
- * @returns {Object} Headers parsed into an object
- */
-module.exports = function parseHeaders(headers) {
-  var parsed = {};
-  var key;
-  var val;
-  var i;
-
-  if (!headers) { return parsed; }
-
-  utils.forEach(headers.split('\n'), function parser(line) {
-    i = line.indexOf(':');
-    key = utils.trim(line.substr(0, i)).toLowerCase();
-    val = utils.trim(line.substr(i + 1));
-
-    if (key) {
-      if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) {
-        return;
-      }
-      if (key === 'set-cookie') {
-        parsed[key] = (parsed[key] ? parsed[key] : []).concat([val]);
-      } else {
-        parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
-      }
-    }
-  });
-
-  return parsed;
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/helpers/spread.js":
-/*!**************************************************!*\
-  !*** ./node_modules/axios/lib/helpers/spread.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Syntactic sugar for invoking a function and expanding an array for arguments.
- *
- * Common use case would be to use `Function.prototype.apply`.
- *
- *  ```js
- *  function f(x, y, z) {}
- *  var args = [1, 2, 3];
- *  f.apply(null, args);
- *  ```
- *
- * With `spread` this example can be re-written.
- *
- *  ```js
- *  spread(function(x, y, z) {})([1, 2, 3]);
- *  ```
- *
- * @param {Function} callback
- * @returns {Function}
- */
-module.exports = function spread(callback) {
-  return function wrap(arr) {
-    return callback.apply(null, arr);
-  };
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/utils.js":
-/*!*****************************************!*\
-  !*** ./node_modules/axios/lib/utils.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
-var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/axios/node_modules/is-buffer/index.js");
-
-/*global toString:true*/
-
-// utils is a library of generic helper functions non-specific to axios
-
-var toString = Object.prototype.toString;
-
-/**
- * Determine if a value is an Array
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is an Array, otherwise false
- */
-function isArray(val) {
-  return toString.call(val) === '[object Array]';
-}
-
-/**
- * Determine if a value is an ArrayBuffer
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is an ArrayBuffer, otherwise false
- */
-function isArrayBuffer(val) {
-  return toString.call(val) === '[object ArrayBuffer]';
-}
-
-/**
- * Determine if a value is a FormData
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is an FormData, otherwise false
- */
-function isFormData(val) {
-  return (typeof FormData !== 'undefined') && (val instanceof FormData);
-}
-
-/**
- * Determine if a value is a view on an ArrayBuffer
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
- */
-function isArrayBufferView(val) {
-  var result;
-  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
-    result = ArrayBuffer.isView(val);
-  } else {
-    result = (val) && (val.buffer) && (val.buffer instanceof ArrayBuffer);
-  }
-  return result;
-}
-
-/**
- * Determine if a value is a String
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is a String, otherwise false
- */
-function isString(val) {
-  return typeof val === 'string';
-}
-
-/**
- * Determine if a value is a Number
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is a Number, otherwise false
- */
-function isNumber(val) {
-  return typeof val === 'number';
-}
-
-/**
- * Determine if a value is undefined
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if the value is undefined, otherwise false
- */
-function isUndefined(val) {
-  return typeof val === 'undefined';
-}
-
-/**
- * Determine if a value is an Object
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is an Object, otherwise false
- */
-function isObject(val) {
-  return val !== null && typeof val === 'object';
-}
-
-/**
- * Determine if a value is a Date
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is a Date, otherwise false
- */
-function isDate(val) {
-  return toString.call(val) === '[object Date]';
-}
-
-/**
- * Determine if a value is a File
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is a File, otherwise false
- */
-function isFile(val) {
-  return toString.call(val) === '[object File]';
-}
-
-/**
- * Determine if a value is a Blob
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is a Blob, otherwise false
- */
-function isBlob(val) {
-  return toString.call(val) === '[object Blob]';
-}
-
-/**
- * Determine if a value is a Function
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is a Function, otherwise false
- */
-function isFunction(val) {
-  return toString.call(val) === '[object Function]';
-}
-
-/**
- * Determine if a value is a Stream
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is a Stream, otherwise false
- */
-function isStream(val) {
-  return isObject(val) && isFunction(val.pipe);
-}
-
-/**
- * Determine if a value is a URLSearchParams object
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is a URLSearchParams object, otherwise false
- */
-function isURLSearchParams(val) {
-  return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
-}
-
-/**
- * Trim excess whitespace off the beginning and end of a string
- *
- * @param {String} str The String to trim
- * @returns {String} The String freed of excess whitespace
- */
-function trim(str) {
-  return str.replace(/^\s*/, '').replace(/\s*$/, '');
-}
-
-/**
- * Determine if we're running in a standard browser environment
- *
- * This allows axios to run in a web worker, and react-native.
- * Both environments support XMLHttpRequest, but not fully standard globals.
- *
- * web workers:
- *  typeof window -> undefined
- *  typeof document -> undefined
- *
- * react-native:
- *  navigator.product -> 'ReactNative'
- * nativescript
- *  navigator.product -> 'NativeScript' or 'NS'
- */
-function isStandardBrowserEnv() {
-  if (typeof navigator !== 'undefined' && (navigator.product === 'ReactNative' ||
-                                           navigator.product === 'NativeScript' ||
-                                           navigator.product === 'NS')) {
-    return false;
-  }
-  return (
-    typeof window !== 'undefined' &&
-    typeof document !== 'undefined'
-  );
-}
-
-/**
- * Iterate over an Array or an Object invoking a function for each item.
- *
- * If `obj` is an Array callback will be called passing
- * the value, index, and complete array for each item.
- *
- * If 'obj' is an Object callback will be called passing
- * the value, key, and complete object for each property.
- *
- * @param {Object|Array} obj The object to iterate
- * @param {Function} fn The callback to invoke for each item
- */
-function forEach(obj, fn) {
-  // Don't bother if no value provided
-  if (obj === null || typeof obj === 'undefined') {
-    return;
-  }
-
-  // Force an array if not already something iterable
-  if (typeof obj !== 'object') {
-    /*eslint no-param-reassign:0*/
-    obj = [obj];
-  }
-
-  if (isArray(obj)) {
-    // Iterate over array values
-    for (var i = 0, l = obj.length; i < l; i++) {
-      fn.call(null, obj[i], i, obj);
-    }
-  } else {
-    // Iterate over object keys
-    for (var key in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, key)) {
-        fn.call(null, obj[key], key, obj);
-      }
-    }
-  }
-}
-
-/**
- * Accepts varargs expecting each argument to be an object, then
- * immutably merges the properties of each object and returns result.
- *
- * When multiple objects contain the same key the later object in
- * the arguments list will take precedence.
- *
- * Example:
- *
- * ```js
- * var result = merge({foo: 123}, {foo: 456});
- * console.log(result.foo); // outputs 456
- * ```
- *
- * @param {Object} obj1 Object to merge
- * @returns {Object} Result of all merge properties
- */
-function merge(/* obj1, obj2, obj3, ... */) {
-  var result = {};
-  function assignValue(val, key) {
-    if (typeof result[key] === 'object' && typeof val === 'object') {
-      result[key] = merge(result[key], val);
-    } else {
-      result[key] = val;
-    }
-  }
-
-  for (var i = 0, l = arguments.length; i < l; i++) {
-    forEach(arguments[i], assignValue);
-  }
-  return result;
-}
-
-/**
- * Function equal to merge with the difference being that no reference
- * to original objects is kept.
- *
- * @see merge
- * @param {Object} obj1 Object to merge
- * @returns {Object} Result of all merge properties
- */
-function deepMerge(/* obj1, obj2, obj3, ... */) {
-  var result = {};
-  function assignValue(val, key) {
-    if (typeof result[key] === 'object' && typeof val === 'object') {
-      result[key] = deepMerge(result[key], val);
-    } else if (typeof val === 'object') {
-      result[key] = deepMerge({}, val);
-    } else {
-      result[key] = val;
-    }
-  }
-
-  for (var i = 0, l = arguments.length; i < l; i++) {
-    forEach(arguments[i], assignValue);
-  }
-  return result;
-}
-
-/**
- * Extends object a by mutably adding to it the properties of object b.
- *
- * @param {Object} a The object to be extended
- * @param {Object} b The object to copy properties from
- * @param {Object} thisArg The object to bind function to
- * @return {Object} The resulting value of object a
- */
-function extend(a, b, thisArg) {
-  forEach(b, function assignValue(val, key) {
-    if (thisArg && typeof val === 'function') {
-      a[key] = bind(val, thisArg);
-    } else {
-      a[key] = val;
-    }
-  });
-  return a;
-}
-
-module.exports = {
-  isArray: isArray,
-  isArrayBuffer: isArrayBuffer,
-  isBuffer: isBuffer,
-  isFormData: isFormData,
-  isArrayBufferView: isArrayBufferView,
-  isString: isString,
-  isNumber: isNumber,
-  isObject: isObject,
-  isUndefined: isUndefined,
-  isDate: isDate,
-  isFile: isFile,
-  isBlob: isBlob,
-  isFunction: isFunction,
-  isStream: isStream,
-  isURLSearchParams: isURLSearchParams,
-  isStandardBrowserEnv: isStandardBrowserEnv,
-  forEach: forEach,
-  merge: merge,
-  deepMerge: deepMerge,
-  extend: extend,
-  trim: trim
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/node_modules/is-buffer/index.js":
-/*!************************************************************!*\
-  !*** ./node_modules/axios/node_modules/is-buffer/index.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-
-module.exports = function isBuffer (obj) {
-  return obj != null && obj.constructor != null &&
-    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/aboutme.scss":
 /*!**************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/sass-loader/lib/loader.js??ref--6-2!./src/app/scss/aboutme.scss ***!
@@ -1961,7 +196,7 @@ var ___CSS_LOADER_URL___4___ = getUrl(__webpack_require__(/*! ../../assets/font/
 var ___CSS_LOADER_URL___5___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.woff */ "./src/assets/font/Burlington_Script.woff"));
 var ___CSS_LOADER_URL___6___ = getUrl(__webpack_require__(/*! ../../assets/img/background-laptop-2.jpg */ "./src/assets/img/background-laptop-2.jpg"));
 // Module
-exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Windsong';\n  src: url(" + ___CSS_LOADER_URL___2___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___3___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Burlington';\n  src: url(" + ___CSS_LOADER_URL___4___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___5___ + ") format(\"woff\"); }\n\n._1eHdil357nLbiYEOWe_b3b {\n  min-height: inherit; }\n  ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi {\n    min-height: inherit;\n    width: 100%; }\n    ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm {\n      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.7)), url(" + ___CSS_LOADER_URL___6___ + ");\n      padding: 64px;\n      height: calc(100% - 100px);\n      display: flex;\n      flex-direction: column;\n      justify-content: space-evenly;\n      align-items: center; }\n      @media screen and (max-width: 358px) {\n        ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm {\n          padding: 40px; } }\n      ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G {\n        display: flex;\n        flex-direction: row;\n        align-items: center; }\n        @media screen and (max-width: 798px) {\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G {\n            flex-direction: column; } }\n        ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1Uvt41SPkdKrBXKxIYUvL4 {\n          height: fit-content; }\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1Uvt41SPkdKrBXKxIYUvL4 img {\n            width: 300px;\n            border-radius: 1000px;\n            border: 20px solid rgba(255, 255, 255, 0.4); }\n            @media screen and (max-width: 500px) {\n              ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1Uvt41SPkdKrBXKxIYUvL4 img {\n                width: 90%;\n                border: 20px solid rgba(255, 255, 255, 0.4); } }\n        ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1DL1PqC2zq8EF1jwvEUZm9 {\n          height: fit-content;\n          padding-left: 50px; }\n          @media screen and (max-width: 798px) {\n            ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1DL1PqC2zq8EF1jwvEUZm9 {\n              padding-left: 0px; } }\n          @media screen and (max-width: 798px) {\n            ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1DL1PqC2zq8EF1jwvEUZm9 {\n              text-align: center;\n              margin-top: 20px; } }\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1DL1PqC2zq8EF1jwvEUZm9 > :nth-child(1) {\n            font-family: \"Abel\";\n            font-size: 1.6rem;\n            color: #ea9767;\n            font-weight: 400;\n            padding-bottom: 15px; }\n            @media screen and (max-width: 770px) {\n              ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1DL1PqC2zq8EF1jwvEUZm9 > :nth-child(1) {\n                font-family: \"Abel\";\n                font-size: 1.3rem;\n                color: #ea9767;\n                font-weight: 400; } }\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1DL1PqC2zq8EF1jwvEUZm9 > :nth-child(2) {\n            font-family: \"Abel\";\n            font-size: 2.2rem;\n            color: #444445;\n            font-weight: 600; }\n            @media screen and (max-width: 770px) {\n              ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1DL1PqC2zq8EF1jwvEUZm9 > :nth-child(2) {\n                font-family: \"Abel\";\n                font-size: 1.9rem;\n                color: #444445;\n                font-weight: 600; } }\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1DL1PqC2zq8EF1jwvEUZm9 > :nth-child(3) {\n            font-family: \"Abel\";\n            font-size: 1.9rem;\n            color: #444445;\n            font-weight: 600; }\n            @media screen and (max-width: 770px) {\n              ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1DL1PqC2zq8EF1jwvEUZm9 > :nth-child(3) {\n                font-family: \"Abel\";\n                font-size: 1.6rem;\n                color: #444445;\n                font-weight: 600; } }\n      ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._20KwBhYQbVD9rzpFJR1bgI {\n        font-family: \"Abel\";\n        font-size: 1rem;\n        color: #444445;\n        font-weight: 400;\n        display: flex;\n        width: fit-content; }\n        ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._20KwBhYQbVD9rzpFJR1bgI > div {\n          display: flex;\n          flex-direction: row;\n          padding: 10px 0;\n          width: fit-content;\n          border-top: 1px solid #929294; }\n          @media screen and (max-width: 798px) {\n            ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._20KwBhYQbVD9rzpFJR1bgI > div {\n              align-items: center;\n              flex-direction: column; } }\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._20KwBhYQbVD9rzpFJR1bgI > div div, ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._20KwBhYQbVD9rzpFJR1bgI > div a {\n            padding: 0px 20px; }\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._20KwBhYQbVD9rzpFJR1bgI > div > div {\n            display: flex;\n            flex-direction: row; }\n            @media screen and (max-width: 825px) {\n              ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._20KwBhYQbVD9rzpFJR1bgI > div > div {\n                padding: 0px 3%; } }\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._20KwBhYQbVD9rzpFJR1bgI > div img {\n            width: 20px;\n            height: 20px; }\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._20KwBhYQbVD9rzpFJR1bgI > div a {\n            text-decoration: underline;\n            color: #3273dc; }\n    ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._1esp0GCmHkVa-KgmlLX3dN {\n      padding: 10% 20%;\n      background-color: #f5f5f5; }\n      @media screen and (max-width: 870px) {\n        ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._1esp0GCmHkVa-KgmlLX3dN {\n          padding: 20% 10%; } }\n      ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._1esp0GCmHkVa-KgmlLX3dN ._2_wXTDpbE_CPZ2icO_jJOH {\n        font-family: \"Abel\";\n        font-size: 3.6rem;\n        color: #f0c1a5;\n        font-weight: 600; }\n        @media screen and (max-width: 783px) {\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._1esp0GCmHkVa-KgmlLX3dN ._2_wXTDpbE_CPZ2icO_jJOH {\n            font-family: \"Abel\";\n            font-size: 3.3rem;\n            color: #f0c1a5;\n            font-weight: 600; } }\n      ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._1esp0GCmHkVa-KgmlLX3dN .Qx6Enck4LcvZ3raMOqcH- {\n        font-family: \"Abel\";\n        font-size: 1rem;\n        color: #6e6e70;\n        font-weight: 400; }\n    ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._2_wXTDpbE_CPZ2icO_jJOH {\n      font-family: \"Abel\";\n      font-size: 3.6rem;\n      color: #6e6e70;\n      font-weight: 600;\n      text-align: center;\n      margin-top: 60px; }\n      @media screen and (max-width: 783px) {\n        ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._2_wXTDpbE_CPZ2icO_jJOH {\n          font-family: \"Abel\";\n          font-size: 3.3rem;\n          color: #6e6e70;\n          font-weight: 600; } }\n    ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._1eHdil357nLbiYEOWe_b3b {\n      padding: 20px;\n      display: flex;\n      justify-content: center; }\n      ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._1eHdil357nLbiYEOWe_b3b > div {\n        display: flex;\n        flex-direction: row;\n        flex-wrap: wrap;\n        justify-content: center; }\n      ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._1eHdil357nLbiYEOWe_b3b ._3MPPrCW1wkY1yrAekrToNC {\n        padding: 20px;\n        background-color: #fff;\n        box-shadow: 0px 0px 30px 0px #d9dadb;\n        border-radius: 20px;\n        display: flex;\n        flex-direction: column;\n        width: 16.5rem;\n        margin: 20px; }\n        ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._1eHdil357nLbiYEOWe_b3b ._3MPPrCW1wkY1yrAekrToNC > div:last-child {\n          padding: 20px;\n          width: initial; }\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._1eHdil357nLbiYEOWe_b3b ._3MPPrCW1wkY1yrAekrToNC > div:last-child > :first-child {\n            font-family: \"Abel\";\n            font-size: 2.2rem;\n            color: #6e6e70;\n            font-weight: 600; }\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._1eHdil357nLbiYEOWe_b3b ._3MPPrCW1wkY1yrAekrToNC > div:last-child > :last-child {\n            padding: 15px 0px;\n            font-family: \"Abel\";\n            font-size: 1rem;\n            color: #6e6e70;\n            font-weight: 400; }\n        ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._1eHdil357nLbiYEOWe_b3b ._3MPPrCW1wkY1yrAekrToNC img {\n          height: 16.5rem; }\n          @media screen and (max-width: 440px) {\n            ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._1eHdil357nLbiYEOWe_b3b ._3MPPrCW1wkY1yrAekrToNC img {\n              height: auto;\n              width: 100%; } }\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Windsong';\n  src: url(" + ___CSS_LOADER_URL___2___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___3___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Burlington';\n  src: url(" + ___CSS_LOADER_URL___4___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___5___ + ") format(\"woff\"); }\n\n._1eHdil357nLbiYEOWe_b3b {\n  min-height: inherit; }\n  ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi {\n    min-height: inherit;\n    width: 100%; }\n    ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm {\n      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.7)), url(" + ___CSS_LOADER_URL___6___ + ");\n      padding: 64px;\n      height: calc(100% - 100px);\n      display: flex;\n      flex-direction: column;\n      justify-content: space-evenly;\n      align-items: center; }\n      @media screen and (max-width: 358px) {\n        ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm {\n          padding: 40px; } }\n      ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G {\n        display: flex;\n        flex-direction: row;\n        align-items: center; }\n        @media screen and (max-width: 798px) {\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G {\n            flex-direction: column; } }\n        ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1Uvt41SPkdKrBXKxIYUvL4 {\n          height: fit-content; }\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1Uvt41SPkdKrBXKxIYUvL4 img {\n            width: 300px;\n            border-radius: 1000px;\n            border: 20px solid rgba(255, 255, 255, 0.4); }\n            @media screen and (max-width: 500px) {\n              ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1Uvt41SPkdKrBXKxIYUvL4 img {\n                width: 90%;\n                border: 20px solid rgba(255, 255, 255, 0.4); } }\n        ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1DL1PqC2zq8EF1jwvEUZm9 {\n          height: fit-content;\n          padding-left: 50px; }\n          @media screen and (max-width: 798px) {\n            ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1DL1PqC2zq8EF1jwvEUZm9 {\n              padding-left: 0px; } }\n          @media screen and (max-width: 798px) {\n            ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1DL1PqC2zq8EF1jwvEUZm9 {\n              text-align: center;\n              margin-top: 20px; } }\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1DL1PqC2zq8EF1jwvEUZm9 > :nth-child(1) {\n            font-family: \"Abel\";\n            font-size: 1.6rem;\n            color: #ea9767;\n            font-weight: 400;\n            padding-bottom: 15px; }\n            @media screen and (max-width: 770px) {\n              ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1DL1PqC2zq8EF1jwvEUZm9 > :nth-child(1) {\n                font-family: \"Abel\";\n                font-size: 1.3rem;\n                color: #ea9767;\n                font-weight: 400; } }\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1DL1PqC2zq8EF1jwvEUZm9 > :nth-child(2) {\n            font-family: \"Abel\";\n            font-size: 2.2rem;\n            color: #444445;\n            font-weight: 600; }\n            @media screen and (max-width: 770px) {\n              ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1DL1PqC2zq8EF1jwvEUZm9 > :nth-child(2) {\n                font-family: \"Abel\";\n                font-size: 1.9rem;\n                color: #444445;\n                font-weight: 600; } }\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1DL1PqC2zq8EF1jwvEUZm9 > :nth-child(3) {\n            font-family: \"Abel\";\n            font-size: 1.9rem;\n            color: #444445;\n            font-weight: 600; }\n            @media screen and (max-width: 770px) {\n              ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._1XxF1RBJd5EELQWD54QK8G ._1DL1PqC2zq8EF1jwvEUZm9 > :nth-child(3) {\n                font-family: \"Abel\";\n                font-size: 1.6rem;\n                color: #444445;\n                font-weight: 600; } }\n      ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._20KwBhYQbVD9rzpFJR1bgI {\n        font-family: \"Abel\";\n        font-size: 1rem;\n        color: #444445;\n        font-weight: 400;\n        display: flex;\n        width: fit-content; }\n        ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._20KwBhYQbVD9rzpFJR1bgI > div {\n          display: flex;\n          flex-direction: row;\n          padding: 10px 0;\n          width: fit-content;\n          border-top: 1px solid #929294; }\n          @media screen and (max-width: 798px) {\n            ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._20KwBhYQbVD9rzpFJR1bgI > div {\n              align-items: center;\n              flex-direction: column; } }\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._20KwBhYQbVD9rzpFJR1bgI > div div, ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._20KwBhYQbVD9rzpFJR1bgI > div a {\n            padding: 0px 20px; }\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._20KwBhYQbVD9rzpFJR1bgI > div > div {\n            display: flex;\n            flex-direction: row; }\n            @media screen and (max-width: 825px) {\n              ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._20KwBhYQbVD9rzpFJR1bgI > div > div {\n                padding: 0px 3%; } }\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._20KwBhYQbVD9rzpFJR1bgI > div img {\n            width: 20px;\n            height: 20px; }\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._24YlJ-GnXoyx-sTmT00yTm ._20KwBhYQbVD9rzpFJR1bgI > div a {\n            text-decoration: underline;\n            color: #3273dc; }\n    ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._1esp0GCmHkVa-KgmlLX3dN {\n      padding: 10% 20%;\n      background-color: #f5f5f5; }\n      @media screen and (max-width: 870px) {\n        ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._1esp0GCmHkVa-KgmlLX3dN {\n          padding: 20% 10%; } }\n      ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._1esp0GCmHkVa-KgmlLX3dN ._2_wXTDpbE_CPZ2icO_jJOH {\n        font-family: \"Abel\";\n        font-size: 3.6rem;\n        color: #f0c1a5;\n        font-weight: 600; }\n        @media screen and (max-width: 783px) {\n          ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._1esp0GCmHkVa-KgmlLX3dN ._2_wXTDpbE_CPZ2icO_jJOH {\n            font-family: \"Abel\";\n            font-size: 3.3rem;\n            color: #f0c1a5;\n            font-weight: 600; } }\n      ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._1esp0GCmHkVa-KgmlLX3dN .Qx6Enck4LcvZ3raMOqcH- {\n        font-family: \"Abel\";\n        font-size: 1rem;\n        color: #6e6e70;\n        font-weight: 400; }\n    ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._2_wXTDpbE_CPZ2icO_jJOH {\n      font-family: \"Abel\";\n      font-size: 3.6rem;\n      color: #6e6e70;\n      font-weight: 600;\n      text-align: center;\n      margin-top: 60px; }\n      @media screen and (max-width: 783px) {\n        ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._2_wXTDpbE_CPZ2icO_jJOH {\n          font-family: \"Abel\";\n          font-size: 3.3rem;\n          color: #6e6e70;\n          font-weight: 600; } }\n    ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._1eHdil357nLbiYEOWe_b3b {\n      padding: 20px;\n      display: flex;\n      justify-content: center; }\n      ._1eHdil357nLbiYEOWe_b3b ._1Poxo-RR2wnIsb03jjHLXi ._3DXVsDoH2JMiHV8K4-aQ9L ._1eHdil357nLbiYEOWe_b3b > div {\n        display: flex;\n        flex-direction: row;\n        flex-wrap: wrap;\n        justify-content: center; }\n", ""]);
 // Exports
 exports.locals = {
 	"container": "_1eHdil357nLbiYEOWe_b3b",
@@ -1974,8 +209,7 @@ exports.locals = {
 	"summary": "_1esp0GCmHkVa-KgmlLX3dN",
 	"title": "_2_wXTDpbE_CPZ2icO_jJOH",
 	"text": "Qx6Enck4LcvZ3raMOqcH-",
-	"interest": "_3DXVsDoH2JMiHV8K4-aQ9L",
-	"card": "_3MPPrCW1wkY1yrAekrToNC"
+	"interest": "_3DXVsDoH2JMiHV8K4-aQ9L"
 };
 
 /***/ }),
@@ -1997,7 +231,7 @@ var ___CSS_LOADER_URL___3___ = getUrl(__webpack_require__(/*! ../../assets/font/
 var ___CSS_LOADER_URL___4___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.eot */ "./src/assets/font/Burlington_Script.eot"));
 var ___CSS_LOADER_URL___5___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.woff */ "./src/assets/font/Burlington_Script.woff"));
 // Module
-exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Windsong';\n  src: url(" + ___CSS_LOADER_URL___2___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___3___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Burlington';\n  src: url(" + ___CSS_LOADER_URL___4___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___5___ + ") format(\"woff\"); }\n\n._3d-rsgtHn2_tQaH8v2j0PP {\n  box-shadow: 0px 0px 30px 0px #d9dadb;\n  border-radius: 20px;\n  background-color: #fff;\n  width: 50%;\n  overflow: hidden;\n  margin: 20px 0px; }\n  @media screen and (max-width: 1200px) {\n    ._3d-rsgtHn2_tQaH8v2j0PP {\n      width: 80%; } }\n  ._3d-rsgtHn2_tQaH8v2j0PP ._7WmV3be8b-um9VaF7PeBk {\n    padding: 20px;\n    background-color: #62acb5;\n    font-family: \"Abel\";\n    font-size: 2.2rem;\n    color: #fff;\n    font-weight: 600; }\n  ._3d-rsgtHn2_tQaH8v2j0PP ._1JK7C61DgSoisKMtibK8r_ {\n    display: flex;\n    flex-direction: row; }\n    ._3d-rsgtHn2_tQaH8v2j0PP ._1JK7C61DgSoisKMtibK8r_ ._9IblvdTM6StHoRSVgL5Xb {\n      padding: 20px;\n      display: flex;\n      flex-direction: row;\n      align-items: center;\n      width: 90%; }\n      ._3d-rsgtHn2_tQaH8v2j0PP ._1JK7C61DgSoisKMtibK8r_ ._9IblvdTM6StHoRSVgL5Xb img {\n        width: 50px;\n        height: 50px;\n        padding: 10px; }\n      ._3d-rsgtHn2_tQaH8v2j0PP ._1JK7C61DgSoisKMtibK8r_ ._9IblvdTM6StHoRSVgL5Xb > div ._3Q2KnRVtXPcFT8oMym8xCT {\n        font-family: \"Abel\";\n        font-size: 1.9rem;\n        color: #6e6e70;\n        font-weight: 600; }\n      ._3d-rsgtHn2_tQaH8v2j0PP ._1JK7C61DgSoisKMtibK8r_ ._9IblvdTM6StHoRSVgL5Xb > div ._2eH4Lto0Z2Soat-nlNkf8x {\n        font-family: \"Abel\";\n        font-size: 1.3rem;\n        color: #6e6e70;\n        font-weight: 400; }\n    ._3d-rsgtHn2_tQaH8v2j0PP ._1JK7C61DgSoisKMtibK8r_ ._3HHzexiaC_baKVN9cCAZSi {\n      padding: 20px;\n      width: 10%;\n      display: flex;\n      justify-content: center;\n      align-items: center; }\n      ._3d-rsgtHn2_tQaH8v2j0PP ._1JK7C61DgSoisKMtibK8r_ ._3HHzexiaC_baKVN9cCAZSi:hover {\n        background-color: #f7ddcc; }\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Windsong';\n  src: url(" + ___CSS_LOADER_URL___2___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___3___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Burlington';\n  src: url(" + ___CSS_LOADER_URL___4___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___5___ + ") format(\"woff\"); }\n\n._3d-rsgtHn2_tQaH8v2j0PP {\n  box-shadow: 0px 0px 30px 0px #d9dadb;\n  border-radius: 8px;\n  background-color: #fff;\n  width: 50%;\n  overflow: hidden;\n  margin: 20px 0px; }\n  @media screen and (max-width: 1200px) {\n    ._3d-rsgtHn2_tQaH8v2j0PP {\n      width: 80%; } }\n  ._3d-rsgtHn2_tQaH8v2j0PP ._7WmV3be8b-um9VaF7PeBk {\n    padding: 20px;\n    background-color: #8095c0;\n    font-family: \"Abel\";\n    font-size: 2.2rem;\n    color: #fff;\n    font-weight: 600; }\n  ._3d-rsgtHn2_tQaH8v2j0PP ._1JK7C61DgSoisKMtibK8r_ {\n    display: flex;\n    flex-direction: row; }\n    ._3d-rsgtHn2_tQaH8v2j0PP ._1JK7C61DgSoisKMtibK8r_ ._9IblvdTM6StHoRSVgL5Xb {\n      padding: 20px;\n      display: flex;\n      flex-direction: row;\n      align-items: center;\n      width: 90%; }\n      ._3d-rsgtHn2_tQaH8v2j0PP ._1JK7C61DgSoisKMtibK8r_ ._9IblvdTM6StHoRSVgL5Xb img {\n        width: 50px;\n        height: 50px;\n        padding: 10px; }\n      ._3d-rsgtHn2_tQaH8v2j0PP ._1JK7C61DgSoisKMtibK8r_ ._9IblvdTM6StHoRSVgL5Xb > div ._3Q2KnRVtXPcFT8oMym8xCT {\n        font-family: \"Abel\";\n        font-size: 1.9rem;\n        color: #6e6e70;\n        font-weight: 600; }\n      ._3d-rsgtHn2_tQaH8v2j0PP ._1JK7C61DgSoisKMtibK8r_ ._9IblvdTM6StHoRSVgL5Xb > div ._2eH4Lto0Z2Soat-nlNkf8x {\n        font-family: \"Abel\";\n        font-size: 1.3rem;\n        color: #6e6e70;\n        font-weight: 400; }\n    ._3d-rsgtHn2_tQaH8v2j0PP ._1JK7C61DgSoisKMtibK8r_ ._3HHzexiaC_baKVN9cCAZSi {\n      padding: 20px;\n      width: 10%;\n      display: flex;\n      justify-content: center;\n      align-items: center; }\n      ._3d-rsgtHn2_tQaH8v2j0PP ._1JK7C61DgSoisKMtibK8r_ ._3HHzexiaC_baKVN9cCAZSi:hover {\n        background-color: #d9dadb; }\n", ""]);
 // Exports
 exports.locals = {
 	"panel": "_3d-rsgtHn2_tQaH8v2j0PP",
@@ -2027,9 +261,8 @@ var ___CSS_LOADER_URL___2___ = getUrl(__webpack_require__(/*! ../../assets/font/
 var ___CSS_LOADER_URL___3___ = getUrl(__webpack_require__(/*! ../../assets/font/Windsong-webfont.woff */ "./src/assets/font/Windsong-webfont.woff"));
 var ___CSS_LOADER_URL___4___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.eot */ "./src/assets/font/Burlington_Script.eot"));
 var ___CSS_LOADER_URL___5___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.woff */ "./src/assets/font/Burlington_Script.woff"));
-var ___CSS_LOADER_URL___6___ = getUrl(__webpack_require__(/*! ../../assets/img/learning.jpg */ "./src/assets/img/learning.jpg"));
 // Module
-exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Windsong';\n  src: url(" + ___CSS_LOADER_URL___2___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___3___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Burlington';\n  src: url(" + ___CSS_LOADER_URL___4___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___5___ + ") format(\"woff\"); }\n\n.TD8z6OPMQiIAsJve5Ovn1 {\n  min-height: inherit; }\n  .TD8z6OPMQiIAsJve5Ovn1 .HVRwo-vL806YB76EaveZj {\n    min-height: inherit;\n    width: 100%; }\n    .TD8z6OPMQiIAsJve5Ovn1 .HVRwo-vL806YB76EaveZj ._1_CM0Ruya3wpFZ0NIF0W3N {\n      min-height: inherit; }\n      .TD8z6OPMQiIAsJve5Ovn1 .HVRwo-vL806YB76EaveZj ._1_CM0Ruya3wpFZ0NIF0W3N > .SWdTOnP82MEKb42JvAzFm {\n        background-image: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.7)), url(" + ___CSS_LOADER_URL___6___ + ");\n        text-decoration: underline;\n        min-height: inherit;\n        padding: 64px;\n        height: calc(100% - 100px);\n        display: flex;\n        flex-direction: column;\n        justify-content: space-evenly;\n        align-items: center;\n        text-align: center;\n        font-family: \"Abel\";\n        font-size: 4.2rem;\n        color: #444445;\n        font-weight: 600; }\n      .TD8z6OPMQiIAsJve5Ovn1 .HVRwo-vL806YB76EaveZj ._1_CM0Ruya3wpFZ0NIF0W3N ._3mhPX4wNyuh7I68qCw3Esn {\n        display: flex;\n        flex-direction: column;\n        align-items: center;\n        padding: 40px 0px; }\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Windsong';\n  src: url(" + ___CSS_LOADER_URL___2___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___3___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Burlington';\n  src: url(" + ___CSS_LOADER_URL___4___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___5___ + ") format(\"woff\"); }\n\n.TD8z6OPMQiIAsJve5Ovn1 {\n  min-height: inherit; }\n  .TD8z6OPMQiIAsJve5Ovn1 .HVRwo-vL806YB76EaveZj {\n    min-height: inherit;\n    width: 100%; }\n    .TD8z6OPMQiIAsJve5Ovn1 .HVRwo-vL806YB76EaveZj ._1_CM0Ruya3wpFZ0NIF0W3N {\n      min-height: inherit; }\n      .TD8z6OPMQiIAsJve5Ovn1 .HVRwo-vL806YB76EaveZj ._1_CM0Ruya3wpFZ0NIF0W3N > .SWdTOnP82MEKb42JvAzFm {\n        text-align: center;\n        margin-top: 60px;\n        font-family: \"Abel\";\n        font-size: 3.6rem;\n        color: #6e6e70;\n        font-weight: 600; }\n      .TD8z6OPMQiIAsJve5Ovn1 .HVRwo-vL806YB76EaveZj ._1_CM0Ruya3wpFZ0NIF0W3N ._3mhPX4wNyuh7I68qCw3Esn {\n        display: flex;\n        flex-direction: column;\n        align-items: center;\n        padding: 40px 0px; }\n", ""]);
 // Exports
 exports.locals = {
 	"container": "TD8z6OPMQiIAsJve5Ovn1",
@@ -2098,38 +331,6 @@ exports.locals = {
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/login.scss":
-/*!************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/sass-loader/lib/loader.js??ref--6-2!./src/app/scss/login.scss ***!
-  \************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
-// Imports
-var getUrl = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
-var ___CSS_LOADER_URL___0___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.eot */ "./src/assets/font/abel-regular-webfont.eot"));
-var ___CSS_LOADER_URL___1___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.woff */ "./src/assets/font/abel-regular-webfont.woff"));
-var ___CSS_LOADER_URL___2___ = getUrl(__webpack_require__(/*! ../../assets/font/Windsong-webfont.eot */ "./src/assets/font/Windsong-webfont.eot"));
-var ___CSS_LOADER_URL___3___ = getUrl(__webpack_require__(/*! ../../assets/font/Windsong-webfont.woff */ "./src/assets/font/Windsong-webfont.woff"));
-var ___CSS_LOADER_URL___4___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.eot */ "./src/assets/font/Burlington_Script.eot"));
-var ___CSS_LOADER_URL___5___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.woff */ "./src/assets/font/Burlington_Script.woff"));
-var ___CSS_LOADER_URL___6___ = getUrl(__webpack_require__(/*! ../../assets/img/background.jpg */ "./src/assets/img/background.jpg"));
-// Module
-exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Windsong';\n  src: url(" + ___CSS_LOADER_URL___2___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___3___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Burlington';\n  src: url(" + ___CSS_LOADER_URL___4___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___5___ + ") format(\"woff\"); }\n\n._1Q305CejX7nvPJbUdIAxkL {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: row;\n  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(" + ___CSS_LOADER_URL___6___ + ");\n  background-repeat: round;\n  justify-content: center;\n  align-items: center; }\n  @media screen and (max-width: 505px) {\n    ._1Q305CejX7nvPJbUdIAxkL {\n      flex-direction: column; } }\n  ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u {\n    display: flex;\n    flex-direction: column;\n    width: 30%;\n    background-color: #fff;\n    height: fit-content;\n    max-height: 90%;\n    padding: 40px;\n    border-radius: 5px;\n    box-shadow: 1px 1px 33px 1px rgba(0, 0, 0, 0.5); }\n    ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u .uqP5rAO2dajfgmLH_Bag_, ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._3_pk2u2i_5Jm3GfhZqwaYL, ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P {\n      padding: 10px 0; }\n    ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u .uqP5rAO2dajfgmLH_Bag_ {\n      height: 7rem;\n      display: flex;\n      justify-content: center; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u .uqP5rAO2dajfgmLH_Bag_ * {\n        justify-content: center;\n        align-items: center;\n        display: flex; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u .uqP5rAO2dajfgmLH_Bag_ img {\n        height: 50%; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u .uqP5rAO2dajfgmLH_Bag_ div:last-child {\n        font-family: \"Abel\";\n        font-size: 1.3rem;\n        color: #ea9767;\n        font-weight: 600;\n        padding: 10px 0 10px 15px; }\n      @media screen and (max-width: 554px) {\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u .uqP5rAO2dajfgmLH_Bag_ div:last-child {\n          font-family: \"Abel\";\n          font-size: 1rem;\n          color: #ea9767;\n          font-weight: 600; } }\n    ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._3_pk2u2i_5Jm3GfhZqwaYL {\n      font-family: \"Abel\";\n      font-size: 1rem;\n      color: #444445;\n      font-weight: 400;\n      text-align: center; }\n    ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P {\n      display: flex;\n      flex-direction: column; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:not(:last-child) {\n        margin-bottom: 25px;\n        border: 1px solid #d9dadb;\n        border-radius: 9px;\n        overflow: hidden;\n        height: 50px;\n        font-family: \"Abel\";\n        font-size: 1rem;\n        color: #000;\n        font-weight: 400; }\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:not(:last-child) input {\n          border: 0;\n          width: 100%;\n          height: 100%;\n          padding: 0px 15px; }\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:not(:last-child) input:focus {\n          outline: none; }\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:not(:last-child) input::placeholder {\n          font-family: \"Abel\";\n          font-size: 1rem;\n          color: #929294;\n          font-weight: 400; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:nth-last-child(2) {\n        border-radius: 5px;\n        background-color: #3273dc;\n        padding: 5px;\n        text-align: center;\n        height: 38px;\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        font-family: \"Abel\";\n        font-size: 1.3rem;\n        color: #fff;\n        font-weight: 400; }\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:nth-last-child(2):active {\n          background-color: #1f498b; }\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:nth-last-child(2) div:after {\n          content: '\\00bb';\n          position: relative;\n          padding-left: 0px;\n          visibility: hidden;\n          transition: all ease-in 0.1s; }\n        ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:nth-last-child(2):hover div:after {\n          visibility: visible;\n          padding-left: 10px; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:last-child ._8a9XuebwuPwdVMTE7wlX_ {\n        visibility: hidden; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:last-child ._1sXHPa8Xu2TyBSD0LplA35 {\n        visibility: visible; }\n      ._1Q305CejX7nvPJbUdIAxkL .AlAvtBfCGKm6bcK2tYN5u ._1kbkc1SS3MrljukUuwIH2P > div:last-child div {\n        font-family: \"Abel\";\n        font-size: 1rem;\n        color: #ff3860;\n        font-weight: 600;\n        text-align: center; }\n", ""]);
-// Exports
-exports.locals = {
-	"background": "_1Q305CejX7nvPJbUdIAxkL",
-	"container": "AlAvtBfCGKm6bcK2tYN5u",
-	"logo": "uqP5rAO2dajfgmLH_Bag_",
-	"title": "_3_pk2u2i_5Jm3GfhZqwaYL",
-	"form": "_1kbkc1SS3MrljukUuwIH2P",
-	"hide": "_8a9XuebwuPwdVMTE7wlX_",
-	"show": "_1sXHPa8Xu2TyBSD0LplA35"
-};
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/mainContainer.scss":
 /*!********************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/sass-loader/lib/loader.js??ref--6-2!./src/app/scss/mainContainer.scss ***!
@@ -2148,10 +349,10 @@ exports.locals = {
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/variable.scss":
-/*!***************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/sass-loader/lib/loader.js??ref--6-2!./src/app/scss/variable.scss ***!
-  \***************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/tile.scss":
+/*!***********************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/sass-loader/lib/loader.js??ref--6-2!./src/app/scss/tile.scss ***!
+  \***********************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2165,8 +366,11 @@ var ___CSS_LOADER_URL___3___ = getUrl(__webpack_require__(/*! ../../assets/font/
 var ___CSS_LOADER_URL___4___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.eot */ "./src/assets/font/Burlington_Script.eot"));
 var ___CSS_LOADER_URL___5___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.woff */ "./src/assets/font/Burlington_Script.woff"));
 // Module
-exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Windsong';\n  src: url(" + ___CSS_LOADER_URL___2___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___3___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Burlington';\n  src: url(" + ___CSS_LOADER_URL___4___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___5___ + ") format(\"woff\"); }\n", ""]);
-
+exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Windsong';\n  src: url(" + ___CSS_LOADER_URL___2___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___3___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Burlington';\n  src: url(" + ___CSS_LOADER_URL___4___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___5___ + ") format(\"woff\"); }\n\n._2b8hflekYJ-Jhl0Td1d-Nf {\n  padding: 20px;\n  background-color: #fff;\n  box-shadow: 0px 0px 30px 0px #d9dadb;\n  border-radius: 20px;\n  display: flex;\n  flex-direction: column;\n  width: 16.5rem;\n  margin: 20px; }\n  ._2b8hflekYJ-Jhl0Td1d-Nf > div:last-child {\n    padding: 20px;\n    width: initial; }\n    ._2b8hflekYJ-Jhl0Td1d-Nf > div:last-child > :first-child {\n      font-family: \"Abel\";\n      font-size: 2.2rem;\n      color: #6e6e70;\n      font-weight: 600; }\n    ._2b8hflekYJ-Jhl0Td1d-Nf > div:last-child > :last-child {\n      padding: 15px 0px;\n      font-family: \"Abel\";\n      font-size: 1rem;\n      color: #6e6e70;\n      font-weight: 400; }\n  ._2b8hflekYJ-Jhl0Td1d-Nf img {\n    height: 16.5rem; }\n    @media screen and (max-width: 440px) {\n      ._2b8hflekYJ-Jhl0Td1d-Nf img {\n        height: auto;\n        width: 100%; } }\n", ""]);
+// Exports
+exports.locals = {
+	"card": "_2b8hflekYJ-Jhl0Td1d-Nf"
+};
 
 /***/ }),
 
@@ -4114,201 +2318,6 @@ function pathToRegexp (path, keys, options) {
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
-
-
-/***/ }),
-
-/***/ "./node_modules/process/browser.js":
-/*!*****************************************!*\
-  !*** ./node_modules/process/browser.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
 
 
 /***/ }),
@@ -31594,7 +29603,7 @@ module.exports = g;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var ArrowDown=function ArrowDown(fill,height,width){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg",{height:height,width:width},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path",{d:"M14.77,23.795L5.185,14.21c-0.879-0.879-0.879-2.317,\r 0-3.195l0.8-0.801c0.877-0.878,2.316-0.878,3.194,\r 0  l7.315,7.315l7.316-7.315c0.878-0.878,2.317-0.878,\r 3.194,0l0.8,0.801c0.879,0.878,0.879,2.316,0,3.195l-9.587,9.585  \r c-0.471,0.472-1.104,0.682-1.723,0.647C15.875,24.477,15.243,\r 24.267,14.77,23.795z",fill:fill}));};/* harmony default export */ __webpack_exports__["default"] = (ArrowDown);
+var ArrowDown=function ArrowDown(fill,height,width){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg",{height:height,width:width},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path",{d:"M14.77,23.795L5.185,14.21c-0.879-0.879-0.879-2.317,\r 0-3.195l0.8-0.801c0.877-0.878,2.316-0.878,3.194,\r 0  l7.315,7.315l7.316-7.315c0.878-0.878,2.317-0.878,\r 3.194,0l0.8,0.801c0.879,0.878,0.879,2.316,0,3.195l-9.587,9.585\r c-0.471,0.472-1.104,0.682-1.723,0.647C15.875,24.477,15.243,\r 24.267,14.77,23.795z",fill:fill}));};/* harmony default export */ __webpack_exports__["default"] = (ArrowDown);
 
 /***/ }),
 
@@ -31609,7 +29618,7 @@ var ArrowDown=function ArrowDown(fill,height,width){return react__WEBPACK_IMPORT
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var ArrowUp=function ArrowUp(fill,height,width){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg",{height:height,width:width},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path",{d:"M18.221,7.206l9.585,9.585c0.879,0.879,0.879,2.317,0,\r 3.195l-0.8,0.801c-0.877,0.878-2.316,0.878-3.194,0  \r l-7.315-7.315l-7.315,7.315c-0.878,0.878-2.317,0.878-3.194,\r 0l-0.8-0.801c-0.879-0.878-0.879-2.316,0-3.195l9.587-9.585  \r c0.471-0.472,1.103-0.682,1.723-0.647C17.115,6.524,17.748,\r 6.734,18.221,7.206z",fill:fill}));};/* harmony default export */ __webpack_exports__["default"] = (ArrowUp);
+var ArrowUp=function ArrowUp(fill,height,width){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg",{height:height,width:width},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path",{d:"M18.221,7.206l9.585,9.585c0.879,0.879,0.879,2.317,0,\r 3.195l-0.8,0.801c-0.877,0.878-2.316,0.878-3.194,0\r l-7.315-7.315l-7.315,7.315c-0.878,0.878-2.317,0.878-3.194,\r 0l-0.8-0.801c-0.879-0.878-0.879-2.316,0-3.195l9.587-9.585\r c0.471-0.472,1.103-0.682,1.723-0.647C17.115,6.524,17.748,\r 6.734,18.221,7.206z",fill:fill}));};/* harmony default export */ __webpack_exports__["default"] = (ArrowUp);
 
 /***/ }),
 
@@ -31629,7 +29638,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scss_card_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scss_card_scss__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_arrow_arrowUp__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/arrow/arrowUp */ "./src/app/components/arrow/arrowUp.tsx");
 /* harmony import */ var _components_arrow_arrowDown__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/arrow/arrowDown */ "./src/app/components/arrow/arrowDown.tsx");
-function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var Card=/*#__PURE__*/function(_Component){_inherits(Card,_Component);function Card(){var _this;_classCallCheck(this,Card);_this=_possibleConstructorReturn(this,_getPrototypeOf(Card).apply(this,arguments));_this.state={isOpen:false};_this.toggleIsOpen=function(){_this.setState({isOpen:!_this.state.isOpen});};return _this;}_createClass(Card,[{key:"render",value:function render(){var data=this.props;return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_card_scss__WEBPACK_IMPORTED_MODULE_1__["panel"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_card_scss__WEBPACK_IMPORTED_MODULE_1__["period"]},data.range),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_card_scss__WEBPACK_IMPORTED_MODULE_1__["header"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_card_scss__WEBPACK_IMPORTED_MODULE_1__["title"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:data.logo}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_card_scss__WEBPACK_IMPORTED_MODULE_1__["school"]},data.title),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_card_scss__WEBPACK_IMPORTED_MODULE_1__["cert"]},data.subtitle))),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_card_scss__WEBPACK_IMPORTED_MODULE_1__["arrow"],onClick:this.toggleIsOpen},this.state.isOpen?Object(_components_arrow_arrowUp__WEBPACK_IMPORTED_MODULE_2__["default"])("#6e6e70","32px","32px"):Object(_components_arrow_arrowDown__WEBPACK_IMPORTED_MODULE_3__["default"])("#6e6e70","32px","32px"))));}}]);return Card;}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var Card=/*#__PURE__*/function(_Component){_inherits(Card,_Component);function Card(){var _this;_classCallCheck(this,Card);_this=_possibleConstructorReturn(this,_getPrototypeOf(Card).apply(this,arguments));_this.state={isOpen:false};_this.toggleIsOpen=function(){_this.setState({isOpen:!_this.state.isOpen});};return _this;}_createClass(Card,[{key:"render",value:function render(){var _this$props=this.props,collapsible=_this$props.collapsible,logo=_this$props.logo,range=_this$props.range,title=_this$props.title,subtitle=_this$props.subtitle;var isOpen=this.state.isOpen;var arrow=isOpen?Object(_components_arrow_arrowUp__WEBPACK_IMPORTED_MODULE_2__["default"])('#6e6e70','32px','32px'):Object(_components_arrow_arrowDown__WEBPACK_IMPORTED_MODULE_3__["default"])('#6e6e70','32px','32px');var showArrow=collapsible?arrow:null;return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_card_scss__WEBPACK_IMPORTED_MODULE_1__["panel"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_card_scss__WEBPACK_IMPORTED_MODULE_1__["period"]},range),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_card_scss__WEBPACK_IMPORTED_MODULE_1__["header"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_card_scss__WEBPACK_IMPORTED_MODULE_1__["title"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:logo}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_card_scss__WEBPACK_IMPORTED_MODULE_1__["school"]},title),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_card_scss__WEBPACK_IMPORTED_MODULE_1__["cert"]},subtitle))),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_card_scss__WEBPACK_IMPORTED_MODULE_1__["arrow"],onClick:this.toggleIsOpen},showArrow)));}}]);return Card;}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /***/ }),
 
@@ -31650,30 +29659,6 @@ var Header=function Header(){return react__WEBPACK_IMPORTED_MODULE_0___default.a
 
 /***/ }),
 
-/***/ "./src/app/components/form/login.tsx":
-/*!*******************************************!*\
-  !*** ./src/app/components/form/login.tsx ***!
-  \*******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _data_messages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../data/messages */ "./src/app/data/messages.tsx");
-/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../context */ "./src/app/context.tsx");
-/* harmony import */ var _scss_variable_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../scss/variable.scss */ "./src/app/scss/variable.scss");
-/* harmony import */ var _scss_variable_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_scss_variable_scss__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _scss_login_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../scss/login.scss */ "./src/app/scss/login.scss");
-/* harmony import */ var _scss_login_scss__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_scss_login_scss__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
-function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var logo=__webpack_require__(/*! ../../../assets/img/logo.png */ "./src/assets/img/logo.png");var Login=/*#__PURE__*/function(_Component){_inherits(Login,_Component);function Login(props){var _this;_classCallCheck(this,Login);_this=_possibleConstructorReturn(this,_getPrototypeOf(Login).call(this,props));_this.state={error:''};_this.keyb=function(e){if(e.keyCode===13){_this.login();}};_this.login=function(){var username=_this.usernameRef.current?_this.usernameRef.current.value:'';var password=_this.passwordRef.current?_this.passwordRef.current.value:'';if(!username||!password){_this.setState({error:_data_messages__WEBPACK_IMPORTED_MODULE_2__["ERRORMSG"].LOGIN_EMPTY});return;}if(_this.props.token.length<=0){axios__WEBPACK_IMPORTED_MODULE_6___default.a.post('http://localhost:3000/api/users/getToken',{username:username,password:password}).then(function(res){_this.props.setToken(res.data.token);localStorage.setItem('resume-token',res.data.token);_this.props.history.push('/main/aboutme');});}};_this.usernameRef=Object(react__WEBPACK_IMPORTED_MODULE_0__["createRef"])();_this.passwordRef=Object(react__WEBPACK_IMPORTED_MODULE_0__["createRef"])();return _this;}_createClass(Login,[{key:"componentDidMount",value:function componentDidMount(){var _this2=this;document.addEventListener('keydown',this.keyb,false);var token=localStorage.getItem('resume-token');axios__WEBPACK_IMPORTED_MODULE_6___default.a.post('http://localhost:3000/api/users/verifyToken',{token:token}).then(function(res){if(res.data.valid){_this2.props.history.push('/main/aboutme');_this2.props.setToken(token);}else{localStorage.removeItem('resume-token');_this2.props.setToken('');}});}},{key:"componentWillUnmount",value:function componentWillUnmount(){document.removeEventListener('keydown',this.keyb,false);}},{key:"render",value:function render(){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_login_scss__WEBPACK_IMPORTED_MODULE_5__["background"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_login_scss__WEBPACK_IMPORTED_MODULE_5__["container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_login_scss__WEBPACK_IMPORTED_MODULE_5__["logo"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:logo})),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Bernice Ng ",react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br",null)," Kai Ling")),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_login_scss__WEBPACK_IMPORTED_MODULE_5__["title"]},"Login with the credentials provided"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_login_scss__WEBPACK_IMPORTED_MODULE_5__["form"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input",{type:"text",ref:this.usernameRef,placeholder:"Enter Username Provided"})),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input",{type:"password",ref:this.passwordRef,placeholder:"Enter Password Provided"})),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{onClick:this.login},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Login")),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:this.state.error?_scss_login_scss__WEBPACK_IMPORTED_MODULE_5__["show"]:_scss_login_scss__WEBPACK_IMPORTED_MODULE_5__["hide"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,this.state.error)))));}}]);return Login;}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(_context__WEBPACK_IMPORTED_MODULE_3__["AppContext"])(Login)));
-
-/***/ }),
-
 /***/ "./src/app/components/header.tsx":
 /*!***************************************!*\
   !*** ./src/app/components/header.tsx ***!
@@ -31688,7 +29673,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../context */ "./src/app/context.tsx");
 /* harmony import */ var _scss_header_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../scss/header.scss */ "./src/app/scss/header.scss");
 /* harmony import */ var _scss_header_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__);
-function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var Header=/*#__PURE__*/function(_Component){_inherits(Header,_Component);function Header(){var _this;_classCallCheck(this,Header);_this=_possibleConstructorReturn(this,_getPrototypeOf(Header).apply(this,arguments));_this.state={width:window.innerWidth,isOpen:false};_this.onResize=function(){_this.setState({width:window.innerWidth});};_this.toggleBurgerMenu=function(){_this.setState({isOpen:!_this.state.isOpen});};_this.navigate=function(e){var key=e.currentTarget.getAttribute("data-key");_this.props.history.push("/main/".concat(key));};return _this;}_createClass(Header,[{key:"componentWillMount",value:function componentWillMount(){this.onResize();}},{key:"componentDidMount",value:function componentDidMount(){window.addEventListener('resize',this.onResize);}},{key:"componentWillUnmount",value:function componentWillUnmount(){window.removeEventListener('resize',this.onResize);}},{key:"render",value:function render(){var _this2=this;var menuObj=[{key:'aboutme',title:'About Me'},{key:'education',title:'Education'},{key:'experience',title:'Experiences'},{key:'recommendation',title:'Recommendation'},{key:'logout',title:'Logout'}];var menu=menuObj.map(function(obj){if(_this2.props.currentPage===obj.key){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["underline"],"data-key":obj.key,key:obj.key,onClick:_this2.navigate},obj.title);}return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{"data-key":obj.key,key:obj.key,onClick:_this2.navigate},obj.title);});return this.state.width>849?react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"".concat(_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["header"]," ").concat(this.props.className)},menu):react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"".concat(_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["menubar"]," ").concat(this.state.isOpen?_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["open"]:null)},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["sidebar"]},menu),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"".concat(_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["burger"]," ").concat(this.props.className),onClick:this.toggleBurgerMenu},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",null),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",null),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",null)),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["background"],onClick:this.toggleBurgerMenu}));}}]);return Header;}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);/* harmony default export */ __webpack_exports__["default"] = (Object(_context__WEBPACK_IMPORTED_MODULE_1__["AppContext"])(Header));
+function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var Header=/*#__PURE__*/function(_Component){_inherits(Header,_Component);function Header(){var _this;_classCallCheck(this,Header);_this=_possibleConstructorReturn(this,_getPrototypeOf(Header).apply(this,arguments));_this.state={width:window.innerWidth,isOpen:false};_this.onResize=function(){_this.setState({width:window.innerWidth});};_this.toggleBurgerMenu=function(){_this.setState({isOpen:!_this.state.isOpen});};_this.navigate=function(e){var key=e.currentTarget.getAttribute('data-key');_this.props.history.push("/main/".concat(key));};return _this;}_createClass(Header,[{key:"componentWillMount",value:function componentWillMount(){this.onResize();}},{key:"componentDidMount",value:function componentDidMount(){window.addEventListener('resize',this.onResize);}},{key:"componentWillUnmount",value:function componentWillUnmount(){window.removeEventListener('resize',this.onResize);}},{key:"render",value:function render(){var _this2=this;var menuObj=[{key:'aboutme',title:'About Me'},{key:'education',title:'Education'},{key:'experience',title:'Experiences'},{key:'recommendation',title:'Recommendation'},{key:'logout',title:'Logout'}];var menu=menuObj.map(function(obj){if(_this2.props.currentPage===obj.key){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["underline"],"data-key":obj.key,key:obj.key,onClick:_this2.navigate},obj.title);}return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{"data-key":obj.key,key:obj.key,onClick:_this2.navigate},obj.title);});return this.state.width>849?react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"".concat(_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["header"]," ").concat(this.props.className)},menu):react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"".concat(_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["menubar"]," ").concat(this.state.isOpen?_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["open"]:null)},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["sidebar"]},menu),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"".concat(_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["burger"]," ").concat(this.props.className),onClick:this.toggleBurgerMenu},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",null),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",null),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",null)),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["background"],onClick:this.toggleBurgerMenu}));}}]);return Header;}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);/* harmony default export */ __webpack_exports__["default"] = (Object(_context__WEBPACK_IMPORTED_MODULE_1__["AppContext"])(Header));
+
+/***/ }),
+
+/***/ "./src/app/components/tile.tsx":
+/*!*************************************!*\
+  !*** ./src/app/components/tile.tsx ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _scss_tile_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../scss/tile.scss */ "./src/app/scss/tile.scss");
+/* harmony import */ var _scss_tile_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scss_tile_scss__WEBPACK_IMPORTED_MODULE_1__);
+var Tile=function Tile(props){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_tile_scss__WEBPACK_IMPORTED_MODULE_1__["card"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:props.image})),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,props.title),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,props.desc)));};/* harmony default export */ __webpack_exports__["default"] = (Tile);
 
 /***/ }),
 
@@ -31705,7 +29707,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../scss/aboutme.scss */ "./src/app/scss/aboutme.scss");
 /* harmony import */ var _scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__);
-var email=__webpack_require__(/*! ../../assets/img/email-icon.png */ "./src/assets/img/email-icon.png");var hp=__webpack_require__(/*! ../../assets/img/phone-icon.png */ "./src/assets/img/phone-icon.png");var linkedin=__webpack_require__(/*! ../../assets/img/linkedin-icon.png */ "./src/assets/img/linkedin-icon.png");var profile=__webpack_require__(/*! ../../assets/img/profile-pic.png */ "./src/assets/img/profile-pic.png");var badminton=__webpack_require__(/*! ../../assets/img/badminton.png */ "./src/assets/img/badminton.png");var dance=__webpack_require__(/*! ../../assets/img/dance.png */ "./src/assets/img/dance.png");var code=__webpack_require__(/*! ../../assets/img/code.jpg */ "./src/assets/img/code.jpg");var openInNewTab=function openInNewTab(){window.open('https://www.linkedin.com/in/bernice-ng-kai-ling','_blank');};var Aboutme=function Aboutme(){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["content"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["contact"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["top"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["left"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:profile})),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["right"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Hello, I am"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Ng Kai Ling Bernice"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Developer"))),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["bottom"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:email}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"bernice-ng@hotmail.com")),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:hp}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"+65 91195763")),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:linkedin}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{onClick:openInNewTab},"Visit my Linkedin"))))),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["summary"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["title"]},"A little more about me..."),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["text"]},"A fourth year Information Systems undergraduate in Singapore Management University (SMU) with strong interest in full stack development. Being a conscientious worker and quick learner who is flexible as well as a team player. Experienced working with ReactJS mainly and was exposed to several other languages like Java and PHP.")),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["interest"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["title"]},"Interests"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["card"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:badminton})),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Badminton"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Playing badminton is something that I like to do during free time or even as an activity when meeting up with friends. I started playing badminton in Secondary School (NOTE: I am not a professional badminton player) where my friends and I would play after school for hours continuously. The reason I like badminton is that it is fun and you can play with anyone unlike soccer which female have less preference for in general."))),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["card"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:dance})),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Dance"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Playing badminton is something that I like to do during free time or even as an activity when meeting up with friends. I started playing badminton in Secondary School (NOTE: I am not a professional badminton player) where my friends and I would play after school for hours continuously. The reason I like badminton is that it is fun and you can play with anyone unlike soccer which female have less preference for in general."))),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["card"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:code})),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Code"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Back then when I started the semester in polytechnic, I was worried that I might not be able to do well. I didn't know how to type. I even used one finger to type and was really slow at it. I didn't started off as a fan of coding but when I was exposed to it, my interest grew. It became something that i would want as a job now and that something that I would want to learn more and more."))))))));};/* harmony default export */ __webpack_exports__["default"] = (Aboutme);
+/* harmony import */ var _components_tile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/tile */ "./src/app/components/tile.tsx");
+function _extends(){_extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};return _extends.apply(this,arguments);}var email=__webpack_require__(/*! ../../assets/img/email-icon.png */ "./src/assets/img/email-icon.png");var hp=__webpack_require__(/*! ../../assets/img/phone-icon.png */ "./src/assets/img/phone-icon.png");var linkedin=__webpack_require__(/*! ../../assets/img/linkedin-icon.png */ "./src/assets/img/linkedin-icon.png");var profile=__webpack_require__(/*! ../../assets/img/profile-pic.png */ "./src/assets/img/profile-pic.png");var badminton=__webpack_require__(/*! ../../assets/img/badminton.png */ "./src/assets/img/badminton.png");var dance=__webpack_require__(/*! ../../assets/img/dance.png */ "./src/assets/img/dance.png");var code=__webpack_require__(/*! ../../assets/img/code.jpg */ "./src/assets/img/code.jpg");var openInNewTab=function openInNewTab(){window.open('https://www.linkedin.com/in/bernice-ng-kai-ling','_blank');};var Aboutme=function Aboutme(){var data=[{title:"Badminton",image:badminton,desc:"Playing badminton is something that I like to do \
+      during free time or even as an activity when meeting up \
+      with friends. I started playing badminton in Secondary School \
+      (NOTE: I am not a professional badminton player) where my \
+      friends and I would play after school for hours continuously. \
+      The reason I like badminton is that it is fun and you can play \
+      with anyone unlike soccer which female have less preference for \
+      in general."},{title:"Dance",image:dance,desc:""},{title:"Code",image:code,desc:"Back then when I started the semester in polytechnic, \
+      I was worried that I might not be able to do well. I didn't \
+      know how to type. I even used one finger to type and was \
+      really slow at it. I didn't started off as a fan of coding \
+      but when I was exposed to it, my interest grew. It became \
+      something that i would wantas a job now and that something \
+      that I would want to learn more and more."}];return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["content"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["contact"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["top"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["left"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:profile})),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["right"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Hello, I am"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Ng Kai Ling Bernice"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Developer"))),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["bottom"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:email}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"bernice-ng@hotmail.com")),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:hp}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"+65 91195763")),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:linkedin}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{onClick:openInNewTab},"Visit my Linkedin"))))),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["summary"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["title"]},"A little more about me..."),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["text"]},"A fourth year Information Systems undergraduate in Singapore Management University (SMU) with strong interest in full stack development. Being a conscientious worker and quick learner who is flexible as well as a team player. Experienced working with ReactJS mainly and was exposed to several other languages like Java and PHP.")),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["interest"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["title"]},"Interests"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutme_scss__WEBPACK_IMPORTED_MODULE_1__["container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,data.map(function(obj,i){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_tile__WEBPACK_IMPORTED_MODULE_2__["default"],_extends({key:i},obj));}))))));};/* harmony default export */ __webpack_exports__["default"] = (Aboutme);
 
 /***/ }),
 
@@ -31723,7 +29739,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scss_education_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../scss/education.scss */ "./src/app/scss/education.scss");
 /* harmony import */ var _scss_education_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scss_education_scss__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/card */ "./src/app/components/card.tsx");
-var smu=__webpack_require__(/*! ../../assets/img/smu.png */ "./src/assets/img/smu.png");var nyp=__webpack_require__(/*! ../../assets/img/nyp.png */ "./src/assets/img/nyp.png");var data=[{range:"August 2016 - May 2020",logo:smu,title:"Singapore Management University (SMU)",subtitle:"Bachelors of Science (Information Systems)"},{range:"May 2011 - April 2014",logo:nyp,title:"Nanyang Polytechnic (NYP)",subtitle:"Diploma in Business Enterprise IT"}];var Education=function Education(){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_education_scss__WEBPACK_IMPORTED_MODULE_1__["container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_education_scss__WEBPACK_IMPORTED_MODULE_1__["content"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_education_scss__WEBPACK_IMPORTED_MODULE_1__["education"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_education_scss__WEBPACK_IMPORTED_MODULE_1__["title"]},"My Learning Journey"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_education_scss__WEBPACK_IMPORTED_MODULE_1__["journey"]},data.map(function(obj){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_card__WEBPACK_IMPORTED_MODULE_2__["default"],obj);})))));};/* harmony default export */ __webpack_exports__["default"] = (Education);
+function _extends(){_extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};return _extends.apply(this,arguments);}var smu=__webpack_require__(/*! ../../assets/img/smu.png */ "./src/assets/img/smu.png");var nyp=__webpack_require__(/*! ../../assets/img/nyp.png */ "./src/assets/img/nyp.png");var data=[{range:'August 2016 - May 2020',logo:smu,title:'Singapore Management University (SMU)',subtitle:'Bachelors of Science (Information Systems)',collapsible:false},{range:'May 2011 - April 2014',logo:nyp,title:'Nanyang Polytechnic (NYP)',subtitle:'Diploma in Business Enterprise IT',collapsible:false,activity:[{title:"Participated in SAP Dashboard Competition"},{title:"Involved in Silver InfoComm"}]}];var Education=function Education(){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_education_scss__WEBPACK_IMPORTED_MODULE_1__["container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_education_scss__WEBPACK_IMPORTED_MODULE_1__["content"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_education_scss__WEBPACK_IMPORTED_MODULE_1__["education"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_education_scss__WEBPACK_IMPORTED_MODULE_1__["title"]},"My Learning Journey"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_education_scss__WEBPACK_IMPORTED_MODULE_1__["journey"]},data.map(function(obj,i){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_card__WEBPACK_IMPORTED_MODULE_2__["default"],_extends({key:i},obj));})))));};/* harmony default export */ __webpack_exports__["default"] = (Education);
 
 /***/ }),
 
@@ -31746,9 +29762,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scss_mainContainer_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../scss/mainContainer.scss */ "./src/app/scss/mainContainer.scss");
 /* harmony import */ var _scss_mainContainer_scss__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_scss_mainContainer_scss__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_7__);
-function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var MainContainer=/*#__PURE__*/function(_Component){_inherits(MainContainer,_Component);function MainContainer(){var _this;_classCallCheck(this,MainContainer);_this=_possibleConstructorReturn(this,_getPrototypeOf(MainContainer).apply(this,arguments));_this.state={headerClass:'false'};_this.showStickyHeader=function(){var className=window.pageYOffset===0?false:_scss_header_scss__WEBPACK_IMPORTED_MODULE_4__["sticky_header"];_this.setState({headerClass:"".concat(className)});};return _this;}_createClass(MainContainer,[{key:"componentDidMount",value:function componentDidMount(){var _this2=this;document.addEventListener('scroll',this.showStickyHeader,false);var token=localStorage.getItem('resume-token');this.props.setToken(token==null?'':token);axios__WEBPACK_IMPORTED_MODULE_7___default.a.post('http://localhost:3000/api/users/verifyToken',{token:token}).then(function(res){if(res.data.valid){_this2.props.history.push("/main/".concat(_this2.props.children.page));}else{localStorage.removeItem('resume-token');_this2.props.history.push('/login');}});}},{key:"componentWillUnmount",value:function componentWillUnmount(){document.removeEventListener('scroll',this.showStickyHeader,false);}},{key:"render",value:function render(){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_mainContainer_scss__WEBPACK_IMPORTED_MODULE_5__["container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_header__WEBPACK_IMPORTED_MODULE_2__["default"],{currentPage:this.props.children.page,className:this.state.headerClass}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_mainContainer_scss__WEBPACK_IMPORTED_MODULE_5__["main_content"]},this.props.children.component),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_footer__WEBPACK_IMPORTED_MODULE_3__["default"],null));}}]);return MainContainer;}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["withRouter"])(Object(_context__WEBPACK_IMPORTED_MODULE_1__["AppContext"])(MainContainer)));// function MainContainer(props: any) {
+/* harmony import */ var _aboutMe__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./aboutMe */ "./src/app/containers/aboutMe.tsx");
+/* harmony import */ var _education__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./education */ "./src/app/containers/education.tsx");
+function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var MainContainer=/*#__PURE__*/function(_Component){_inherits(MainContainer,_Component);function MainContainer(){var _this;_classCallCheck(this,MainContainer);_this=_possibleConstructorReturn(this,_getPrototypeOf(MainContainer).apply(this,arguments));_this.state={headerClass:'false'};_this.showStickyHeader=function(){var className=window.pageYOffset===0?false:_scss_header_scss__WEBPACK_IMPORTED_MODULE_4__["sticky_header"];_this.setState({headerClass:"".concat(className)});};return _this;}_createClass(MainContainer,[{key:"componentDidMount",value:function componentDidMount(){document.addEventListener('scroll',this.showStickyHeader,false);var main="aboutme";var history=this.props.history;var pathname=history.location.pathname;if(pathname.length===1){history.push("/main/".concat(main));}}},{key:"componentWillUnmount",value:function componentWillUnmount(){document.removeEventListener('scroll',this.showStickyHeader,false);}},{key:"render",value:function render(){var match=this.props.match;var page="aboutme";if(match){page=match.params.page;}return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_mainContainer_scss__WEBPACK_IMPORTED_MODULE_5__["container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_header__WEBPACK_IMPORTED_MODULE_2__["default"],{currentPage:page,className:this.state.headerClass}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_mainContainer_scss__WEBPACK_IMPORTED_MODULE_5__["main_content"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_aboutMe__WEBPACK_IMPORTED_MODULE_7__["default"],null),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_education__WEBPACK_IMPORTED_MODULE_8__["default"],null)),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_footer__WEBPACK_IMPORTED_MODULE_3__["default"],null));}}]);return MainContainer;}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["withRouter"])(Object(_context__WEBPACK_IMPORTED_MODULE_1__["AppContext"])(MainContainer)));// function MainContainer(props: any) {
 //     const [test, setTest] = React.useState(1)
 //     React.useEffect(() => {
 //         props.setToken('123')
@@ -31781,20 +29797,6 @@ function _extends(){_extends=Object.assign||function(target){for(var i=1;i<argum
 
 /***/ }),
 
-/***/ "./src/app/data/messages.tsx":
-/*!***********************************!*\
-  !*** ./src/app/data/messages.tsx ***!
-  \***********************************/
-/*! exports provided: ERRORMSG */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERRORMSG", function() { return ERRORMSG; });
-var ERRORMSG={LOGIN_INVALID:'Invalid email or password',LOGIN_EMPTY:'Please fill in all the fields'};
-
-/***/ }),
-
 /***/ "./src/app/index.tsx":
 /*!***************************!*\
   !*** ./src/app/index.tsx ***!
@@ -31811,7 +29813,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes */ "./src/app/routes.tsx");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var history__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
-function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var App=/*#__PURE__*/function(_React$Component){_inherits(App,_React$Component);function App(){var _this;_classCallCheck(this,App);_this=_possibleConstructorReturn(this,_getPrototypeOf(App).apply(this,arguments));_this.state={token:'',history:Object(history__WEBPACK_IMPORTED_MODULE_4__["createBrowserHistory"])()};_this.setToken=function(token){_this.setState({token:token});};return _this;}_createClass(App,[{key:"render",value:function render(){console.log(this.props);return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Router"],{history:this.state.history},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_context__WEBPACK_IMPORTED_MODULE_1__["Context"].Provider,{value:Object.assign({},this.state,{setToken:this.setToken})},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_routes__WEBPACK_IMPORTED_MODULE_2__["default"],null)));}}]);return App;}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var App=/*#__PURE__*/function(_React$Component){_inherits(App,_React$Component);function App(){var _this;_classCallCheck(this,App);_this=_possibleConstructorReturn(this,_getPrototypeOf(App).apply(this,arguments));_this.state={token:'',history:Object(history__WEBPACK_IMPORTED_MODULE_4__["createBrowserHistory"])(),match:[]};_this.setToken=function(token){_this.setState({token:token});};return _this;}_createClass(App,[{key:"render",value:function render(){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Router"],{history:this.state.history},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_context__WEBPACK_IMPORTED_MODULE_1__["Context"].Provider,{value:Object.assign({},this.state,{setToken:this.setToken})},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_routes__WEBPACK_IMPORTED_MODULE_2__["default"],null)));}}]);return App;}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /***/ }),
 
@@ -31839,13 +29841,10 @@ var InitialProps={token:'',setToken:function setToken(token){}};
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _components_form_login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/form/login */ "./src/app/components/form/login.tsx");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _containers_mainContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./containers/mainContainer */ "./src/app/containers/mainContainer.tsx");
-/* harmony import */ var _containers_education__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./containers/education */ "./src/app/containers/education.tsx");
-/* harmony import */ var _containers_aboutMe__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./containers/aboutMe */ "./src/app/containers/aboutMe.tsx");
-var Routes=function Routes(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Switch"],null,react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"],{exact:true,path:"/",key:"login",render:function render(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_form_login__WEBPACK_IMPORTED_MODULE_1__["default"],null);}}),react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"],{exact:true,path:"/login",key:"login",render:function render(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_form_login__WEBPACK_IMPORTED_MODULE_1__["default"],null);}}),react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"],{exact:true,path:"/main/aboutme",key:"about me",render:function render(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_containers_mainContainer__WEBPACK_IMPORTED_MODULE_3__["default"],{children:{page:'aboutme',component:react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_containers_aboutMe__WEBPACK_IMPORTED_MODULE_5__["default"],null)}});}}),react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"],{exact:true,path:"/main/education",key:"edu",render:function render(){return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_containers_mainContainer__WEBPACK_IMPORTED_MODULE_3__["default"],{children:{page:'education',component:react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_containers_education__WEBPACK_IMPORTED_MODULE_4__["default"],null)}});}}));};/* harmony default export */ __webpack_exports__["default"] = (Routes);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _containers_mainContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./containers/mainContainer */ "./src/app/containers/mainContainer.tsx");
+var Routes=function Routes(){return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Switch"],null,react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"],{exact:true,path:["/","/:page","/main/:page"],key:"routes",render:function render(){return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_containers_mainContainer__WEBPACK_IMPORTED_MODULE_2__["default"],null);}}));};/* harmony default export */ __webpack_exports__["default"] = (Routes);
 
 /***/ }),
 
@@ -31999,36 +29998,6 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./src/app/scss/login.scss":
-/*!*********************************!*\
-  !*** ./src/app/scss/login.scss ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-1!../../../node_modules/sass-loader/lib/loader.js??ref--6-2!./login.scss */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/login.scss");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
 /***/ "./src/app/scss/mainContainer.scss":
 /*!*****************************************!*\
   !*** ./src/app/scss/mainContainer.scss ***!
@@ -32059,15 +30028,15 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./src/app/scss/variable.scss":
-/*!************************************!*\
-  !*** ./src/app/scss/variable.scss ***!
-  \************************************/
+/***/ "./src/app/scss/tile.scss":
+/*!********************************!*\
+  !*** ./src/app/scss/tile.scss ***!
+  \********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-1!../../../node_modules/sass-loader/lib/loader.js??ref--6-2!./variable.scss */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/variable.scss");
+var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-1!../../../node_modules/sass-loader/lib/loader.js??ref--6-2!./tile.scss */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/tile.scss");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -32166,17 +30135,6 @@ module.exports = __webpack_require__.p + "d03ce518b7315268767322d6b2f28836.jpg";
 
 /***/ }),
 
-/***/ "./src/assets/img/background.jpg":
-/*!***************************************!*\
-  !*** ./src/assets/img/background.jpg ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "5cdeaefc86fa905cd1711fe0e81f8e83.jpg";
-
-/***/ }),
-
 /***/ "./src/assets/img/badminton.png":
 /*!**************************************!*\
   !*** ./src/assets/img/badminton.png ***!
@@ -32221,17 +30179,6 @@ module.exports = __webpack_require__.p + "4b3038921fc85097dd048fc2d2e45da5.png";
 
 /***/ }),
 
-/***/ "./src/assets/img/learning.jpg":
-/*!*************************************!*\
-  !*** ./src/assets/img/learning.jpg ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "3408d254706ee6477edf8333acdd5be5.jpg";
-
-/***/ }),
-
 /***/ "./src/assets/img/linkedin-icon.png":
 /*!******************************************!*\
   !*** ./src/assets/img/linkedin-icon.png ***!
@@ -32240,17 +30187,6 @@ module.exports = __webpack_require__.p + "3408d254706ee6477edf8333acdd5be5.jpg";
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8696abca799ff82551f619e0acafc3fd.png";
-
-/***/ }),
-
-/***/ "./src/assets/img/logo.png":
-/*!*********************************!*\
-  !*** ./src/assets/img/logo.png ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "09cedda52f3544bacf16fd0b318cee33.png";
 
 /***/ }),
 

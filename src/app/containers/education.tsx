@@ -11,12 +11,22 @@ const data = [
     logo: smu,
     title: 'Singapore Management University (SMU)',
     subtitle: 'Bachelors of Science (Information Systems)',
+    collapsible: false,
   },
   {
     range: 'May 2011 - April 2014',
     logo: nyp,
     title: 'Nanyang Polytechnic (NYP)',
     subtitle: 'Diploma in Business Enterprise IT',
+    collapsible: false,
+    activity: [
+      {
+        title: 'Participated in SAP Dashboard Competition',
+      },
+      {
+        title: 'Involved in Silver InfoComm',
+      },
+    ],
   },
 ];
 
@@ -32,7 +42,7 @@ const Education = () => {
             {
               data.map((obj: CardProps, i: number) => {
                 return(
-                  <Card key={i} {...obj}/>
+                  <Card key={i} {...obj} />
                 );
               })
             }
