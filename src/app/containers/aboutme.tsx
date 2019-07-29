@@ -32,18 +32,24 @@ const Aboutme = () => {
     {
       title: 'Dance',
       image: dance,
-      desc: '',
+      desc: 'Another fact about me is that I am a dancer in the church I go to.\
+      When I was first asked to join dance in church, I didn\'t have any kind\
+      of dance background even until now, I don\'t go for any dance classes.\
+      I feel that dance is something that we can express our thoughts. We can\
+      incorporate it into the actions. Furthermore, I was always be nervous when\
+      performing on stage but I slowly adapted and learnt to be more confident \
+      (even though I am still nervous).',
     },
     {
       title: 'Code',
       image: code,
-      desc: "Back then when I started the semester in polytechnic, \
-      I was worried that I might not be able to do well. I didn't \
+      desc: 'Back then when I started the semester in polytechnic, \
+      I was worried that I might not be able to do well. I didn\'t \
       know how to type. I even used one finger to type and was \
-      really slow at it. I didn't started off as a fan of coding \
+      really slow at it. I didn\'t started off as a fan of coding \
       but when I was exposed to it, my interest grew. It became \
       something that i would wantas a job now and that something \
-      that I would want to learn more and more.",
+      that I would want to learn more and more.',
     },
   ];
 
