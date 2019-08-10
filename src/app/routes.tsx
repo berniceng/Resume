@@ -7,7 +7,7 @@ const Routes = () => {
     <Switch>
       <Route
         exact={true}
-        path={['/', '/:page', '/main/:page']}
+        path={['/:page', '/']}
         key="routes"
         render={
           () => <MainContainer />

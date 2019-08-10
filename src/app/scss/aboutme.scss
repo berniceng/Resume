@@ -82,49 +82,41 @@
                             @include font($font-abel, $font-l, $color-dark-grey, $weight-bold);
                         }
                     }
-                }    
-            }
 
-            .bottom {
-                @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
-                display: flex;
-                width: fit-content;
-
-                > div {    
-                    display: flex;
-                    flex-direction: row;
-                    padding: 10px 0;
-                    width: fit-content;
-                    border-top: 1px solid $color-grey;
-
-                    @include media-max(798px) {
-                        align-items: center;
-                        flex-direction: column;
-                    }
-                    
-                    div, a {
-                        padding: 0px 20px;
-                    }
-
-                    > div {
+                    .bottom {
+                        @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
                         display: flex;
-                        flex-direction: row;
-
-                        @include media-max(825px){
-                            padding: 0px 3%;
+                        width: fit-content;
+        
+                        > div {
+                            padding: 10px 0;
+                            width: fit-content;
+                            
+                            div, a {
+                                padding: 5px 20px;
+                            }
+        
+                            > div {
+                                display: flex;
+                                flex-direction: row;
+        
+                                @include media-max(825px){
+                                    padding: 0px 3%;
+                                }
+                            }
+        
+                            img {
+                                width: 20px;
+                                height: 20px;
+                            }
+        
+                            a {
+                                text-decoration: underline;
+                                color: $color-blue;
+                            }
                         }
                     }
-
-                    img {
-                        width: 20px;
-                        height: 20px;
-                    }
-
-                    a {
-                        text-decoration: underline;
-                        color: $color-blue;
-                    }
-                }
+                }    
             }
         }
 

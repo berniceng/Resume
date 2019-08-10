@@ -33,28 +33,33 @@ class Header extends Component<HeaderProps & InitialProps, HeaderState>{
     });
   }
 
-  navigate = (e: any) => {
-    const key = e.currentTarget.getAttribute('data-key');
-    this.props.history.push(`/main/${key}`);
-  }
+  // navigate = (e: any) => {
+  //   const key = e.currentTarget.getAttribute('data-key');
+  //   this.props.history.push(`/main/${key}`);
+  // }
 
   render() {
+    const { onClick, currentPage } = this.props;
+
     const menuObj = [
       { key: 'aboutme', title: 'About Me' },
       { key: 'education', title: 'Education' },
       { key: 'experience', title: 'Experiences' },
+      { key: 'skill', title: 'Skills' },
       { key: 'recommendation', title: 'Recommendation' },
       { key: 'logout', title: 'Logout' },
     ];
 
+    console.log(currentPage);
+
     const menu = menuObj.map((obj) => {
-      if (this.props.currentPage === obj.key) {
+      if (currentPage === obj.key) {
         return(
           <div
             className={styles.underline}
             data-key={obj.key}
             key={obj.key}
-            onClick={this.navigate}
+            onClick={onClick}
           >
             {obj.title}
           </div>
@@ -64,7 +69,7 @@ class Header extends Component<HeaderProps & InitialProps, HeaderState>{
         <div
           data-key={obj.key}
           key={obj.key}
-          onClick={this.navigate}
+          onClick={onClick}
         >
           {obj.title}
         </div>

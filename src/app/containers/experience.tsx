@@ -1,5 +1,5 @@
 import React from 'react';
-import * as styles from '../scss/education.scss';
+import * as styles from '../scss/experiences.scss';
 import { CardProps, BookmarkProp } from '../propType';
 import Card from '../components/card';
 
@@ -30,15 +30,15 @@ const data = [
   },
 ];
 
-const Education = (props: BookmarkProp) => {
+const Experience = (props: BookmarkProp) => {
   const { bookmarkId } = props;
 
   return(
     <div id={bookmarkId} className={styles.container}>
       <div className={styles.content}>
-        <div className={styles.education}>
+        <div className={styles.experiences}>
           <div className={styles.title}>
-            My Learning Journey
+            Experiences
           </div>
           <div className={styles.journey}>
             {
@@ -55,4 +55,4 @@ const Education = (props: BookmarkProp) => {
   );
 };
 
-export default Education;
+export default Experience;

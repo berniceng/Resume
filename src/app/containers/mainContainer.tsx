@@ -9,6 +9,11 @@ import { withRouter } from 'react-router-dom';
 import Aboutme from './aboutMe';
 import Education from './education';
 
+const bookmarkId = [
+  'bookmark_aboutme',
+  'bookmark_education',
+];
+
 class MainContainer extends Component<InitialProps, MainState>{
   state = {
     headerClass: 'false',
@@ -17,13 +22,16 @@ class MainContainer extends Component<InitialProps, MainState>{
   componentDidMount() {
     document.addEventListener('scroll', this.showStickyHeader, false);
 
-    const main = 'aboutme';
     const { history } = this.props;
     const { pathname } = history.location;
 
-    if (pathname.length === 1) {
-      history.push(`/main/${main}`);
-    }
+    const currentPage = this.getCurrentPage();
+
+    const main = currentPage ? currentPage : 'aboutme';
+    const elem = document.getElementById(`bookmark_${main}`);
+
+    this.scrollIntoView(elem);
+    this.navigate(main);
   }
 
   componentWillUnmount() {
@@ -35,21 +43,51 @@ class MainContainer extends Component<InitialProps, MainState>{
     this.setState({ headerClass: `${className}` });
   }
 
-  render() {
+  getCurrentPage = () => {
     const { match } = this.props;
 
     let page = 'aboutme';
 
-    if (match) {
+    if (match && match.params.page) {
       page = match.params.page;
     }
 
+    return page;
+  }
+
+  scrollIntoView = (elem: any) => {
+    if (elem) {
+      elem.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  }
+
+  onClickMenu = (e: any) => {
+    const dataKey = e.target.getAttribute('data-key');
+    const elem = document.getElementById(`bookmark_${dataKey}`);
+
+    this.scrollIntoView(elem);
+    this.navigate(dataKey);
+  }
+
+  navigate = (dataKey: string) => {
+    const { history } = this.props;
+
+    history.push(`/${dataKey}`);
+  }
+
+  render() {
     return(
       <div className={styles.container}>
-        <Header currentPage={page} className={this.state.headerClass}/>
+        <Header 
+          currentPage={this.getCurrentPage()} 
+          className={this.state.headerClass} 
+          onClick={this.onClickMenu}
+        />
         <div className={styles.main_content}>
-          <Aboutme/>
-          <Education/>
+          <Aboutme bookmarkId={bookmarkId[0]}/>
+          <Education bookmarkId={bookmarkId[1]}/>
         </div>
         <Footer />
       </div>

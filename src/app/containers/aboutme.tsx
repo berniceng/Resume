@@ -1,6 +1,6 @@
 import React from 'react';
 import * as styles from '../scss/aboutme.scss';
-import { TileProps } from '../propType';
+import { TileProps, BookmarkProp } from '../propType';
 import Tile from '../components/tile';
 
 const email = require('../../assets/img/email-icon.png');
@@ -15,7 +15,9 @@ const openInNewTab = () => {
   window.open('https://www.linkedin.com/in/bernice-ng-kai-ling', '_blank');
 };
 
-const Aboutme = () => {
+const Aboutme = (props: BookmarkProp) => {
+  const { bookmarkId } = props;
+
   const data = [
     {
       title: 'Badminton',
@@ -32,13 +34,12 @@ const Aboutme = () => {
     {
       title: 'Dance',
       image: dance,
-      desc: 'Another fact about me is that I am a dancer in the church I go to.\
-      When I was first asked to join dance in church, I didn\'t have any kind\
-      of dance background even until now, I don\'t go for any dance classes.\
-      I feel that dance is something that we can express our thoughts. We can\
-      incorporate it into the actions. Furthermore, I was always be nervous when\
-      performing on stage but I slowly adapted and learnt to be more confident \
-      (even though I am still nervous).',
+      desc: 'I am a dancer in the church I go to. \
+      When I was first asked to join dance in church, I didn\'t have any kind \
+      of dance background even until now, I don\'t go for any dance classes. \
+      Whenever there i performances, I was always nervous \
+      but I slowly adapted and learnt to be more confident \
+      even though I will still be slightly nervous).',
     },
     {
       title: 'Code',
@@ -54,7 +55,7 @@ const Aboutme = () => {
   ];
 
   return(
-    <div className={styles.container}>
+    <div id={bookmarkId} className={styles.container}>
       <div className={styles.content}>
         <div className={styles.contact}>
           <div className={styles.top}>
@@ -65,24 +66,24 @@ const Aboutme = () => {
               <div>Hello, I am</div>
               <div>Ng Kai Ling Bernice</div>
               <div>Developer</div>
+              <div className={styles.bottom}>
+                <div>
+                  <div>
+                    <img src={email}/>
+                    <div>bernice-ng@hotmail.com</div>
+                  </div>
+                  <div>
+                    <img src={hp}/>
+                    <div>+65 91195763</div>
+                  </div>
+                  <div>
+                    <img src={linkedin}/>
+                    <a onClick={openInNewTab}>Visit my Linkedin</a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div className={styles.bottom}>
-          <div>
-            <div>
-              <img src={email}/>
-              <div>bernice-ng@hotmail.com</div>
-            </div>
-            <div>
-              <img src={hp}/>
-              <div>+65 91195763</div>
-            </div>
-            <div>
-              <img src={linkedin}/>
-              <a onClick={openInNewTab}>Visit my Linkedin</a>
-            </div>
-          </div>
-        </div>
         </div>
         <div className={styles.summary}>
           <div className={styles.title}>

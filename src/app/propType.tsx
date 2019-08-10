@@ -16,10 +16,6 @@ export interface MainState {
   headerClass: string;
 }
 
-export interface LoginState {
-  error: string;
-}
-
 export interface RouteState {
   isValid: boolean;
 }
@@ -27,6 +23,7 @@ export interface RouteState {
 export interface HeaderProps {
   currentPage: string;
   className: string;
+  onClick: any;
 }
 
 export interface HeaderState {
@@ -50,4 +47,8 @@ export interface TileProps {
   title: string;
   image: string;
   desc: string;
+}
+
+export interface BookmarkProp {
+  bookmarkId: string;
 }
