@@ -15,7 +15,7 @@ const openInNewTab = () => {
   window.open('https://www.linkedin.com/in/bernice-ng-kai-ling', '_blank');
 };
 
-const Aboutme = (props: BookmarkProp) => {
+const AboutMe = (props: BookmarkProp) => {
   const { bookmarkId } = props;
 
   const data = [
@@ -120,4 +120,4 @@ const Aboutme = (props: BookmarkProp) => {
   );
 };
 
-export default Aboutme;
+export default AboutMe;

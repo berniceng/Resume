@@ -19,6 +19,18 @@
         @include font($font-abel, $font-xxl, $color-white, $weight-bold);
     }
 
+    .period-intern {
+        padding: 20px;
+        background-color: $color-green;
+        @include font($font-abel, $font-xxl, $color-white, $weight-bold);
+    }
+
+    .period-ft {
+        padding: 20px;
+        background-color: $color-orange;
+        @include font($font-abel, $font-xxl, $color-white, $weight-bold);
+    }
+
     .header {
         display: flex;
         flex-direction: row;
@@ -32,7 +44,6 @@
 
             img {
                 width: 50px;
-                height: 50px;
                 padding: 10px;
             }
         

@@ -6,12 +6,14 @@ import Footer from '../components/footer';
 import * as headerStyles from '../scss/header.scss';
 import * as styles from '../scss/mainContainer.scss';
 import { withRouter } from 'react-router-dom';
-import Aboutme from './aboutMe';
+import AboutMe from './aboutme';
 import Education from './education';
+import Experience from './experience';
 
 const bookmarkId = [
   'bookmark_aboutme',
   'bookmark_education',
+  'bookmark_experience',
 ];
 
 class MainContainer extends Component<InitialProps, MainState>{
@@ -86,8 +88,9 @@ class MainContainer extends Component<InitialProps, MainState>{
           onClick={this.onClickMenu}
         />
         <div className={styles.main_content}>
-          <Aboutme bookmarkId={bookmarkId[0]}/>
+          <AboutMe bookmarkId={bookmarkId[0]}/>
           <Education bookmarkId={bookmarkId[1]}/>
+          <Experience bookmarkId={bookmarkId[2]}/>
         </div>
         <Footer />
       </div>

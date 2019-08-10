@@ -12,6 +12,8 @@ const data = [
     title: 'Singapore Management University (SMU)',
     subtitle: 'Bachelors of Science (Information Systems)',
     collapsible: false,
+    desc: [],
+    tools: [],
   },
   {
     range: 'May 2011 - April 2014',
@@ -19,14 +21,8 @@ const data = [
     title: 'Nanyang Polytechnic (NYP)',
     subtitle: 'Diploma in Business Enterprise IT',
     collapsible: false,
-    activity: [
-      {
-        title: 'Participated in SAP Dashboard Competition',
-      },
-      {
-        title: 'Involved in Silver InfoComm',
-      },
-    ],
+    desc: [],
+    tools: [],
   },
 ];
 
@@ -44,7 +40,7 @@ const Education = (props: BookmarkProp) => {
             {
               data.map((obj: CardProps, i: number) => {
                 return(
-                  <Card key={i} {...obj} />
+                  <Card key={i} {...obj} type='education' />
                 );
               })
             }

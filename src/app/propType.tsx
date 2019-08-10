@@ -37,6 +37,12 @@ export interface CardProps {
   title: string;
   subtitle: string;
   collapsible: boolean;
+  desc: string[];
+  tools: string[];
+}
+
+export interface CardType {
+  type: string;
 }
 
 export interface CardState {

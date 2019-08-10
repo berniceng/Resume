@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { CardState, CardProps } from '../propType';
+import { CardState, CardProps, CardType } from '../propType';
 import * as styles from '../scss/card.scss';
 import ArrowUp from '../components/arrow/arrowUp';
 import ArrowDown from '../components/arrow/arrowDown';
 
-export default class Card extends Component<CardProps, CardState> {
+export default class Card extends Component<CardProps & CardType, CardState> {
   state = {
     isOpen: false,
   };
@@ -16,7 +16,7 @@ export default class Card extends Component<CardProps, CardState> {
   }
 
   render() {
-    const { collapsible, logo, range, title, subtitle } = this.props;
+    const { collapsible, logo, range, title, subtitle, type } = this.props;
     const { isOpen } = this.state;
     const arrow = isOpen
       ?
@@ -24,10 +24,13 @@ export default class Card extends Component<CardProps, CardState> {
       :
       ArrowDown('#6e6e70', '32px', '32px');
     const showArrow = collapsible ? arrow : null;
+    
+    let headerStyle = type === 'education' ? styles.period : styles['period-ft'];
+    headerStyle = subtitle.indexOf('Internship') > -1 ? styles['period-intern'] : headerStyle;
 
     return(
       <div className={styles.panel}>
-        <div className={styles.period}>
+        <div className={headerStyle}>
           {range}
         </div>
         <div className={styles.header}>

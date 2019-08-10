@@ -8,17 +8,18 @@
         min-height: inherit;
         width: 100%;
 
-        .education {
+        .experiences {
             min-height: inherit;
 
             > .title {    
                 text-align: center;
                 margin-top: 60px;
-                @include font($font-abel, $font-xs-title, $color-medium-grey, $weight-bold);              
+                @include font($font-abel, $font-xs-title, $color-dark-grey, $weight-bold);              
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.9)), url('../../assets/img/learning-journey.jpg');
+                background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.9)), url('../../assets/img/experience.jpg');
+                background-size: cover;
                 min-height: inherit;
                 width: 100%;
             }
