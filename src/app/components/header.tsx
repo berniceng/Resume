@@ -50,8 +50,6 @@ class Header extends Component<HeaderProps & InitialProps, HeaderState>{
       { key: 'logout', title: 'Logout' },
     ];
 
-    console.log(currentPage);
-
     const menu = menuObj.map((obj) => {
       if (currentPage === obj.key) {
         return(

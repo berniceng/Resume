@@ -27,7 +27,7 @@
 
     .period-ft {
         padding: 20px;
-        background-color: $color-orange;
+        background-color: $color-light-orange;
         @include font($font-abel, $font-xxl, $color-white, $weight-bold);
     }
 
@@ -67,6 +67,39 @@
 
             &:hover {
                 background-color: $color-light-grey;
+            }
+        }
+    }
+
+    .body {
+        height: 0px;
+        overflow: hidden;
+        padding: 0 20px 0 67px;
+        transition: height 0.15s ease;
+
+        .desc {
+            @include font($font-abel, $font-s, $color-medium-grey, $weight-light);
+        }
+
+        .tools {
+            padding-left: 24px;
+
+            > .title {
+                @include font($font-abel, $font-s, $color-medium-grey, $weight-bold);
+            }
+
+            > ul {
+                list-style-type: none;
+                padding-left: 0;
+                display: flex;
+
+                > li {
+                    padding: 2px 10px;
+                    background-color: $color-pale-blue;
+                    border-radius: 15px;
+                    margin: 0 10px 0 0;
+                    @include font($font-abel, $font-s, $color-white, $weight-light);
+                }
             }
         }
     }

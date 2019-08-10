@@ -1,5 +1,5 @@
 import React from 'react';
-import * as styles from '../scss/aboutme.scss';
+import * as styles from '../scss/aboutMe.scss';
 import { TileProps, BookmarkProp } from '../propType';
 import Tile from '../components/tile';
 

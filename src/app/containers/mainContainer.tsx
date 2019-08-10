@@ -6,7 +6,7 @@ import Footer from '../components/footer';
 import * as headerStyles from '../scss/header.scss';
 import * as styles from '../scss/mainContainer.scss';
 import { withRouter } from 'react-router-dom';
-import AboutMe from './aboutme';
+import AboutMe from './aboutMe';
 import Education from './education';
 import Experience from './experience';
 
@@ -82,9 +82,9 @@ class MainContainer extends Component<InitialProps, MainState>{
   render() {
     return(
       <div className={styles.container}>
-        <Header 
-          currentPage={this.getCurrentPage()} 
-          className={this.state.headerClass} 
+        <Header
+          currentPage={this.getCurrentPage()}
+          className={this.state.headerClass}
           onClick={this.onClickMenu}
         />
         <div className={styles.main_content}>

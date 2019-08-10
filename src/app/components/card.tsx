@@ -9,14 +9,37 @@ export default class Card extends Component<CardProps & CardType, CardState> {
     isOpen: false,
   };
 
-  toggleIsOpen = () => {
+  toggleIsOpen = (e: any) => {
+    const { isOpen } = this.state;
+    const cardElem = e.currentTarget.parentElement.parentElement;
+    const elem = e.currentTarget.parentElement.nextSibling;
+
+    if (!isOpen && elem) {
+      const height = elem.firstChild.scrollHeight;
+      const offsetTop = cardElem.offsetTop;
+      const scrollTop = offsetTop - 90;
+
+      elem.style.height = `${height}px`;
+      elem.style.paddingBottom = '25px';
+
+      cardElem.addEventListener('transitionend', () => {
+        window.scrollTo({
+          top: scrollTop,
+          behavior: 'smooth',
+        });
+      });
+    } else {
+      elem.style.height = '0';
+      elem.style.paddingBottom = '0';
+    }
+
     this.setState({
-      isOpen: !this.state.isOpen,
+      isOpen: !isOpen,
     });
   }
 
   render() {
-    const { collapsible, logo, range, title, subtitle, type } = this.props;
+    const { collapsible, logo, range, title, subtitle, desc, tools, type } = this.props;
     const { isOpen } = this.state;
     const arrow = isOpen
       ?
@@ -24,9 +47,38 @@ export default class Card extends Component<CardProps & CardType, CardState> {
       :
       ArrowDown('#6e6e70', '32px', '32px');
     const showArrow = collapsible ? arrow : null;
-    
+
     let headerStyle = type === 'education' ? styles.period : styles['period-ft'];
     headerStyle = subtitle.indexOf('Internship') > -1 ? styles['period-intern'] : headerStyle;
+
+    const content = collapsible ?
+      (
+        <div className={styles.body}>
+          <div>
+            <div className={styles.desc}>
+              <ul>
+                {
+                  desc.map((descStr: string, i: number) => {
+                    return (<li key={`${i}_desc`}>{descStr}</li>);
+                  })
+                }
+              </ul>
+            </div>
+            <br/>
+            <div className={styles.tools}>
+              <div className={styles.title}>Tools Used:</div>
+              <ul>
+                {
+                  tools.map((tool: string, i: number) => {
+                    return (<li key={`${i}_tool`}>{tool}</li>);
+                  })
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+      )
+      : null;
 
     return(
       <div className={styles.panel}>
@@ -52,6 +104,7 @@ export default class Card extends Component<CardProps & CardType, CardState> {
             {showArrow}
           </div>
         </div>
+        {content}
       </div>
     );
   }

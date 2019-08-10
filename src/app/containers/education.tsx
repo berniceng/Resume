@@ -40,7 +40,7 @@ const Education = (props: BookmarkProp) => {
             {
               data.map((obj: CardProps, i: number) => {
                 return(
-                  <Card key={i} {...obj} type='education' />
+                  <Card key={i} type="education" {...obj}/>
                 );
               })
             }

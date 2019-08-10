@@ -1,6 +1,6 @@
 import { Switch, Route } from 'react-router-dom';
 import React from 'react';
-import MainContainer from './containers/maincontainer';
+import MainContainer from './containers/mainContainer';
 
 const Routes = () => {
   return (

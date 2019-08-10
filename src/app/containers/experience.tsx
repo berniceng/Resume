@@ -33,7 +33,8 @@ const data = [
     subtitle: 'Web Developer (Internship)',
     collapsible: true,
     desc: [
-      'Implemented new features (e.g. image cropping tool, automatic video stitching tool, access control)',
+      'Implemented new features (e.g. image cropping tool, \
+        automatic video stitching tool, access control)',
       'Collaborated with team members on documentation updates',
       'Developed documents for tests',
       'Designed detailed UI wireframes',
@@ -55,7 +56,9 @@ const data = [
     desc: [
       'Developed triggers for audit trail purposes',
       'Updated the User Manual based on the modified system',
-      'Modified functions (e.g. Retrieval and inserting of clob data), developed test specification and testing of those functions',
+      'Modified functions (e.g. Retrieval and inserting of \
+        clob data), developed test specification and testing \
+        of those functions',
     ],
     tools: [
       'Java',
@@ -73,11 +76,13 @@ const data = [
       'Made suggestions on analytics to be added',
       'Developed web services (REST API)',
       'Developed User Interfaces based on design using SAPUI5',
-      'Conducted market survey to understand citizens’ concerns and preferences and developed personas',
+      'Conducted market survey to understand citizens’ concerns \
+        and preferences and developed personas',
       'Researched on the policies in Singapore for content of the application',
       'Assisted in card sorting session for UI/UX',
       'Participated in Design Thinking Workshop conducted by SAP',
-      'Filed a patent together with fellow colleagues titled Virtual Taxi Stand Management System',
+      'Filed a patent together with fellow colleagues titled Virtual \
+        Taxi Stand Management System',
     ],
     tools: [
       'Java',
@@ -102,7 +107,7 @@ const Experience = (props: BookmarkProp) => {
             {
               data.map((obj: CardProps, i: number) => {
                 return(
-                  <Card key={i} {...obj} type='experiences'/>
+                  <Card key={i} type="experiences" {...obj}/>
                 );
               })
             }
