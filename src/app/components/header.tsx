@@ -47,7 +47,6 @@ class Header extends Component<HeaderProps & InitialProps, HeaderState>{
       { key: 'experience', title: 'Experiences' },
       { key: 'skill', title: 'Skills' },
       { key: 'recommendation', title: 'Recommendation' },
-      { key: 'logout', title: 'Logout' },
     ];
 
     const menu = menuObj.map((obj) => {

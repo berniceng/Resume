@@ -16,13 +16,14 @@ export default class Card extends Component<CardProps & CardType, CardState> {
 
     if (!isOpen && elem) {
       const height = elem.firstChild.scrollHeight;
-      const offsetTop = cardElem.offsetTop;
-      const scrollTop = offsetTop - 90;
 
       elem.style.height = `${height}px`;
       elem.style.paddingBottom = '25px';
 
       cardElem.addEventListener('transitionend', () => {
+        const offsetTop = cardElem.offsetTop;
+        const scrollTop = offsetTop - 90;
+        
         window.scrollTo({
           top: scrollTop,
           behavior: 'smooth',
