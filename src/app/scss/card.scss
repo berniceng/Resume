@@ -94,11 +94,7 @@
                 display: flex;
 
                 > li {
-                    padding: 2px 10px;
-                    background-color: $color-pale-blue;
-                    border-radius: 15px;
-                    margin: 0 10px 0 0;
-                    @include font($font-abel, $font-s, $color-white, $weight-light);
+                    @include tag($color-pale-blue, 0, 10px, 0, 0, $font-abel, $font-s, $color-white, $weight-light);
                 }
             }
         }

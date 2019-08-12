@@ -1,6 +1,6 @@
 import React from 'react';
 import * as styles from '../scss/experiences.scss';
-import { CardProps, BookmarkProp } from '../propType';
+import { CardProps, BookmarkProps } from '../propType';
 import Card from '../components/card';
 
 const axa = require('../../assets/img/axa.png');
@@ -93,7 +93,7 @@ const data = [
   },
 ];
 
-const Experience = (props: BookmarkProp) => {
+const Experiences = (props: BookmarkProps) => {
   const { bookmarkId } = props;
 
   return(
@@ -118,4 +118,4 @@ const Experience = (props: BookmarkProp) => {
   );
 };
 
-export default Experience;
+export default Experiences;

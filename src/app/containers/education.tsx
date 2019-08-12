@@ -1,6 +1,6 @@
 import React from 'react';
 import * as styles from '../scss/education.scss';
-import { CardProps, BookmarkProp } from '../propType';
+import { CardProps, BookmarkProps } from '../propType';
 import Card from '../components/card';
 
 const smu = require('../../assets/img/smu.png');
@@ -26,7 +26,7 @@ const data = [
   },
 ];
 
-const Education = (props: BookmarkProp) => {
+const Education = (props: BookmarkProps) => {
   const { bookmarkId } = props;
 
   return(

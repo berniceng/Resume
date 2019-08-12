@@ -385,6 +385,100 @@ exports.locals = {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/recommendation.scss":
+/*!*********************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/sass-loader/lib/loader.js??ref--6-2!./src/app/scss/recommendation.scss ***!
+  \*********************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Imports
+var getUrl = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
+var ___CSS_LOADER_URL___0___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.eot */ "./src/assets/font/abel-regular-webfont.eot"));
+var ___CSS_LOADER_URL___1___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.woff */ "./src/assets/font/abel-regular-webfont.woff"));
+var ___CSS_LOADER_URL___2___ = getUrl(__webpack_require__(/*! ../../assets/font/Windsong-webfont.eot */ "./src/assets/font/Windsong-webfont.eot"));
+var ___CSS_LOADER_URL___3___ = getUrl(__webpack_require__(/*! ../../assets/font/Windsong-webfont.woff */ "./src/assets/font/Windsong-webfont.woff"));
+var ___CSS_LOADER_URL___4___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.eot */ "./src/assets/font/Burlington_Script.eot"));
+var ___CSS_LOADER_URL___5___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.woff */ "./src/assets/font/Burlington_Script.woff"));
+var ___CSS_LOADER_URL___6___ = getUrl(__webpack_require__(/*! ../../assets/img/recommendation.jpg */ "./src/assets/img/recommendation.jpg"));
+// Module
+exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Windsong';\n  src: url(" + ___CSS_LOADER_URL___2___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___3___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Burlington';\n  src: url(" + ___CSS_LOADER_URL___4___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___5___ + ") format(\"woff\"); }\n\n._37xq7zcrO1ddK-uQr7NuJ8 {\n  min-height: inherit; }\n  ._37xq7zcrO1ddK-uQr7NuJ8 ._88McwWxh1TVFU5-qm6OUX {\n    min-height: inherit;\n    width: 100%; }\n    ._37xq7zcrO1ddK-uQr7NuJ8 ._88McwWxh1TVFU5-qm6OUX ._3O61UqamJotofYJruGIRUD {\n      min-height: inherit; }\n      ._37xq7zcrO1ddK-uQr7NuJ8 ._88McwWxh1TVFU5-qm6OUX ._3O61UqamJotofYJruGIRUD > ._16ts69KDQW_hO6y3JeWRN6 {\n        text-align: center;\n        margin-top: 60px;\n        font-family: \"Abel\";\n        font-size: 3.6rem;\n        color: #444445;\n        font-weight: 600;\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.9)), url(" + ___CSS_LOADER_URL___6___ + ");\n        background-size: cover;\n        min-height: inherit;\n        width: 100%; }\n", ""]);
+// Exports
+exports.locals = {
+	"container": "_37xq7zcrO1ddK-uQr7NuJ8",
+	"content": "_88McwWxh1TVFU5-qm6OUX",
+	"recommendation": "_3O61UqamJotofYJruGIRUD",
+	"title": "_16ts69KDQW_hO6y3JeWRN6"
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/skills.scss":
+/*!*************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/sass-loader/lib/loader.js??ref--6-2!./src/app/scss/skills.scss ***!
+  \*************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Imports
+var getUrl = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
+var ___CSS_LOADER_URL___0___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.eot */ "./src/assets/font/abel-regular-webfont.eot"));
+var ___CSS_LOADER_URL___1___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.woff */ "./src/assets/font/abel-regular-webfont.woff"));
+var ___CSS_LOADER_URL___2___ = getUrl(__webpack_require__(/*! ../../assets/font/Windsong-webfont.eot */ "./src/assets/font/Windsong-webfont.eot"));
+var ___CSS_LOADER_URL___3___ = getUrl(__webpack_require__(/*! ../../assets/font/Windsong-webfont.woff */ "./src/assets/font/Windsong-webfont.woff"));
+var ___CSS_LOADER_URL___4___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.eot */ "./src/assets/font/Burlington_Script.eot"));
+var ___CSS_LOADER_URL___5___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.woff */ "./src/assets/font/Burlington_Script.woff"));
+var ___CSS_LOADER_URL___6___ = getUrl(__webpack_require__(/*! ../../assets/img/skill.jpg */ "./src/assets/img/skill.jpg"));
+// Module
+exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Windsong';\n  src: url(" + ___CSS_LOADER_URL___2___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___3___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Burlington';\n  src: url(" + ___CSS_LOADER_URL___4___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___5___ + ") format(\"woff\"); }\n\n._32Ay_auJQBz_MjPgfq3D1s {\n  min-height: inherit; }\n  ._32Ay_auJQBz_MjPgfq3D1s ._2wEpBi2fgCKOPydk5m5Jro {\n    min-height: inherit;\n    width: 100%; }\n    ._32Ay_auJQBz_MjPgfq3D1s ._2wEpBi2fgCKOPydk5m5Jro ._1WdQ7dgXqlReWQgrfEiPBB {\n      min-height: inherit; }\n      ._32Ay_auJQBz_MjPgfq3D1s ._2wEpBi2fgCKOPydk5m5Jro ._1WdQ7dgXqlReWQgrfEiPBB > ._2IwOUry6Y25UVHa1VNzjW_ {\n        text-align: center;\n        margin-top: 60px;\n        font-family: \"Abel\";\n        font-size: 3.6rem;\n        color: #444445;\n        font-weight: 600;\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.9)), url(" + ___CSS_LOADER_URL___6___ + ");\n        background-size: cover;\n        min-height: inherit;\n        width: 100%; }\n      ._32Ay_auJQBz_MjPgfq3D1s ._2wEpBi2fgCKOPydk5m5Jro ._1WdQ7dgXqlReWQgrfEiPBB > ._3KaGPa-943XMkzAsG6oJ2F {\n        display: flex;\n        flex-direction: column;\n        align-items: center;\n        padding: 50px 0; }\n        ._32Ay_auJQBz_MjPgfq3D1s ._2wEpBi2fgCKOPydk5m5Jro ._1WdQ7dgXqlReWQgrfEiPBB > ._3KaGPa-943XMkzAsG6oJ2F > ._1WdQ7dgXqlReWQgrfEiPBB, ._32Ay_auJQBz_MjPgfq3D1s ._2wEpBi2fgCKOPydk5m5Jro ._1WdQ7dgXqlReWQgrfEiPBB > ._3KaGPa-943XMkzAsG6oJ2F > .yZDPbv4EMwErMelGnMts {\n          width: 50%; }\n          @media screen and (max-width: 1200px) {\n            ._32Ay_auJQBz_MjPgfq3D1s ._2wEpBi2fgCKOPydk5m5Jro ._1WdQ7dgXqlReWQgrfEiPBB > ._3KaGPa-943XMkzAsG6oJ2F > ._1WdQ7dgXqlReWQgrfEiPBB, ._32Ay_auJQBz_MjPgfq3D1s ._2wEpBi2fgCKOPydk5m5Jro ._1WdQ7dgXqlReWQgrfEiPBB > ._3KaGPa-943XMkzAsG6oJ2F > .yZDPbv4EMwErMelGnMts {\n              width: 80%; } }\n          ._32Ay_auJQBz_MjPgfq3D1s ._2wEpBi2fgCKOPydk5m5Jro ._1WdQ7dgXqlReWQgrfEiPBB > ._3KaGPa-943XMkzAsG6oJ2F > ._1WdQ7dgXqlReWQgrfEiPBB:not(:first-child), ._32Ay_auJQBz_MjPgfq3D1s ._2wEpBi2fgCKOPydk5m5Jro ._1WdQ7dgXqlReWQgrfEiPBB > ._3KaGPa-943XMkzAsG6oJ2F > .yZDPbv4EMwErMelGnMts:not(:first-child) {\n            margin-top: 50px; }\n          ._32Ay_auJQBz_MjPgfq3D1s ._2wEpBi2fgCKOPydk5m5Jro ._1WdQ7dgXqlReWQgrfEiPBB > ._3KaGPa-943XMkzAsG6oJ2F > ._1WdQ7dgXqlReWQgrfEiPBB > .cLex1BuYKphtHJ12SMgqO, ._32Ay_auJQBz_MjPgfq3D1s ._2wEpBi2fgCKOPydk5m5Jro ._1WdQ7dgXqlReWQgrfEiPBB > ._3KaGPa-943XMkzAsG6oJ2F > .yZDPbv4EMwErMelGnMts > .cLex1BuYKphtHJ12SMgqO {\n            font-family: \"Abel\";\n            font-size: 3.3rem;\n            color: #444445;\n            font-weight: 400; }\n          ._32Ay_auJQBz_MjPgfq3D1s ._2wEpBi2fgCKOPydk5m5Jro ._1WdQ7dgXqlReWQgrfEiPBB > ._3KaGPa-943XMkzAsG6oJ2F > ._1WdQ7dgXqlReWQgrfEiPBB > ul, ._32Ay_auJQBz_MjPgfq3D1s ._2wEpBi2fgCKOPydk5m5Jro ._1WdQ7dgXqlReWQgrfEiPBB > ._3KaGPa-943XMkzAsG6oJ2F > .yZDPbv4EMwErMelGnMts > ul {\n            list-style-type: none;\n            padding-left: 0;\n            display: flex;\n            flex-wrap: wrap; }\n            ._32Ay_auJQBz_MjPgfq3D1s ._2wEpBi2fgCKOPydk5m5Jro ._1WdQ7dgXqlReWQgrfEiPBB > ._3KaGPa-943XMkzAsG6oJ2F > ._1WdQ7dgXqlReWQgrfEiPBB > ul > li, ._32Ay_auJQBz_MjPgfq3D1s ._2wEpBi2fgCKOPydk5m5Jro ._1WdQ7dgXqlReWQgrfEiPBB > ._3KaGPa-943XMkzAsG6oJ2F > .yZDPbv4EMwErMelGnMts > ul > li {\n              padding: 2px 10px;\n              background-color: #8095c0;\n              border-radius: 15px;\n              margin: 0 10px 10px 0;\n              font-family: \"Abel\";\n              font-size: 1rem;\n              color: #fff;\n              font-weight: 400; }\n", ""]);
+// Exports
+exports.locals = {
+	"container": "_32Ay_auJQBz_MjPgfq3D1s",
+	"content": "_2wEpBi2fgCKOPydk5m5Jro",
+	"skills": "_1WdQ7dgXqlReWQgrfEiPBB",
+	"title": "_2IwOUry6Y25UVHa1VNzjW_",
+	"summary": "_3KaGPa-943XMkzAsG6oJ2F",
+	"tools": "yZDPbv4EMwErMelGnMts",
+	"subtitle": "cLex1BuYKphtHJ12SMgqO"
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/slider.scss":
+/*!*************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/sass-loader/lib/loader.js??ref--6-2!./src/app/scss/slider.scss ***!
+  \*************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Imports
+var getUrl = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
+var ___CSS_LOADER_URL___0___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.eot */ "./src/assets/font/abel-regular-webfont.eot"));
+var ___CSS_LOADER_URL___1___ = getUrl(__webpack_require__(/*! ../../assets/font/abel-regular-webfont.woff */ "./src/assets/font/abel-regular-webfont.woff"));
+var ___CSS_LOADER_URL___2___ = getUrl(__webpack_require__(/*! ../../assets/font/Windsong-webfont.eot */ "./src/assets/font/Windsong-webfont.eot"));
+var ___CSS_LOADER_URL___3___ = getUrl(__webpack_require__(/*! ../../assets/font/Windsong-webfont.woff */ "./src/assets/font/Windsong-webfont.woff"));
+var ___CSS_LOADER_URL___4___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.eot */ "./src/assets/font/Burlington_Script.eot"));
+var ___CSS_LOADER_URL___5___ = getUrl(__webpack_require__(/*! ../../assets/font/Burlington_Script.woff */ "./src/assets/font/Burlington_Script.woff"));
+// Module
+exports.push([module.i, "@font-face {\n  font-family: 'Abel';\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___1___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Windsong';\n  src: url(" + ___CSS_LOADER_URL___2___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___3___ + ") format(\"woff\"); }\n\n@font-face {\n  font-family: 'Burlington';\n  src: url(" + ___CSS_LOADER_URL___4___ + ") format(\"embedded-opentype\"), url(" + ___CSS_LOADER_URL___5___ + ") format(\"woff\"); }\n\n._2aG1_OX-LaYcZ-IZquNiYV {\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  padding: 20px 0; }\n  ._2aG1_OX-LaYcZ-IZquNiYV > ._1cfV3RRTRrf8KuxBSZd0zf {\n    width: 50%;\n    margin: 40px 0;\n    padding: 20px;\n    box-shadow: 0px 0px 30px 0px #d9dadb;\n    border-radius: 8px;\n    background-color: #fff; }\n    @media screen and (max-width: 1200px) {\n      ._2aG1_OX-LaYcZ-IZquNiYV > ._1cfV3RRTRrf8KuxBSZd0zf {\n        width: 80%; } }\n    ._2aG1_OX-LaYcZ-IZquNiYV > ._1cfV3RRTRrf8KuxBSZd0zf > .w-b6oW4gI7DNQXDPu7M0m > ._1jVnx58GFZfeufzZZW_jUy {\n      display: none;\n      flex-direction: column; }\n      ._2aG1_OX-LaYcZ-IZquNiYV > ._1cfV3RRTRrf8KuxBSZd0zf > .w-b6oW4gI7DNQXDPu7M0m > ._1jVnx58GFZfeufzZZW_jUy > ._1-e0-B3JpI8DrNiZLoI8ZI {\n        width: 100%; }\n      ._2aG1_OX-LaYcZ-IZquNiYV > ._1cfV3RRTRrf8KuxBSZd0zf > .w-b6oW4gI7DNQXDPu7M0m > ._1jVnx58GFZfeufzZZW_jUy > ._3NXvqYhabfEabiGAL3Ifhc > ._1OnZN2Mb6_26xmugCGWc9v {\n        margin: 20px 0; }\n    ._2aG1_OX-LaYcZ-IZquNiYV > ._1cfV3RRTRrf8KuxBSZd0zf > .w-b6oW4gI7DNQXDPu7M0m > ._2dh2yyuziikbmaWSa6OxjN {\n      display: flex; }\n    ._2aG1_OX-LaYcZ-IZquNiYV > ._1cfV3RRTRrf8KuxBSZd0zf > ._2ODW9bCczzdBw2G3g_4FZZ {\n      display: flex;\n      border-top: 1px solid #6e6e70; }\n", ""]);
+// Exports
+exports.locals = {
+	"container": "_2aG1_OX-LaYcZ-IZquNiYV",
+	"slider": "_1cfV3RRTRrf8KuxBSZd0zf",
+	"content": "w-b6oW4gI7DNQXDPu7M0m",
+	"item": "_1jVnx58GFZfeufzZZW_jUy",
+	"header": "_1-e0-B3JpI8DrNiZLoI8ZI",
+	"body": "_3NXvqYhabfEabiGAL3Ifhc",
+	"paragraph": "_1OnZN2Mb6_26xmugCGWc9v",
+	"visible": "_2dh2yyuziikbmaWSa6OxjN",
+	"buttons": "_2ODW9bCczzdBw2G3g_4FZZ"
+};
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/tile.scss":
 /*!***********************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/sass-loader/lib/loader.js??ref--6-2!./src/app/scss/tile.scss ***!
@@ -29598,9 +29692,9 @@ function valueEqual(a, b) {
 /***/ }),
 
 /***/ "./node_modules/webpack/buildin/global.js":
-/*!***********************************!*\
-  !*** (webpack)/buildin/global.js ***!
-  \***********************************/
+/*!************************************************!*\
+  !*** ./node_modules/webpack/buildin/global.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -29640,6 +29734,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 var ArrowDown=function ArrowDown(fill,height,width){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg",{height:height,width:width},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path",{d:"M14.77,23.795L5.185,14.21c-0.879-0.879-0.879-2.317,\r 0-3.195l0.8-0.801c0.877-0.878,2.316-0.878,3.194,\r 0  l7.315,7.315l7.316-7.315c0.878-0.878,2.317-0.878,\r 3.194,0l0.8,0.801c0.879,0.878,0.879,2.316,0,3.195l-9.587,9.585\r c-0.471,0.472-1.104,0.682-1.723,0.647C15.875,24.477,15.243,\r 24.267,14.77,23.795z",fill:fill}));};/* harmony default export */ __webpack_exports__["default"] = (ArrowDown);
+
+/***/ }),
+
+/***/ "./src/app/components/arrow/arrowLeft.tsx":
+/*!************************************************!*\
+  !*** ./src/app/components/arrow/arrowLeft.tsx ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var ArrowLeft=function ArrowLeft(fill,height,width){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg",{height:height,width:width},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path",{d:"M7.701,14.276l9.586-9.585c0.879-0.878,2.317-0.878,3.195,0l0.801,\r 0.8c0.878,0.877,0.878,2.316,0,3.194  L13.968,16l7.315,7.315c0.878,\r 0.878,0.878,2.317,0,3.194l-0.801,0.8c-0.878,0.879-2.316,0.879-3.195,\r 0l-9.586-9.587  C7.229,17.252,7.02,16.62,7.054,16C7.02,15.38,7.229,\r 14.748,7.701,14.276z",fill:fill}));};/* harmony default export */ __webpack_exports__["default"] = (ArrowLeft);
+
+/***/ }),
+
+/***/ "./src/app/components/arrow/arrowRight.tsx":
+/*!*************************************************!*\
+  !*** ./src/app/components/arrow/arrowRight.tsx ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var ArrowRight=function ArrowRight(fill,height,width){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg",{height:height,width:width},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path",{d:"M24.291,14.276L14.705,4.69c-0.878-0.878-2.317-0.878-3.195,\r 0l-0.8,0.8c-0.878,0.877-0.878,2.316,0,3.194  L18.024,16l-7.315,\r 7.315c-0.878,0.878-0.878,2.317,0,3.194l0.8,0.8c0.878,0.879,2.317,\r 0.879,3.195,0l9.586-9.587  c0.472-0.471,0.682-1.103,\r 0.647-1.723C24.973,15.38,24.763,14.748,24.291,14.276z",fill:fill}));};/* harmony default export */ __webpack_exports__["default"] = (ArrowRight);
 
 /***/ }),
 
@@ -29691,7 +29815,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _scss_footer_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../scss/footer.scss */ "./src/app/scss/footer.scss");
 /* harmony import */ var _scss_footer_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scss_footer_scss__WEBPACK_IMPORTED_MODULE_1__);
-var Header=function Header(){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_footer_scss__WEBPACK_IMPORTED_MODULE_1__["footer"]},"All rights reserved Ng Kai Ling Bernice @ 2019");};/* harmony default export */ __webpack_exports__["default"] = (Header);
+var Header=function Header(){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_footer_scss__WEBPACK_IMPORTED_MODULE_1__["footer"]},"Ng Kai Ling Bernice Resume @ 2019");};/* harmony default export */ __webpack_exports__["default"] = (Header);
 
 /***/ }),
 
@@ -29709,11 +29833,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../context */ "./src/app/context.tsx");
 /* harmony import */ var _scss_header_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../scss/header.scss */ "./src/app/scss/header.scss");
 /* harmony import */ var _scss_header_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__);
-function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var Header=/*#__PURE__*/function(_Component){_inherits(Header,_Component);function Header(){var _this;_classCallCheck(this,Header);_this=_possibleConstructorReturn(this,_getPrototypeOf(Header).apply(this,arguments));_this.state={width:window.innerWidth,isOpen:false};_this.onResize=function(){_this.setState({width:window.innerWidth});};_this.toggleBurgerMenu=function(){_this.setState({isOpen:!_this.state.isOpen});};return _this;}_createClass(Header,[{key:"componentWillMount",value:function componentWillMount(){this.onResize();}},{key:"componentDidMount",value:function componentDidMount(){window.addEventListener('resize',this.onResize);}},{key:"componentWillUnmount",value:function componentWillUnmount(){window.removeEventListener('resize',this.onResize);}// navigate = (e: any) => {
-//   const key = e.currentTarget.getAttribute('data-key');
-//   this.props.history.push(`/main/${key}`);
-// }
-},{key:"render",value:function render(){var _this$props=this.props,onClick=_this$props.onClick,currentPage=_this$props.currentPage;var menuObj=[{key:'aboutme',title:'About Me'},{key:'education',title:'Education'},{key:'experience',title:'Experiences'},{key:'skill',title:'Skills'},{key:'recommendation',title:'Recommendation'}];var menu=menuObj.map(function(obj){if(currentPage===obj.key){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["underline"],"data-key":obj.key,key:obj.key,onClick:onClick},obj.title);}return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{"data-key":obj.key,key:obj.key,onClick:onClick},obj.title);});return this.state.width>849?react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"".concat(_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["header"]," ").concat(this.props.className)},menu):react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"".concat(_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["menubar"]," ").concat(this.state.isOpen?_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["open"]:null)},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["sidebar"]},menu),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"".concat(_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["burger"]," ").concat(this.props.className),onClick:this.toggleBurgerMenu},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",null),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",null),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",null)),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["background"],onClick:this.toggleBurgerMenu}));}}]);return Header;}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);/* harmony default export */ __webpack_exports__["default"] = (Object(_context__WEBPACK_IMPORTED_MODULE_1__["AppContext"])(Header));
+function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var Header=/*#__PURE__*/function(_Component){_inherits(Header,_Component);function Header(){var _this;_classCallCheck(this,Header);_this=_possibleConstructorReturn(this,_getPrototypeOf(Header).apply(this,arguments));_this.state={width:window.innerWidth,isOpen:false};_this.onResize=function(){_this.setState({width:window.innerWidth});};_this.toggleBurgerMenu=function(){_this.setState({isOpen:!_this.state.isOpen});};return _this;}_createClass(Header,[{key:"componentWillMount",value:function componentWillMount(){this.onResize();}},{key:"componentDidMount",value:function componentDidMount(){window.addEventListener('resize',this.onResize);}},{key:"componentWillUnmount",value:function componentWillUnmount(){window.removeEventListener('resize',this.onResize);}},{key:"render",value:function render(){var _this$props=this.props,onClick=_this$props.onClick,currentPage=_this$props.currentPage;var menuObj=[{key:'aboutme',title:'About Me'},{key:'education',title:'Education'},{key:'experiences',title:'Experiences'},{key:'skills',title:'Skills'},{key:'recommendation',title:'Recommendation'}];var menu=menuObj.map(function(obj){if(currentPage===obj.key){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["underline"],"data-key":obj.key,key:obj.key,onClick:onClick},obj.title);}return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{"data-key":obj.key,key:obj.key,onClick:onClick},obj.title);});return this.state.width>849?react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"".concat(_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["header"]," ").concat(this.props.className)},menu):react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"".concat(_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["menubar"]," ").concat(this.state.isOpen?_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["open"]:null)},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["sidebar"]},menu),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"".concat(_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["burger"]," ").concat(this.props.className),onClick:this.toggleBurgerMenu},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",null),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",null),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",null)),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_header_scss__WEBPACK_IMPORTED_MODULE_2__["background"],onClick:this.toggleBurgerMenu}));}}]);return Header;}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);/* harmony default export */ __webpack_exports__["default"] = (Object(_context__WEBPACK_IMPORTED_MODULE_1__["AppContext"])(Header));
+
+/***/ }),
+
+/***/ "./src/app/components/slider.tsx":
+/*!***************************************!*\
+  !*** ./src/app/components/slider.tsx ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _scss_slider_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../scss/slider.scss */ "./src/app/scss/slider.scss");
+/* harmony import */ var _scss_slider_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scss_slider_scss__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _arrow_arrowLeft__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./arrow/arrowLeft */ "./src/app/components/arrow/arrowLeft.tsx");
+/* harmony import */ var _arrow_arrowRight__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./arrow/arrowRight */ "./src/app/components/arrow/arrowRight.tsx");
+function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var Slider=/*#__PURE__*/function(_Component){_inherits(Slider,_Component);function Slider(){var _this;_classCallCheck(this,Slider);_this=_possibleConstructorReturn(this,_getPrototypeOf(Slider).apply(this,arguments));_this.state={index:0};return _this;}_createClass(Slider,[{key:"render",value:function render(){var data=this.props.data;var index=this.state.index;return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_slider_scss__WEBPACK_IMPORTED_MODULE_1__["container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_slider_scss__WEBPACK_IMPORTED_MODULE_1__["slider"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_slider_scss__WEBPACK_IMPORTED_MODULE_1__["content"]},data.map(function(recommendation,i){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"".concat(_scss_slider_scss__WEBPACK_IMPORTED_MODULE_1__["item"]," ").concat(i===index?_scss_slider_scss__WEBPACK_IMPORTED_MODULE_1__["visible"]:null),key:i},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_slider_scss__WEBPACK_IMPORTED_MODULE_1__["header"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_slider_scss__WEBPACK_IMPORTED_MODULE_1__["name"]},recommendation.name),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_slider_scss__WEBPACK_IMPORTED_MODULE_1__["title"]},"".concat(recommendation.title,", ").concat(recommendation.department)),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_slider_scss__WEBPACK_IMPORTED_MODULE_1__["company"]},recommendation.company)),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_slider_scss__WEBPACK_IMPORTED_MODULE_1__["body"]},recommendation.desc.map(function(desc,i){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_slider_scss__WEBPACK_IMPORTED_MODULE_1__["paragraph"],key:i},desc);})));})),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_slider_scss__WEBPACK_IMPORTED_MODULE_1__["buttons"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,Object(_arrow_arrowLeft__WEBPACK_IMPORTED_MODULE_2__["default"])('#6e6e70','32px','32px')),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"".concat(index+1," / ").concat(data.length)),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,Object(_arrow_arrowRight__WEBPACK_IMPORTED_MODULE_3__["default"])('#6e6e70','32px','32px')))));}}]);return Slider;}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);/* harmony default export */ __webpack_exports__["default"] = (Slider);
 
 /***/ }),
 
@@ -29751,21 +29890,14 @@ __webpack_require__.r(__webpack_exports__);
 function _extends(){_extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};return _extends.apply(this,arguments);}var email=__webpack_require__(/*! ../../assets/img/email-icon.png */ "./src/assets/img/email-icon.png");var hp=__webpack_require__(/*! ../../assets/img/phone-icon.png */ "./src/assets/img/phone-icon.png");var linkedin=__webpack_require__(/*! ../../assets/img/linkedin-icon.png */ "./src/assets/img/linkedin-icon.png");var profile=__webpack_require__(/*! ../../assets/img/profile-pic.png */ "./src/assets/img/profile-pic.png");var badminton=__webpack_require__(/*! ../../assets/img/badminton.png */ "./src/assets/img/badminton.png");var dance=__webpack_require__(/*! ../../assets/img/dance.png */ "./src/assets/img/dance.png");var code=__webpack_require__(/*! ../../assets/img/code.jpg */ "./src/assets/img/code.jpg");var openInNewTab=function openInNewTab(){window.open('https://www.linkedin.com/in/bernice-ng-kai-ling','_blank');};var AboutMe=function AboutMe(props){var bookmarkId=props.bookmarkId;var data=[{title:'Badminton',image:badminton,desc:'Playing badminton is something that I like to do \
       during free time or even as an activity when meeting up \
       with friends. I started playing badminton in Secondary School \
-      (NOTE: I am not a professional badminton player) where my \
-      friends and I would play after school for hours continuously. \
-      The reason I like badminton is that it is fun and you can play \
-      with anyone unlike soccer which female have less preference for \
-      in general.'},{title:'Dance',image:dance,desc:'I am a dancer in the church I go to. \
+      where my friends and I would play after school for hours \
+      continuously.'},{title:'Dance',image:dance,desc:'I am a dancer in the church I go to. \
       When I was first asked to join dance in church, I didn\'t have any kind \
-      of dance background even until now, I don\'t go for any dance classes. \
-      Whenever there i performances, I was always nervous \
-      but I slowly adapted and learnt to be more confident \
-      even though I will still be slightly nervous).'},{title:'Code',image:code,desc:'Back then when I started the semester in polytechnic, \
+      of dance background even until now, I don\'t go for any dance classes..'},{title:'Code',image:code,desc:'Back then when I started the semester in polytechnic, \
       I was worried that I might not be able to do well. I didn\'t \
-      know how to type. I even used one finger to type and was \
-      really slow at it. I didn\'t started off as a fan of coding \
+      know how to type. I didn\'t started off as a fan of coding \
       but when I was exposed to it, my interest grew. It became \
-      something that i would wantas a job now and that something \
+      something that i would want as a job now and that something \
       that I would want to learn more and more.'}];return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{id:bookmarkId,className:_scss_aboutMe_scss__WEBPACK_IMPORTED_MODULE_1__["container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutMe_scss__WEBPACK_IMPORTED_MODULE_1__["content"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutMe_scss__WEBPACK_IMPORTED_MODULE_1__["contact"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutMe_scss__WEBPACK_IMPORTED_MODULE_1__["top"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutMe_scss__WEBPACK_IMPORTED_MODULE_1__["left"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:profile})),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutMe_scss__WEBPACK_IMPORTED_MODULE_1__["right"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Hello, I am"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Ng Kai Ling Bernice"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"Developer"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutMe_scss__WEBPACK_IMPORTED_MODULE_1__["bottom"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:email}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"bernice-ng@hotmail.com")),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:hp}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,"+65 91195763")),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:linkedin}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{onClick:openInNewTab},"Visit my Linkedin"))))))),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutMe_scss__WEBPACK_IMPORTED_MODULE_1__["summary"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutMe_scss__WEBPACK_IMPORTED_MODULE_1__["title"]},"A little more about me..."),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutMe_scss__WEBPACK_IMPORTED_MODULE_1__["text"]},"A fourth year Information Systems undergraduate in Singapore Management University (SMU) with strong interest in full stack development. Being a conscientious worker and quick learner who is flexible as well as a team player. Experienced working with ReactJS mainly and was exposed to several other languages like Java and PHP.")),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutMe_scss__WEBPACK_IMPORTED_MODULE_1__["interest"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutMe_scss__WEBPACK_IMPORTED_MODULE_1__["title"]},"Interests"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_aboutMe_scss__WEBPACK_IMPORTED_MODULE_1__["container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,data.map(function(obj,i){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_tile__WEBPACK_IMPORTED_MODULE_2__["default"],_extends({key:i},obj));}))))));};/* harmony default export */ __webpack_exports__["default"] = (AboutMe);
 
 /***/ }),
@@ -29788,10 +29920,10 @@ function _extends(){_extends=Object.assign||function(target){for(var i=1;i<argum
 
 /***/ }),
 
-/***/ "./src/app/containers/experience.tsx":
-/*!*******************************************!*\
-  !*** ./src/app/containers/experience.tsx ***!
-  \*******************************************/
+/***/ "./src/app/containers/experiences.tsx":
+/*!********************************************!*\
+  !*** ./src/app/containers/experiences.tsx ***!
+  \********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -29807,7 +29939,7 @@ function _extends(){_extends=Object.assign||function(target){for(var i=1;i<argum
         clob data), developed test specification and testing \
         of those functions'],tools:['Java','Oracle Database','Batch Scripts']},{range:'April 2013 - October 2013',logo:sap,title:'SAP',subtitle:'Developer (Internship)',collapsible:true,desc:['Made suggestions on analytics to be added','Developed web services (REST API)','Developed User Interfaces based on design using SAPUI5','Conducted market survey to understand citizens’ concerns \
         and preferences and developed personas','Researched on the policies in Singapore for content of the application','Assisted in card sorting session for UI/UX','Participated in Design Thinking Workshop conducted by SAP','Filed a patent together with fellow colleagues titled Virtual \
-        Taxi Stand Management System'],tools:['Java','Jersey','Postman','SAPUI5']}];var Experience=function Experience(props){var bookmarkId=props.bookmarkId;return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{id:bookmarkId,className:_scss_experiences_scss__WEBPACK_IMPORTED_MODULE_1__["container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_experiences_scss__WEBPACK_IMPORTED_MODULE_1__["content"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_experiences_scss__WEBPACK_IMPORTED_MODULE_1__["experiences"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_experiences_scss__WEBPACK_IMPORTED_MODULE_1__["title"]},"Experiences"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_experiences_scss__WEBPACK_IMPORTED_MODULE_1__["journey"]},data.map(function(obj,i){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_card__WEBPACK_IMPORTED_MODULE_2__["default"],_extends({key:i,type:"experiences"},obj));})))));};/* harmony default export */ __webpack_exports__["default"] = (Experience);
+        Taxi Stand Management System'],tools:['Java','Jersey','Postman','SAPUI5']}];var Experiences=function Experiences(props){var bookmarkId=props.bookmarkId;return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{id:bookmarkId,className:_scss_experiences_scss__WEBPACK_IMPORTED_MODULE_1__["container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_experiences_scss__WEBPACK_IMPORTED_MODULE_1__["content"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_experiences_scss__WEBPACK_IMPORTED_MODULE_1__["experiences"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_experiences_scss__WEBPACK_IMPORTED_MODULE_1__["title"]},"Experiences"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_experiences_scss__WEBPACK_IMPORTED_MODULE_1__["journey"]},data.map(function(obj,i){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_card__WEBPACK_IMPORTED_MODULE_2__["default"],_extends({key:i,type:"experiences"},obj));})))));};/* harmony default export */ __webpack_exports__["default"] = (Experiences);
 
 /***/ }),
 
@@ -29832,8 +29964,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _aboutMe__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./aboutMe */ "./src/app/containers/aboutMe.tsx");
 /* harmony import */ var _education__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./education */ "./src/app/containers/education.tsx");
-/* harmony import */ var _experience__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./experience */ "./src/app/containers/experience.tsx");
-function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var bookmarkId=['bookmark_aboutme','bookmark_education','bookmark_experience'];var MainContainer=/*#__PURE__*/function(_Component){_inherits(MainContainer,_Component);function MainContainer(){var _this;_classCallCheck(this,MainContainer);_this=_possibleConstructorReturn(this,_getPrototypeOf(MainContainer).apply(this,arguments));_this.state={headerClass:'false'};_this.showStickyHeader=function(){var className=window.pageYOffset===0?false:_scss_header_scss__WEBPACK_IMPORTED_MODULE_4__["sticky_header"];_this.setState({headerClass:"".concat(className)});};_this.getCurrentPage=function(){var match=_this.props.match;var page='aboutme';if(match&&match.params.page){page=match.params.page;}return page;};_this.scrollIntoView=function(elem){if(elem){elem.scrollIntoView({behavior:'smooth'});}};_this.onClickMenu=function(e){var dataKey=e.target.getAttribute('data-key');var elem=document.getElementById("bookmark_".concat(dataKey));_this.scrollIntoView(elem);_this.navigate(dataKey);};_this.navigate=function(dataKey){var history=_this.props.history;history.push("/".concat(dataKey));};return _this;}_createClass(MainContainer,[{key:"componentDidMount",value:function componentDidMount(){document.addEventListener('scroll',this.showStickyHeader,false);var history=this.props.history;var pathname=history.location.pathname;var currentPage=this.getCurrentPage();var main=currentPage?currentPage:'aboutme';var elem=document.getElementById("bookmark_".concat(main));this.scrollIntoView(elem);this.navigate(main);}},{key:"componentWillUnmount",value:function componentWillUnmount(){document.removeEventListener('scroll',this.showStickyHeader,false);}},{key:"render",value:function render(){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_mainContainer_scss__WEBPACK_IMPORTED_MODULE_5__["container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_header__WEBPACK_IMPORTED_MODULE_2__["default"],{currentPage:this.getCurrentPage(),className:this.state.headerClass,onClick:this.onClickMenu}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_mainContainer_scss__WEBPACK_IMPORTED_MODULE_5__["main_content"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_aboutMe__WEBPACK_IMPORTED_MODULE_7__["default"],{bookmarkId:bookmarkId[0]}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_education__WEBPACK_IMPORTED_MODULE_8__["default"],{bookmarkId:bookmarkId[1]}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_experience__WEBPACK_IMPORTED_MODULE_9__["default"],{bookmarkId:bookmarkId[2]})),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_footer__WEBPACK_IMPORTED_MODULE_3__["default"],null));}}]);return MainContainer;}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["withRouter"])(Object(_context__WEBPACK_IMPORTED_MODULE_1__["AppContext"])(MainContainer)));// function MainContainer(props: any) {
+/* harmony import */ var _skills__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./skills */ "./src/app/containers/skills.tsx");
+/* harmony import */ var _experiences__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./experiences */ "./src/app/containers/experiences.tsx");
+/* harmony import */ var _recommendation__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./recommendation */ "./src/app/containers/recommendation.tsx");
+function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}function _createClass(Constructor,protoProps,staticProps){if(protoProps)_defineProperties(Constructor.prototype,protoProps);if(staticProps)_defineProperties(Constructor,staticProps);return Constructor;}function _possibleConstructorReturn(self,call){if(call&&(_typeof(call)==="object"||typeof call==="function")){return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self){if(self===void 0){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf:function _getPrototypeOf(o){return o.__proto__||Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function");}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,writable:true,configurable:true}});if(superClass)_setPrototypeOf(subClass,superClass);}function _setPrototypeOf(o,p){_setPrototypeOf=Object.setPrototypeOf||function _setPrototypeOf(o,p){o.__proto__=p;return o;};return _setPrototypeOf(o,p);}var bookmarkId=['bookmark_aboutme','bookmark_education','bookmark_experiences','bookmark_skills','bookmark_recommendation'];var MainContainer=/*#__PURE__*/function(_Component){_inherits(MainContainer,_Component);function MainContainer(){var _this;_classCallCheck(this,MainContainer);_this=_possibleConstructorReturn(this,_getPrototypeOf(MainContainer).apply(this,arguments));_this.state={headerClass:'false'};_this.showStickyHeader=function(){var className=window.pageYOffset===0?false:_scss_header_scss__WEBPACK_IMPORTED_MODULE_4__["sticky_header"];_this.setState({headerClass:"".concat(className)});};_this.getCurrentPage=function(){var match=_this.props.match;var page='aboutme';if(match&&match.params.page){page=match.params.page;}return page;};_this.scrollIntoView=function(elem){if(elem){elem.scrollIntoView({behavior:'smooth'});}};_this.onClickMenu=function(e){var dataKey=e.target.getAttribute('data-key');var elem=document.getElementById("bookmark_".concat(dataKey));_this.scrollIntoView(elem);_this.navigate(dataKey);};_this.navigate=function(dataKey){var history=_this.props.history;history.push("/".concat(dataKey));};return _this;}_createClass(MainContainer,[{key:"componentDidMount",value:function componentDidMount(){document.addEventListener('scroll',this.showStickyHeader,false);var currentPage=this.getCurrentPage();var main=currentPage?currentPage:'aboutme';var elem=document.getElementById("bookmark_".concat(main));this.scrollIntoView(elem);this.navigate(main);}},{key:"componentWillUnmount",value:function componentWillUnmount(){document.removeEventListener('scroll',this.showStickyHeader,false);}},{key:"render",value:function render(){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_mainContainer_scss__WEBPACK_IMPORTED_MODULE_5__["container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_header__WEBPACK_IMPORTED_MODULE_2__["default"],{currentPage:this.getCurrentPage(),className:this.state.headerClass,onClick:this.onClickMenu}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_mainContainer_scss__WEBPACK_IMPORTED_MODULE_5__["main_content"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_aboutMe__WEBPACK_IMPORTED_MODULE_7__["default"],{bookmarkId:bookmarkId[0]}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_education__WEBPACK_IMPORTED_MODULE_8__["default"],{bookmarkId:bookmarkId[1]}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_experiences__WEBPACK_IMPORTED_MODULE_10__["default"],{bookmarkId:bookmarkId[2]}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_skills__WEBPACK_IMPORTED_MODULE_9__["default"],{bookmarkId:bookmarkId[3]}),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_recommendation__WEBPACK_IMPORTED_MODULE_11__["default"],{bookmarkId:bookmarkId[4]})),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_footer__WEBPACK_IMPORTED_MODULE_3__["default"],null));}}]);return MainContainer;}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["withRouter"])(Object(_context__WEBPACK_IMPORTED_MODULE_1__["AppContext"])(MainContainer)));// function MainContainer(props: any) {
 //     const [test, setTest] = React.useState(1)
 //     React.useEffect(() => {
 //         props.setToken('123')
@@ -29845,6 +29979,55 @@ function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="s
 //         </div>
 //     )
 // }
+
+/***/ }),
+
+/***/ "./src/app/containers/recommendation.tsx":
+/*!***********************************************!*\
+  !*** ./src/app/containers/recommendation.tsx ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _scss_recommendation_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../scss/recommendation.scss */ "./src/app/scss/recommendation.scss");
+/* harmony import */ var _scss_recommendation_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scss_recommendation_scss__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/slider */ "./src/app/components/slider.tsx");
+var data=[{name:'GJOLAJ Mirash',title:'Manager, Tech Lead',department:'Digital Operations',company:'AXA Insurance Pte Ltd',desc:['During Bernice\'s internship, she has shown dedication and passion \
+      for her job together with professionalism and curiosity.','She was able to quickly learn all the concept she was not familiar \
+      with and her curiosity helped her to accomplish the tasks she was working \
+      on. As a team player, Bernice worked with two product teams to increase \
+      time-to-market, releasing new features immediately Despite time \
+      constraints, she was able to deliver on time without compromising the \
+      quality of her work and seek help anytime she could not proceed.']},{name:'Li Wai-Ting',title:'Manager',department:'Strategic Transformation',company:'AXA Insurance Pte Ltd',desc:['As her Scrum Master for the projects that Bernice worked on, I had many \
+      opportunities to see her in action and can attest to her dedication, professionalism \
+      and hard-working attitude.','She is a quick learner and shows initiative to accomplish tasks with quality. When in \
+      doubt, Bernice did not hesitate to ask for help. She is able to work well both as an \
+      individual and within a team and shows maturity beyond her age.','Bernice\'s confidence has grown immensely and she has worked hard on imrpoving her \
+      technical and communication skills.']},{name:'Alan Chang Jia Jie',title:'Specialist',department:'Digital Commerce',company:'AXA Insurance Pte Ltd',desc:['During her time at AXA, Bernice handled all tasks assigned to her with a positive \
+      can-do attitude, and was able to complete them to the highest standards. Her vast \
+      knowledge of coding, impressive work ethics, cheerful personality and humility will \
+      make her an invaluable asset to any organisation.']}];var Recommendation=function Recommendation(props){var bookmarkId=props.bookmarkId;return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{id:bookmarkId,className:_scss_recommendation_scss__WEBPACK_IMPORTED_MODULE_1__["container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_recommendation_scss__WEBPACK_IMPORTED_MODULE_1__["content"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_recommendation_scss__WEBPACK_IMPORTED_MODULE_1__["recommendation"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_recommendation_scss__WEBPACK_IMPORTED_MODULE_1__["title"]},"Recommendations"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_slider__WEBPACK_IMPORTED_MODULE_2__["default"],{data:data}))));};/* harmony default export */ __webpack_exports__["default"] = (Recommendation);
+
+/***/ }),
+
+/***/ "./src/app/containers/skills.tsx":
+/*!***************************************!*\
+  !*** ./src/app/containers/skills.tsx ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../scss/skills.scss */ "./src/app/scss/skills.scss");
+/* harmony import */ var _scss_skills_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__);
+var data={skills:['Git','Cypress','Jest','ReactJs','Javascript','SASS','LESS CSS','CSS','HTML','PHP','Java','MySQL','Oracle Database','Design Thinking'],tools:['NotePad++','Eclipse','Visual Studio Code','Jira','FileZilla']};var Skills=function Skills(props){var bookmarkId=props.bookmarkId;return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{id:bookmarkId,className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["container"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["content"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["skills"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["title"]},"Abilities"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["summary"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["skills"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["subtitle"]},"Skills"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul",null,data.skills.map(function(skill,i){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["item"],key:i},skill);}))),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["tools"]},react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["subtitle"]},"Tools"),react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul",null,data.tools.map(function(skill,i){return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["item"],key:i},skill);})))))));};/* harmony default export */ __webpack_exports__["default"] = (Skills);
 
 /***/ }),
 
@@ -30127,6 +30310,96 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./src/app/scss/recommendation.scss":
+/*!******************************************!*\
+  !*** ./src/app/scss/recommendation.scss ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-1!../../../node_modules/sass-loader/lib/loader.js??ref--6-2!./recommendation.scss */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/recommendation.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./src/app/scss/skills.scss":
+/*!**********************************!*\
+  !*** ./src/app/scss/skills.scss ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-1!../../../node_modules/sass-loader/lib/loader.js??ref--6-2!./skills.scss */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/skills.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./src/app/scss/slider.scss":
+/*!**********************************!*\
+  !*** ./src/app/scss/slider.scss ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-1!../../../node_modules/sass-loader/lib/loader.js??ref--6-2!./slider.scss */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/sass-loader/lib/loader.js?!./src/app/scss/slider.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./src/app/scss/tile.scss":
 /*!********************************!*\
   !*** ./src/app/scss/tile.scss ***!
@@ -30377,6 +30650,17 @@ module.exports = __webpack_require__.p + "bf739991de8ee3b2a55ec19d255eeb76.png";
 
 /***/ }),
 
+/***/ "./src/assets/img/recommendation.jpg":
+/*!*******************************************!*\
+  !*** ./src/assets/img/recommendation.jpg ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "bd466562c9eeef0d6ee1b14c7356faf3.jpg";
+
+/***/ }),
+
 /***/ "./src/assets/img/sap.png":
 /*!********************************!*\
   !*** ./src/assets/img/sap.png ***!
@@ -30385,6 +30669,17 @@ module.exports = __webpack_require__.p + "bf739991de8ee3b2a55ec19d255eeb76.png";
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4ad08dd61d3e2d51dd4ee30abfda0a49.png";
+
+/***/ }),
+
+/***/ "./src/assets/img/skill.jpg":
+/*!**********************************!*\
+  !*** ./src/assets/img/skill.jpg ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "be58cc3d75edeada04eec6f785637495.jpg";
 
 /***/ }),
 

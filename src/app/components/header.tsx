@@ -33,19 +33,14 @@ class Header extends Component<HeaderProps & InitialProps, HeaderState>{
     });
   }
 
-  // navigate = (e: any) => {
-  //   const key = e.currentTarget.getAttribute('data-key');
-  //   this.props.history.push(`/main/${key}`);
-  // }
-
   render() {
     const { onClick, currentPage } = this.props;
 
     const menuObj = [
       { key: 'aboutme', title: 'About Me' },
       { key: 'education', title: 'Education' },
-      { key: 'experience', title: 'Experiences' },
-      { key: 'skill', title: 'Skills' },
+      { key: 'experiences', title: 'Experiences' },
+      { key: 'skills', title: 'Skills' },
       { key: 'recommendation', title: 'Recommendation' },
     ];
 

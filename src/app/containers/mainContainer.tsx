@@ -8,12 +8,16 @@ import * as styles from '../scss/mainContainer.scss';
 import { withRouter } from 'react-router-dom';
 import AboutMe from './aboutMe';
 import Education from './education';
-import Experience from './experience';
+import Skills from './skills';
+import Experiences from './experiences';
+import Recommendation from './recommendation';
 
 const bookmarkId = [
   'bookmark_aboutme',
   'bookmark_education',
-  'bookmark_experience',
+  'bookmark_experiences',
+  'bookmark_skills',
+  'bookmark_recommendation',
 ];
 
 class MainContainer extends Component<InitialProps, MainState>{
@@ -23,9 +27,6 @@ class MainContainer extends Component<InitialProps, MainState>{
 
   componentDidMount() {
     document.addEventListener('scroll', this.showStickyHeader, false);
-
-    const { history } = this.props;
-    const { pathname } = history.location;
 
     const currentPage = this.getCurrentPage();
 
@@ -90,7 +91,9 @@ class MainContainer extends Component<InitialProps, MainState>{
         <div className={styles.main_content}>
           <AboutMe bookmarkId={bookmarkId[0]}/>
           <Education bookmarkId={bookmarkId[1]}/>
-          <Experience bookmarkId={bookmarkId[2]}/>
+          <Experiences bookmarkId={bookmarkId[2]}/>
+          <Skills bookmarkId={bookmarkId[3]}/>
+          <Recommendation bookmarkId={bookmarkId[4]}/>
         </div>
         <Footer />
       </div>

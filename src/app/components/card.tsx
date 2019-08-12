@@ -23,7 +23,7 @@ export default class Card extends Component<CardProps & CardType, CardState> {
       cardElem.addEventListener('transitionend', () => {
         const offsetTop = cardElem.offsetTop;
         const scrollTop = offsetTop - 90;
-        
+
         window.scrollTo({
           top: scrollTop,
           behavior: 'smooth',

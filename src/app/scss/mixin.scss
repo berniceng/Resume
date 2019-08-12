@@ -16,3 +16,11 @@
         @content;
     }
 }
+
+@mixin tag($background-color, $margin-top, $margin-right, $margin-bottom, $margin-left, $font, $font-size, $color, $weight) {
+    padding: 2px 10px;
+    background-color: $background-color;
+    border-radius: 15px;
+    margin: $margin-top $margin-right $margin-bottom $margin-left;
+    @include font($font, $font-size, $color, $weight);
+}

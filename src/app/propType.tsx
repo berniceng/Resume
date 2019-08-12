@@ -55,6 +55,22 @@ export interface TileProps {
   desc: string;
 }
 
-export interface BookmarkProp {
+export interface BookmarkProps {
   bookmarkId: string;
+}
+
+export interface SliderProps {
+  data: RecommendationType[];
+}
+
+export interface RecommendationType {
+  name: string;
+  title: string;
+  department: string;
+  company: string;
+  desc: string[];
+}
+
+export interface SliderState {
+  index: number;
 }

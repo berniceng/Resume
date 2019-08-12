@@ -1,0 +1,48 @@
+@import './variable.scss';
+@import './mixin.scss';
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px 0;
+
+    >.slider {
+        width: 50%;
+        margin: 40px 0;
+        padding: 20px;
+        box-shadow: 0px 0px 30px 0px #d9dadb;
+        border-radius: 8px;
+        background-color: #fff;
+        
+        @include media-max(1200px) {
+            width: 80%;
+        }
+    
+        >.content {
+            >.item {
+                display: none;
+                flex-direction: column;
+        
+                >.header {
+                    width: 100%;
+                }
+        
+                >.body {
+                    >.paragraph {
+                        margin: 20px 0;
+                    }
+                }
+            }
+        
+            >.visible {
+                display: flex;
+            }
+        }
+    
+        >.buttons {
+            display: flex;
+            border-top: 1px solid $color-medium-grey;
+        }
+    }
+}
