@@ -5,10 +5,10 @@ export interface InitialProps {
   match: any;
   token: string;
   setToken: Function;
+  menuObj: MenuProps[];
 }
 
 export interface InitialState {
-  token: string;
   history: any;
 }
 
@@ -23,7 +23,11 @@ export interface RouteState {
 export interface HeaderProps {
   currentPage: string;
   className: string;
-  onClick: any;
+}
+
+export interface MenuProps {
+  KEY: string;
+  TITLE: string;
 }
 
 export interface HeaderState {
@@ -53,10 +57,6 @@ export interface TileProps {
   title: string;
   image: string;
   desc: string;
-}
-
-export interface BookmarkProps {
-  bookmarkId: string;
 }
 
 export interface SliderProps {

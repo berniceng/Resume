@@ -11,8 +11,10 @@
     transition: all ease-in 0.3s;
     cursor: pointer;
 
-    > div {
+    > a {
         padding: 24px 30px;
+        text-decoration: none;
+        @include font($font-abel, $font-m, $color-dark-grey, $weight-bold);
 
         &:hover {
             @include font($font-abel, $font-m, $color-orange, $weight-bold);
@@ -76,9 +78,11 @@
             @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
         }
 
-        div {
+        a {
             padding: 15px; 
             margin: 15px;
+            text-decoration: none;
+            @include font($font-abel, $font-m, $color-dark-grey, $weight-bold);
 
             &:hover {
                 @include font($font-abel, $font-m, $color-dark-grey, $weight-bold);
@@ -90,7 +94,7 @@
             }
         }
 
-        div:last-child {
+        a:last-child {
             bottom: 0px;
             position: absolute;
             visibility: hidden;

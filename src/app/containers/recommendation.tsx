@@ -1,7 +1,7 @@
 import React from 'react';
 import * as styles from '../scss/recommendation.scss';
-import { BookmarkProps } from '../propType';
 import Slider from '../components/slider';
+import { MENU } from '../data/constants';
 
 const data = [
   {
@@ -50,11 +50,9 @@ const data = [
   },
 ];
 
-const Recommendation = (props: BookmarkProps) => {
-  const { bookmarkId } = props;
-
+const Recommendation = () => {
   return(
-    <div id={bookmarkId} className={styles.container}>
+    <div id={MENU.RECOMMENDATION.KEY} className={styles.container}>
       <div className={styles.content}>
         <div className={styles.recommendation}>
           <div className={styles.title}>

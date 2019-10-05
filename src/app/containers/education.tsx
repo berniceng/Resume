@@ -1,7 +1,8 @@
 import React from 'react';
 import * as styles from '../scss/education.scss';
-import { CardProps, BookmarkProps } from '../propType';
+import { CardProps } from '../propType';
 import Card from '../components/card';
+import { MENU } from '../data/constants';
 
 const smu = require('../../assets/img/smu.png');
 const nyp = require('../../assets/img/nyp.png');
@@ -26,11 +27,9 @@ const data = [
   },
 ];
 
-const Education = (props: BookmarkProps) => {
-  const { bookmarkId } = props;
-
+const Education = () => {
   return(
-    <div id={bookmarkId} className={styles.container}>
+    <div id={MENU.EDU.KEY} className={styles.container}>
       <div className={styles.content}>
         <div className={styles.education}>
           <div className={styles.title}>

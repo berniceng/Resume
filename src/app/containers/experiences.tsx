@@ -1,7 +1,8 @@
 import React from 'react';
 import * as styles from '../scss/experiences.scss';
-import { CardProps, BookmarkProps } from '../propType';
+import { CardProps } from '../propType';
 import Card from '../components/card';
+import { MENU } from '../data/constants';
 
 const axa = require('../../assets/img/axa.png');
 const groupstar = require('../../assets/img/groupstar.jpg');
@@ -93,11 +94,9 @@ const data = [
   },
 ];
 
-const Experiences = (props: BookmarkProps) => {
-  const { bookmarkId } = props;
-
+const Experiences = () => {
   return(
-    <div id={bookmarkId} className={styles.container}>
+    <div id={MENU.EXP.KEY} className={styles.container}>
       <div className={styles.content}>
         <div className={styles.experiences}>
           <div className={styles.title}>

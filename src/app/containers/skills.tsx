@@ -1,6 +1,6 @@
 import React from 'react';
 import * as styles from '../scss/skills.scss';
-import { BookmarkProps } from '../propType';
+import { MENU } from '../data/constants';
 
 const data = {
   skills: [
@@ -28,11 +28,9 @@ const data = {
   ],
 };
 
-const Skills = (props: BookmarkProps) => {
-  const { bookmarkId } = props;
-
+const Skills = () => {
   return(
-    <div id={bookmarkId} className={styles.container}>
+    <div id={MENU.SKILL.KEY} className={styles.container}>
       <div className={styles.content}>
         <div className={styles.skills}>
           <div className={styles.title}>

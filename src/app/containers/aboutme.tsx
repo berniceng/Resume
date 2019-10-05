@@ -1,7 +1,8 @@
 import React from 'react';
 import * as styles from '../scss/aboutMe.scss';
-import { TileProps, BookmarkProps } from '../propType';
+import { TileProps } from '../propType';
 import Tile from '../components/tile';
+import { MENU } from '../data/constants';
 
 const email = require('../../assets/img/email-icon.png');
 const hp = require('../../assets/img/phone-icon.png');
@@ -15,9 +16,7 @@ const openInNewTab = () => {
   window.open('https://www.linkedin.com/in/bernice-ng-kai-ling', '_blank');
 };
 
-const AboutMe = (props: BookmarkProps) => {
-  const { bookmarkId } = props;
-
+const AboutMe = () => {
   const data = [
     {
       title: 'Badminton',
@@ -48,7 +47,7 @@ const AboutMe = (props: BookmarkProps) => {
   ];
 
   return(
-    <div id={bookmarkId} className={styles.container}>
+    <div id={MENU.ABOUTME.KEY} className={styles.container}>
       <div className={styles.content}>
         <div className={styles.contact}>
           <div className={styles.top}>

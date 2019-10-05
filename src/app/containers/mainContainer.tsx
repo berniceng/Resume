@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { InitialProps, MainState } from '../propType';
-import { AppContext } from '../context';
+import { MainState } from '../propType';
+// import { AppContext } from '../context';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import * as headerStyles from '../scss/header.scss';
@@ -11,30 +11,32 @@ import Education from './education';
 import Skills from './skills';
 import Experiences from './experiences';
 import Recommendation from './recommendation';
+import { MENU } from '../data/constants';
 
-const bookmarkId = [
-  'bookmark_aboutme',
-  'bookmark_education',
-  'bookmark_experiences',
-  'bookmark_skills',
-  'bookmark_recommendation',
-];
-
-class MainContainer extends Component<InitialProps, MainState>{
+class MainContainer extends Component<any, MainState>{
   state = {
     headerClass: 'false',
   };
 
+  test = (e: any) => {
+    const urlArr = window.location.href.split('/');
+    const key = urlArr[urlArr.length - 1];
+    const elem = document.getElementById(key);
+
+    this.scrollIntoView(elem);
+  }
+
   componentDidMount() {
+    window.addEventListener('popstate', this.test, false);
+
     document.addEventListener('scroll', this.showStickyHeader, false);
 
     const currentPage = this.getCurrentPage();
 
-    const main = currentPage ? currentPage : 'aboutme';
-    const elem = document.getElementById(`bookmark_${main}`);
+    const main = currentPage ? currentPage : MENU.ABOUTME.KEY;
+    const elem = document.getElementById(main);
 
     this.scrollIntoView(elem);
-    this.navigate(main);
   }
 
   componentWillUnmount() {
@@ -49,7 +51,7 @@ class MainContainer extends Component<InitialProps, MainState>{
   getCurrentPage = () => {
     const { match } = this.props;
 
-    let page = 'aboutme';
+    let page = MENU.ABOUTME.KEY;
 
     if (match && match.params.page) {
       page = match.params.page;
@@ -60,24 +62,11 @@ class MainContainer extends Component<InitialProps, MainState>{
 
   scrollIntoView = (elem: any) => {
     if (elem) {
-      elem.scrollIntoView({
+      scrollTo({
         behavior: 'smooth',
+        top: elem.offsetTop - 34,
       });
     }
-  }
-
-  onClickMenu = (e: any) => {
-    const dataKey = e.target.getAttribute('data-key');
-    const elem = document.getElementById(`bookmark_${dataKey}`);
-
-    this.scrollIntoView(elem);
-    this.navigate(dataKey);
-  }
-
-  navigate = (dataKey: string) => {
-    const { history } = this.props;
-
-    history.push(`/${dataKey}`);
   }
 
   render() {
@@ -86,14 +75,13 @@ class MainContainer extends Component<InitialProps, MainState>{
         <Header
           currentPage={this.getCurrentPage()}
           className={this.state.headerClass}
-          onClick={this.onClickMenu}
         />
         <div className={styles.main_content}>
-          <AboutMe bookmarkId={bookmarkId[0]}/>
-          <Education bookmarkId={bookmarkId[1]}/>
-          <Experiences bookmarkId={bookmarkId[2]}/>
-          <Skills bookmarkId={bookmarkId[3]}/>
-          <Recommendation bookmarkId={bookmarkId[4]}/>
+          <AboutMe/>
+          <Education/>
+          <Experiences/>
+          <Skills/>
+          <Recommendation/>
         </div>
         <Footer />
       </div>
@@ -101,7 +89,7 @@ class MainContainer extends Component<InitialProps, MainState>{
   }
 }
 
-export default withRouter(AppContext(MainContainer));
+export default withRouter(MainContainer);
 
 // function MainContainer(props: any) {
 //     const [test, setTest] = React.useState(1)

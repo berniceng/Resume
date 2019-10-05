@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { AppContext } from '../context';
-import { InitialProps, HeaderProps, HeaderState } from '../propType';
+// import { AppContext } from '../context';
+import { HeaderProps, HeaderState } from '../propType';
 import * as styles from '../scss/header.scss';
+import { MENU } from '../data/constants';
+import { withRouter } from 'react-router';
 
-class Header extends Component<HeaderProps & InitialProps, HeaderState>{
+class Header extends Component<any, HeaderState>{
   state = {
     width: window.innerWidth,
     isOpen: false,
@@ -33,38 +35,60 @@ class Header extends Component<HeaderProps & InitialProps, HeaderState>{
     });
   }
 
-  render() {
-    const { onClick, currentPage } = this.props;
+  clickMenu = (e: any) => {
+    e.preventDefault();
+    const key = e.target.href.split('#')[1];
+    const anchorTarget = document.getElementById(key);
 
+    this.addToHistory(key);
+
+    if (anchorTarget) {
+      scrollTo({
+        behavior: 'smooth',
+        top: anchorTarget.offsetTop - 64,
+      });
+    }
+  }
+
+  addToHistory = (dataKey: string) => {
+    const { history } = this.props;
+
+    history.push(`/${dataKey}`);
+  }
+
+  render() {
+    const { currentPage } = this.props;
     const menuObj = [
-      { key: 'aboutme', title: 'About Me' },
-      { key: 'education', title: 'Education' },
-      { key: 'experiences', title: 'Experiences' },
-      { key: 'skills', title: 'Skills' },
-      { key: 'recommendation', title: 'Recommendation' },
+      MENU.ABOUTME,
+      MENU.EDU,
+      MENU.EXP,
+      MENU.SKILL,
+      MENU.RECOMMENDATION,
     ];
 
     const menu = menuObj.map((obj) => {
-      if (currentPage === obj.key) {
+      if (currentPage === obj.KEY) {
         return(
-          <div
+          <a
+            href={`#${obj.KEY}`}
             className={styles.underline}
-            data-key={obj.key}
-            key={obj.key}
-            onClick={onClick}
+            data-key={obj.KEY}
+            key={obj.KEY}
+            onClick={this.clickMenu}
           >
-            {obj.title}
-          </div>
+            {obj.TITLE}
+          </a>
         );
       }
       return(
-        <div
-          data-key={obj.key}
-          key={obj.key}
-          onClick={onClick}
+        <a
+          href={`#${obj.KEY}`}
+          data-key={obj.KEY}
+          key={obj.KEY}
+          onClick={this.clickMenu}
         >
-          {obj.title}
-        </div>
+          {obj.TITLE}
+        </a>
       );
 
     });
@@ -98,4 +122,4 @@ class Header extends Component<HeaderProps & InitialProps, HeaderState>{
   }
 }
 
-export default AppContext(Header);
+export default withRouter(Header);
