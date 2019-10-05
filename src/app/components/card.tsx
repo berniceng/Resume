@@ -11,8 +11,14 @@ export default class Card extends Component<CardProps & CardType, CardState> {
 
   toggleIsOpen = (e: any) => {
     const { isOpen } = this.state;
-    const cardElem = e.currentTarget.parentElement.parentElement;
-    const elem = e.currentTarget.parentElement.nextSibling;
+    let cardElem: any;
+    let elem: any;
+
+    // if(){
+
+    // }
+    cardElem = e.currentTarget.parentElement.parentElement;
+    elem = e.currentTarget.parentElement.nextSibling;
 
     if (!isOpen && elem) {
       const height = elem.firstChild.scrollHeight;
@@ -101,6 +107,7 @@ export default class Card extends Component<CardProps & CardType, CardState> {
           <div
             className={styles.arrow}
             onClick={this.toggleIsOpen}
+            onTouchEnd={this.toggleIsOpen}
           >
             {showArrow}
           </div>

@@ -40,14 +40,10 @@
     @include font($font-abel, $font-m, $color-dark-grey, $weight-light);
     display: flex;
     position: fixed;
-    width: 100%;
     transition: all ease-in 0.3s;
-
-    @include media-max(875px){
-        height: 100%;
-    }
+    cursor: pointer;
     
-    .burger {
+    >.burger {
         z-index: 10;
         padding: 10px;
         height: 28px;
@@ -67,30 +63,27 @@
     }
     
     .sidebar {
-        z-index: 10;
+        visibility: hidden;
+        z-index: 0;
         width: 0px;
         overflow-x: hidden;
         background-color: $color-white;
-        @include font($font-abel, $font-m, $color-dark-grey, $weight-light);
         transition: width ease 0.2s;
-
-        @include media-max(425px){
-            @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
-        }
 
         a {
             padding: 15px; 
             margin: 15px;
             text-decoration: none;
+            
             @include font($font-abel, $font-m, $color-dark-grey, $weight-bold);
 
-            &:hover {
-                @include font($font-abel, $font-m, $color-dark-grey, $weight-bold);
-                background-color: $color-x-light-grey;
+            @include media-max(425px){
+                font-size: $font-s;
+            }
 
-                @include media-max(425px){
-                    @include font($font-abel, $font-s, $color-dark-grey, $weight-bold);
-                }
+            &:hover {
+                color: $color-medium-grey;
+                background-color: $color-x-light-grey;
             }
         }
 
@@ -116,7 +109,7 @@
         }
 
         .underline {
-            @include font($font-abel, $font-m, $color-orange, $weight-bold);
+            color: $color-orange;
 
             &:hover {
                 @include font($font-abel, $font-m, $color-orange, $weight-bold);
@@ -140,6 +133,9 @@
 }
 
 .open {
+    width: 100%;
+    height: 100%;
+
     .burger {
         box-shadow: 10px 10px 30px -17px $color-medium-grey;
         background-color: $color-white;
@@ -162,11 +158,12 @@
     }
 
     .sidebar {
+        visibility: visible;
+        display: flex;
+        z-index: 10;
         width: 50%;
-        
-        >div:last-child {
-            visibility: visible;
-        }
+        height: inherit;
+        flex-direction: column;
     }
 
     .background {
