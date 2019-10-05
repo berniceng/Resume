@@ -97,11 +97,11 @@ export default class Card extends Component<CardProps & CardType, CardState> {
             <img src={logo}/>
             <div>
               <div className={styles.school}>
-                  {title}
-                </div>
+                {title}
+              </div>
               <div className={styles.cert}>
-                  {subtitle}
-                </div>
+                {subtitle}
+              </div>
             </div>
           </div>
           <div

@@ -13,22 +13,27 @@
         width: 80%;
     }
 
+    >div {
+        @include font($font-abel, $font-l, $color-white, $weight-bold);
+
+        @include media-max(500px){
+            font-size: $font-m;
+        }
+    }
+
     .period {
         padding: 20px;
         background-color: $color-pale-blue;
-        @include font($font-abel, $font-xxl, $color-white, $weight-bold);
     }
 
     .period-intern {
         padding: 20px;
         background-color: $color-green;
-        @include font($font-abel, $font-xxl, $color-white, $weight-bold);
     }
 
     .period-ft {
         padding: 20px;
         background-color: $color-light-orange;
-        @include font($font-abel, $font-xxl, $color-white, $weight-bold);
     }
 
     .header {
@@ -39,7 +44,7 @@
             padding: 20px;
             display: flex;
             flex-direction: row;
-            align-items: center;
+            align-items: start;
             width: 90%;
 
             img {
@@ -49,7 +54,11 @@
         
             > div {
                 .school {
-                    @include font($font-abel, $font-xl, $color-medium-grey, $weight-bold);
+                    @include font($font-abel, $font-l, $color-medium-grey, $weight-bold);
+
+                    @include media-max(500px){
+                        font-size: $font-m;
+                    }
                 }
 
                 .cert {
@@ -77,12 +86,18 @@
         padding: 0 20px 0 67px;
         transition: height 0.15s ease;
 
+        @include media-max(500px){
+            padding-left: 0;
+        }
+
         .desc {
             @include font($font-abel, $font-s, $color-medium-grey, $weight-light);
         }
 
         .tools {
-            padding-left: 24px;
+            @include media-min(500px){
+                padding-left: 24px;
+            }
 
             > .title {
                 @include font($font-abel, $font-s, $color-medium-grey, $weight-bold);
@@ -91,10 +106,12 @@
             > ul {
                 list-style-type: none;
                 padding-left: 0;
+                margin-top: 10px;
                 display: flex;
+                flex-wrap: wrap;
 
                 > li {
-                    @include tag($color-pale-blue, 0, 10px, 0, 0, $font-abel, $font-s, $color-white, $weight-light);
+                    @include tag($color-pale-blue, 10px, 10px, 0, 0, $font-abel, $font-s, $color-white, $weight-light);
                 }
             }
         }
