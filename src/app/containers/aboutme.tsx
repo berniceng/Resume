@@ -4,13 +4,13 @@ import { TileProps } from '../propType';
 import Tile from '../components/tile';
 import { MENU } from '../data/constants';
 
-const email = require('../../assets/img/email-icon.png');
-const hp = require('../../assets/img/phone-icon.png');
-const linkedin = require('../../assets/img/linkedin-icon.png');
-const profile = require('../../assets/img/profile-pic.png');
-const badminton = require('../../assets/img/badminton.png');
-const dance = require('../../assets/img/dance.png');
-const code = require('../../assets/img/code.jpg');
+const email = require('../../../public/assets/img/email-icon.png');
+const hp = require('../../../public/assets/img/phone-icon.png');
+const linkedin = require('../../../public/assets/img/linkedin-icon.png');
+const profile = require('../../../public/assets/img/profile-pic.png');
+const badminton = require('../../../public/assets/img/badminton.png');
+const dance = require('../../../public/assets/img/dance.png');
+const code = require('../../../public/assets/img/code.jpg');
 
 const openInNewTab = () => {
   window.open('https://www.linkedin.com/in/bernice-ng-kai-ling', '_blank');

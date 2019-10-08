@@ -5,10 +5,10 @@ import Card from '../components/card';
 import { MENU } from '../data/constants';
 import { AppContext } from '../context';
 
-const axa = require('../../assets/img/axa.png');
-const groupstar = require('../../assets/img/groupstar.jpg');
-const ncs = require('../../assets/img/ncs.png');
-const sap = require('../../assets/img/sap.png');
+const axa = require('../../../public/assets/img/axa.png');
+const groupstar = require('../../../public/assets/img/groupstar.jpg');
+const ncs = require('../../../public/assets/img/ncs.png');
+const sap = require('../../../public/assets/img/sap.png');
 const data = [
   {
     range: 'May 2019 - August 2019',
