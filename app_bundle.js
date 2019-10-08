@@ -30508,6 +30508,58 @@ module.exports = __webpack_require__.p + "e10e6e822429b362ee6103760b7528ae.woff"
 
 /***/ }),
 
+/***/ "./src/assets/img sync recursive \\.png|jpg$":
+/*!****************************************!*\
+  !*** ./src/assets/img sync \.png|jpg$ ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./axa.png": "./src/assets/img/axa.png",
+	"./background-laptop-2.jpg": "./src/assets/img/background-laptop-2.jpg",
+	"./background.jpg": "./src/assets/img/background.jpg",
+	"./badminton.png": "./src/assets/img/badminton.png",
+	"./code.jpg": "./src/assets/img/code.jpg",
+	"./dance.png": "./src/assets/img/dance.png",
+	"./email-icon.png": "./src/assets/img/email-icon.png",
+	"./experience.jpg": "./src/assets/img/experience.jpg",
+	"./groupstar.jpg": "./src/assets/img/groupstar.jpg",
+	"./learning-journey.jpg": "./src/assets/img/learning-journey.jpg",
+	"./linkedin-icon.png": "./src/assets/img/linkedin-icon.png",
+	"./logo.png": "./src/assets/img/logo.png",
+	"./ncs.png": "./src/assets/img/ncs.png",
+	"./nyp.png": "./src/assets/img/nyp.png",
+	"./phone-icon.png": "./src/assets/img/phone-icon.png",
+	"./profile-pic.png": "./src/assets/img/profile-pic.png",
+	"./recommendation.jpg": "./src/assets/img/recommendation.jpg",
+	"./sap.png": "./src/assets/img/sap.png",
+	"./skill.jpg": "./src/assets/img/skill.jpg",
+	"./smu.png": "./src/assets/img/smu.png"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./src/assets/img sync recursive \\.png|jpg$";
+
+/***/ }),
+
 /***/ "./src/assets/img/axa.png":
 /*!********************************!*\
   !*** ./src/assets/img/axa.png ***!
@@ -30527,6 +30579,17 @@ module.exports = __webpack_require__.p + "c7bfe6a6cf8c4ccb64f8791b6011a2d9.png";
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "d03ce518b7315268767322d6b2f28836.jpg";
+
+/***/ }),
+
+/***/ "./src/assets/img/background.jpg":
+/*!***************************************!*\
+  !*** ./src/assets/img/background.jpg ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "5cdeaefc86fa905cd1711fe0e81f8e83.jpg";
 
 /***/ }),
 
@@ -30615,6 +30678,17 @@ module.exports = __webpack_require__.p + "f7604108b8f2375e6c31ba3edca3aec6.jpg";
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8696abca799ff82551f619e0acafc3fd.png";
+
+/***/ }),
+
+/***/ "./src/assets/img/logo.png":
+/*!*********************************!*\
+  !*** ./src/assets/img/logo.png ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "09cedda52f3544bacf16fd0b318cee33.png";
 
 /***/ }),
 
@@ -30721,7 +30795,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app */ "./src/app/index.tsx");
 // import './styles.scss';
-function renderDOM(Component){react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Component,null),document.getElementById('root'));}renderDOM(_app__WEBPACK_IMPORTED_MODULE_2__["default"]);
+__webpack_require__("./src/assets/img sync recursive \\.png|jpg$");function renderDOM(Component){react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Component,null),document.getElementById('root'));}renderDOM(_app__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
 /***/ })
 
