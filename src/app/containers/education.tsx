@@ -3,6 +3,7 @@ import * as styles from '../scss/education.scss';
 import { CardProps } from '../propType';
 import Card from '../components/card';
 import { MENU } from '../data/constants';
+import { AppContext } from '../context';
 
 const smu = require('../../assets/img/smu.png');
 const nyp = require('../../assets/img/nyp.png');
@@ -50,4 +51,4 @@ const Education = () => {
   );
 };
 
-export default Education;
+export default AppContext(Education);

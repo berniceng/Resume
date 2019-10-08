@@ -48,6 +48,8 @@
         padding: 10px;
         height: 28px;
         border-bottom-right-radius: 16px;
+        background-color: $color-white;
+        box-shadow: 10px 10px 30px -17px $color-medium-grey;
 
         span {
             display: block;

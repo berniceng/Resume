@@ -3,6 +3,7 @@ import * as styles from '../scss/experiences.scss';
 import { CardProps } from '../propType';
 import Card from '../components/card';
 import { MENU } from '../data/constants';
+import { AppContext } from '../context';
 
 const axa = require('../../assets/img/axa.png');
 const groupstar = require('../../assets/img/groupstar.jpg');
@@ -117,4 +118,4 @@ const Experiences = () => {
   );
 };
 
-export default Experiences;
+export default AppContext(Experiences);

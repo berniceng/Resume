@@ -12,6 +12,10 @@ export interface InitialState {
   history: any;
 }
 
+export interface ResizeWidthType {
+  width: number;
+}
+
 export interface MainState {
   headerClass: string;
 }
@@ -30,8 +34,7 @@ export interface MenuProps {
   TITLE: string;
 }
 
-export interface HeaderState {
-  width: number;
+export interface IsOpenType {
   isOpen: boolean;
 }
 
@@ -47,11 +50,6 @@ export interface CardProps {
 
 export interface CardType {
   type: string;
-}
-
-export interface CardState {
-  isOpen: boolean;
-  width: number;
 }
 
 export interface TileProps {

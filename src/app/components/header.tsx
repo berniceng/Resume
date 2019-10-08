@@ -1,33 +1,14 @@
 import React, { Component } from 'react';
-// import { AppContext } from '../context';
-import { HeaderProps, HeaderState } from '../propType';
+import { AppContext } from '../context';
+import { IsOpenType, InitialState, HeaderProps, ResizeWidthType } from '../propType';
 import * as styles from '../scss/header.scss';
 import { MENU } from '../data/constants';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 
-class Header extends Component<any, HeaderState>{
+class Header extends Component<HeaderProps & InitialState & ResizeWidthType, IsOpenType>{
   state = {
-    width: window.innerWidth,
     isOpen: false,
   };
-
-  componentWillMount() {
-    this.onResize();
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', this.onResize);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.onResize);
-  }
-
-  onResize = () => {
-    this.setState({
-      width: window.innerWidth,
-    });
-  }
 
   toggleBurgerMenu = () => {
     this.setState({
@@ -40,12 +21,15 @@ class Header extends Component<any, HeaderState>{
     const key = e.target.href.split('#')[1];
     const anchorTarget = document.getElementById(key);
 
+    const { width } = this.props;
+
     this.addToHistory(key);
 
     if (anchorTarget) {
+      const top = width > 849 ? anchorTarget.offsetTop - 34 : anchorTarget.offsetTop;
       scrollTo({
+        top,
         behavior: 'smooth',
-        top: anchorTarget.offsetTop - 64,
       });
     }
   }
@@ -57,7 +41,7 @@ class Header extends Component<any, HeaderState>{
   }
 
   render() {
-    const { currentPage } = this.props;
+    const { currentPage, width } = this.props;
     const menuObj = [
       MENU.ABOUTME,
       MENU.EDU,
@@ -94,7 +78,7 @@ class Header extends Component<any, HeaderState>{
     });
 
     return(
-      this.state.width > 849
+      width > 849
       ?
       (
         <div className={`${styles.header} ${this.props.className}`}>
@@ -122,4 +106,4 @@ class Header extends Component<any, HeaderState>{
   }
 }
 
-export default withRouter(Header);
+export default AppContext(Header);

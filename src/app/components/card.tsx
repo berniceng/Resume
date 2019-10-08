@@ -1,23 +1,18 @@
 import React, { Component } from 'react';
-import { CardState, CardProps, CardType } from '../propType';
+import { IsOpenType, CardProps, CardType, InitialState, ResizeWidthType } from '../propType';
 import * as styles from '../scss/card.scss';
 import ArrowUp from '../components/arrow/arrowUp';
 import ArrowDown from '../components/arrow/arrowDown';
+import { AppContext } from '../context';
 
-export default class Card extends Component<CardProps & CardType, CardState> {
+class Card extends Component<CardProps & CardType & ResizeWidthType, IsOpenType> {
   state = {
     isOpen: false,
-    width: window.innerWidth,
   };
 
-  onResize = () => {
-    this.setState({
-      width: window.innerWidth,
-    });
-  }
-
   toggleIsOpen = (e: any) => {
-    const { isOpen, width } = this.state;
+    const { isOpen } = this.state;
+    const { width } = this.props;
     let cardElem: any;
     let elem: any;
 
@@ -48,18 +43,6 @@ export default class Card extends Component<CardProps & CardType, CardState> {
     this.setState({
       isOpen: !isOpen,
     });
-  }
-
-  componentWillMount() {
-    this.onResize();
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', this.onResize);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.onResize);
   }
 
   render() {
@@ -133,3 +116,5 @@ export default class Card extends Component<CardProps & CardType, CardState> {
     );
   }
 }
+
+export default AppContext(Card);
