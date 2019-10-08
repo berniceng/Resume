@@ -7,16 +7,20 @@ import ArrowDown from '../components/arrow/arrowDown';
 export default class Card extends Component<CardProps & CardType, CardState> {
   state = {
     isOpen: false,
+    width: window.innerWidth,
   };
 
+  onResize = () => {
+    this.setState({
+      width: window.innerWidth,
+    });
+  }
+
   toggleIsOpen = (e: any) => {
-    const { isOpen } = this.state;
+    const { isOpen, width } = this.state;
     let cardElem: any;
     let elem: any;
 
-    // if(){
-
-    // }
     cardElem = e.currentTarget.parentElement.parentElement;
     elem = e.currentTarget.parentElement.nextSibling;
 
@@ -27,8 +31,9 @@ export default class Card extends Component<CardProps & CardType, CardState> {
       elem.style.paddingBottom = '25px';
 
       cardElem.addEventListener('transitionend', () => {
+
         const offsetTop = cardElem.offsetTop;
-        const scrollTop = offsetTop - 90;
+        const scrollTop = width > 849 ? offsetTop - 90 : offsetTop;
 
         window.scrollTo({
           top: scrollTop,
@@ -43,6 +48,18 @@ export default class Card extends Component<CardProps & CardType, CardState> {
     this.setState({
       isOpen: !isOpen,
     });
+  }
+
+  componentWillMount() {
+    this.onResize();
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.onResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
   }
 
   render() {
@@ -107,7 +124,6 @@ export default class Card extends Component<CardProps & CardType, CardState> {
           <div
             className={styles.arrow}
             onClick={this.toggleIsOpen}
-            onTouchEnd={this.toggleIsOpen}
           >
             {showArrow}
           </div>

@@ -51,6 +51,7 @@ export interface CardType {
 
 export interface CardState {
   isOpen: boolean;
+  width: number;
 }
 
 export interface TileProps {

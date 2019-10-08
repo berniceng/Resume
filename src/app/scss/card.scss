@@ -87,7 +87,7 @@
         transition: height 0.15s ease;
 
         @include media-max(500px){
-            padding-left: 0;
+            padding-left: 27px;
         }
 
         .desc {
