@@ -15,6 +15,7 @@ const data = {
     'HTML',
     'PHP',
     'Java',
+    'Jersey',
     'MySQL',
     'Oracle Database',
     'Design Thinking',
@@ -34,7 +35,7 @@ const Skills = () => {
       <div className={styles.content}>
         <div className={styles.skills}>
           <div className={styles.title}>
-            Abilities
+            Skillset
           </div>
           <div className={styles.summary}>
             <div className={styles.skills}>

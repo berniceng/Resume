@@ -12,31 +12,16 @@ import Skills from './skills';
 import Experiences from './experiences';
 import Recommendation from './recommendation';
 import { MENU } from '../data/constants';
+import { AppContext } from '../context';
 
 class MainContainer extends Component<any, MainState>{
   state = {
     headerClass: 'false',
   };
 
-  test = (e: any) => {
-    const urlArr = window.location.href.split('/');
-    const key = urlArr[urlArr.length - 1];
-    const elem = document.getElementById(key);
-
-    this.scrollIntoView(elem);
-  }
-
   componentDidMount() {
-    window.addEventListener('popstate', this.test, false);
-
+    // window.addEventListener('popstate', this.test, false);
     document.addEventListener('scroll', this.showStickyHeader, false);
-
-    const currentPage = this.getCurrentPage();
-
-    const main = currentPage ? currentPage : MENU.ABOUTME.KEY;
-    const elem = document.getElementById(main);
-
-    this.scrollIntoView(elem);
   }
 
   componentWillUnmount() {
@@ -60,15 +45,6 @@ class MainContainer extends Component<any, MainState>{
     return page;
   }
 
-  scrollIntoView = (elem: any) => {
-    if (elem) {
-      scrollTo({
-        behavior: 'smooth',
-        top: elem.offsetTop - 34,
-      });
-    }
-  }
-
   render() {
     return(
       <div className={styles.container}>
@@ -89,7 +65,7 @@ class MainContainer extends Component<any, MainState>{
   }
 }
 
-export default withRouter(MainContainer);
+export default withRouter(AppContext(MainContainer));
 
 // function MainContainer(props: any) {
 //     const [test, setTest] = React.useState(1)

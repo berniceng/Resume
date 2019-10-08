@@ -89,27 +89,6 @@
             }
         }
 
-        a:last-child {
-            bottom: 0px;
-            position: absolute;
-            visibility: hidden;
-
-            &:after {
-                content: '\00bb';
-                position: relative;
-                padding-left: 0px;
-                visibility: hidden;
-                transition: all ease-in 0.1s;
-            }
-
-            &:hover {
-                &:after {
-                    visibility: visible;
-                    padding-left: 10px;
-                }
-            }
-        }
-
         .underline {
             color: $color-orange;
 

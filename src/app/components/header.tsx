@@ -3,7 +3,6 @@ import { AppContext } from '../context';
 import { IsOpenType, InitialState, HeaderProps, ResizeWidthType } from '../propType';
 import * as styles from '../scss/header.scss';
 import { MENU } from '../data/constants';
-import { withRouter } from 'react-router-dom';
 
 class Header extends Component<HeaderProps & InitialState & ResizeWidthType, IsOpenType>{
   state = {
@@ -18,26 +17,38 @@ class Header extends Component<HeaderProps & InitialState & ResizeWidthType, IsO
 
   clickMenu = (e: any) => {
     e.preventDefault();
+    const { width } = this.props;
     const key = e.target.href.split('#')[1];
     const anchorTarget = document.getElementById(key);
-
-    const { width } = this.props;
+    const top = width > 849 ? 72 : 0;
 
     this.addToHistory(key);
-
-    if (anchorTarget) {
-      const top = width > 849 ? anchorTarget.offsetTop - 34 : anchorTarget.offsetTop;
-      scrollTo({
-        top,
-        behavior: 'smooth',
-      });
-    }
+    this.scrollIntoView(anchorTarget as HTMLElement, top);
   }
 
   addToHistory = (dataKey: string) => {
     const { history } = this.props;
 
     history.push(`/${dataKey}`);
+  }
+
+  scrollIntoView = (elem: HTMLElement, minusTop = 38) => {
+    if (elem) {
+      scrollTo({
+        behavior: 'smooth',
+        top: elem.offsetTop - minusTop,
+      });
+    }
+  }
+
+  componentDidMount() {
+    const { currentPage, width } = this.props;
+    const main = currentPage ? currentPage : MENU.ABOUTME.KEY;
+    const elem = document.getElementById(main);
+
+    if (width > 849) {
+      this.scrollIntoView(elem as HTMLElement);
+    }
   }
 
   render() {

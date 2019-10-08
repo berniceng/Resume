@@ -26,11 +26,24 @@
         
                 >.header {
                     width: 100%;
+                    @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
+
+                    >.name{
+                        font-size: $font-l;
+                        font-weight: bold;
+                    }
+
+                    >.title{
+                        font-size: $font-m;
+                    }
                 }
         
                 >.body {
+                    border-top: 1px solid $color-light-grey;
+
                     >.paragraph {
                         margin: 20px 0;
+                        @include font($font-abel, $font-s, $color-dark-grey, $weight-light);
                     }
                 }
             }
@@ -42,7 +55,25 @@
     
         >.buttons {
             display: flex;
-            border-top: 1px solid $color-medium-grey;
+            align-items: center;
+            justify-content: center;
+            border-top: 1px solid $color-light-grey;
+            @include font($font-abel, $font-m, $color-dark-grey, $weight-light);
+
+            >div {
+                width: 82%;
+                text-align: center;
+            }
+
+            :first-child, :last-child {
+                &:hover {
+                    background-color: $color-x-light-grey;;
+                }
+
+                >svg {
+                    overflow: visible;
+                }
+            }
         }
     }
 }

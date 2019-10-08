@@ -9,6 +9,32 @@ class Slider extends Component<SliderProps, SliderState>{
     index: 0,
   };
 
+  slide = (direction: string) => (e: any) => {
+    const { index } = this.state;
+    const { data } = this.props;
+
+    let newIndex;
+    const slider = document.getElementById('slider-recommendation');
+    const sliderList = slider ? slider.children : null;
+    const currElem = sliderList ? sliderList[index] as HTMLElement : null;
+
+    if (direction === 'left' && sliderList && currElem) {
+      newIndex = index === 0 ? data.length - 1 : index - 1;
+      const prevElem = sliderList[newIndex] as HTMLElement;
+      currElem.style.display = 'none';
+      prevElem.style.display = 'block';
+    } else if (direction === 'right' && sliderList && currElem) {
+      newIndex = index === data.length - 1 ? 0 : index + 1;
+      const nextElem = sliderList[newIndex] as HTMLElement;
+      currElem.style.display = 'none';
+      nextElem.style.display = 'block';
+    }
+
+    this.setState({
+      index: newIndex,
+    });
+  }
+
   render() {
     const { data } = this.props;
     const { index } = this.state;
@@ -16,7 +42,7 @@ class Slider extends Component<SliderProps, SliderState>{
     return(
       <div className={styles.container}>
         <div className={styles.slider}>
-          <div className={styles.content}>
+          <div id="slider-recommendation" className={styles.content}>
             {
               data.map((recommendation: RecommendationType, i: number) => {
                 return (
@@ -49,7 +75,7 @@ class Slider extends Component<SliderProps, SliderState>{
             }
           </div>
           <div className={styles.buttons}>
-            <div>
+            <div onClick={this.slide('left')}>
               {
                 ArrowLeft('#6e6e70', '32px', '32px')
               }
@@ -59,7 +85,7 @@ class Slider extends Component<SliderProps, SliderState>{
                 `${index + 1} / ${data.length}`
               }
             </div>
-            <div>
+            <div onClick={this.slide('right')}>
               {
                 ArrowRight('#6e6e70', '32px', '32px')
               }

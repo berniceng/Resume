@@ -71,5 +71,5 @@ export interface RecommendationType {
 }
 
 export interface SliderState {
-  index: number;
+  index: number|undefined;
 }
