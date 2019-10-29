@@ -12,6 +12,11 @@
     @include media-max(1200px) {
         width: 80%;
     }
+    
+    @include media-max(361px) {
+        box-shadow: 0px 0px 5px 0px $color-light-grey;
+        width: 90%;
+    }
 
     >div {
         @include font($font-abel, $font-l, $color-white, $weight-bold);
@@ -53,16 +58,27 @@
             }
         
             > div {
+                width: 90%;
+
                 .school {
                     @include font($font-abel, $font-l, $color-medium-grey, $weight-bold);
 
                     @include media-max(500px){
                         font-size: $font-m;
                     }
+
+                    @include media-max(361px){
+                        font-size: $font-s;
+                    }
                 }
 
                 .cert {
                     @include font($font-abel, $font-m, $color-medium-grey, $weight-light);
+                    
+
+                    @include media-max(361px){
+                        font-size: $font-s;
+                    }
                 }
             }
         }
@@ -77,6 +93,10 @@
             &:hover {
                 background-color: $color-light-grey;
             }
+        }
+
+        .hideArrow {
+            display: none;
         }
     }
 

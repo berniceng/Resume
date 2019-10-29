@@ -28,7 +28,7 @@
                 };
 
                 @include media-max(361px){
-                    @include font($font-abel, $font-xxl, $color-dark-grey, $weight-bold); 
+                    @include font($font-abel, $font-xl, $color-dark-grey, $weight-bold); 
                 };
             }
 

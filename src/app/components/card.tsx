@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { IsOpenType, CardProps, CardType, InitialState, ResizeWidthType } from '../propType';
+import { IsOpenType, CardProps, CardType, ResizeWidthType } from '../propType';
 import * as styles from '../scss/card.scss';
 import ArrowUp from '../components/arrow/arrowUp';
 import ArrowDown from '../components/arrow/arrowDown';
@@ -53,7 +53,6 @@ class Card extends Component<CardProps & CardType & ResizeWidthType, IsOpenType>
       ArrowUp('#6e6e70', '32px', '32px')
       :
       ArrowDown('#6e6e70', '32px', '32px');
-    const showArrow = collapsible ? arrow : null;
 
     let headerStyle = type === 'education' ? styles.period : styles['period-ft'];
     headerStyle = subtitle.indexOf('Internship') > -1 ? styles['period-intern'] : headerStyle;
@@ -105,10 +104,10 @@ class Card extends Component<CardProps & CardType & ResizeWidthType, IsOpenType>
             </div>
           </div>
           <div
-            className={styles.arrow}
+            className={`${styles.arrow} ${collapsible ? null : styles.hideArrow}`}
             onClick={this.toggleIsOpen}
           >
-            {showArrow}
+            {arrow}
           </div>
         </div>
         {content}
