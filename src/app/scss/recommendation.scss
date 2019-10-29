@@ -23,8 +23,12 @@
                 min-height: inherit;
                 width: 100%;
 
-                @include media-max(345px){
-                    @include font($font-abel, $font-xxs-title, $color-dark-grey, $weight-bold); 
+                @include media-max(460px){
+                    @include font($font-abel, $font-xxxl, $color-dark-grey, $weight-bold); 
+                };
+
+                @include media-max(361px){
+                    @include font($font-abel, $font-xxl, $color-dark-grey, $weight-bold); 
                 };
             }
         }
