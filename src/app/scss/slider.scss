@@ -58,6 +58,7 @@
             align-items: center;
             justify-content: center;
             border-top: 1px solid $color-light-grey;
+            padding-top: 14px;
             @include font($font-abel, $font-m, $color-dark-grey, $weight-light);
 
             >div {

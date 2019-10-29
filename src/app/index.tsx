@@ -5,6 +5,8 @@ import { InitialState, ResizeWidthType } from './propType';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
+require.context('../assets/img', true, /\.(png|svg|jpg|gif|woff|eot)$/);
+
 export default class App extends React.Component<{}, InitialState & ResizeWidthType> {
 
   state = {
