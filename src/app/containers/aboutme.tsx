@@ -30,9 +30,9 @@ const AboutMe = () => {
     {
       title: 'Dance',
       image: dance,
-      desc: 'I am a dancer in the church I go to. \
-      When I was first asked to join dance in church, I didn\'t have any kind \
-      of dance background even until now, I don\'t go for any dance classes..',
+      desc: 'Dancing is another thing that I like to do. \
+      I am involved in the dance ministry in church and sometimes involved \
+      in dance performance in the church events.',
     },
     {
       title: 'Code',
@@ -63,10 +63,6 @@ const AboutMe = () => {
                   <div>
                     <img src={email}/>
                     <div>bernice-ng@hotmail.com</div>
-                  </div>
-                  <div>
-                    <img src={hp}/>
-                    <div>+65 91195763</div>
                   </div>
                   <div>
                     <img src={linkedin}/>
