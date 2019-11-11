@@ -30009,7 +30009,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scss_recommendation_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scss_recommendation_scss__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/slider */ "./src/app/components/slider.tsx");
 /* harmony import */ var _data_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data/constants */ "./src/app/data/constants.tsx");
-var data=[{name:'GJOLAJ Mirash',title:'Manager, Tech Lead',department:'Digital Operations',company:'AXA Insurance Pte Ltd',desc:['During Bernice\'s internship, she has shown dedication and passion \
+var data=[{name:'Tew Kar Leong',title:'Senior Researcher',department:'Research & Innovation, Custom Development & Strategic Projects',company:'SAP Asia Pte Ltd',desc:['Ms Ng was a very committed, motivated and flexible student trainee, \
+      who showed a high degree of initiative. Se is a quick learner and takes \
+      an effective, methodical approach to her work. She acquired good specialist \
+      which she always applied in a capable and efficient manner. Ms Ng performed \
+      all of her tasks independently, purposefully and carefully. She always performed \
+      her tasks to our full satisfaction.',"Her conduct toward superiors, colleagues and customers was very friendly, \
+      helpful and correct, and she actively fostered effective cooperation and a \
+      positive team spirit. We would like to thank Ms Ng for her effective cooperation \
+      and wish her every success in her studies and in the future."]},{name:'GJOLAJ Mirash',title:'Manager, Tech Lead',department:'Digital Operations',company:'AXA Insurance Pte Ltd',desc:['During Bernice\'s internship, she has shown dedication and passion \
       for her job together with professionalism and curiosity.','She was able to quickly learn all the concept she was not familiar \
       with and her curiosity helped her to accomplish the tasks she was working \
       on. As a team player, Bernice worked with two product teams to increase \
