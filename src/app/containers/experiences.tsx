@@ -9,7 +9,19 @@ const axa = require('../../assets/img/axa.png');
 const groupstar = require('../../assets/img/groupstar.jpg');
 const ncs = require('../../assets/img/ncs.png');
 const sap = require('../../assets/img/sap.png');
+const shopee = require('../../assets/img/shopee.png');
 const data = [
+  {
+    range: 'May 2020 - Now',
+    logo: shopee,
+    title: 'Shopee',
+    subtitle: 'System Quality Assurance Engineer',
+    collapsible: false,
+    desc: [],
+    tools: [
+      'Golang',
+    ],
+  },
   {
     range: 'May 2019 - August 2019',
     logo: axa,

@@ -33940,7 +33940,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/card */ "./src/app/components/card.tsx");
 /* harmony import */ var _data_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data/constants */ "./src/app/data/constants.tsx");
 /* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../context */ "./src/app/context.tsx");
-function _extends(){_extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};return _extends.apply(this,arguments);}var axa=__webpack_require__(/*! ../../assets/img/axa.png */ "./src/assets/img/axa.png");var groupstar=__webpack_require__(/*! ../../assets/img/groupstar.jpg */ "./src/assets/img/groupstar.jpg");var ncs=__webpack_require__(/*! ../../assets/img/ncs.png */ "./src/assets/img/ncs.png");var sap=__webpack_require__(/*! ../../assets/img/sap.png */ "./src/assets/img/sap.png");var data=[{range:'May 2019 - August 2019',logo:axa,title:'AXA Insurance Singapore',subtitle:'Full Stack Developer (Internship)',collapsible:true,desc:['Modified and implemented User Interface using SASS and ReactJS','Write and modified tests to improve coverage using cypress and jest'],tools:['SASS','ReactJS','Cypress','Jest','CSS Modules']},{range:'May 2018 - August 2018',logo:groupstar,title:'GroupStar',subtitle:'Web Developer (Internship)',collapsible:true,desc:['Implemented new features (e.g. image cropping tool, \
+function _extends(){_extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};return _extends.apply(this,arguments);}var axa=__webpack_require__(/*! ../../assets/img/axa.png */ "./src/assets/img/axa.png");var groupstar=__webpack_require__(/*! ../../assets/img/groupstar.jpg */ "./src/assets/img/groupstar.jpg");var ncs=__webpack_require__(/*! ../../assets/img/ncs.png */ "./src/assets/img/ncs.png");var sap=__webpack_require__(/*! ../../assets/img/sap.png */ "./src/assets/img/sap.png");var shopee=__webpack_require__(/*! ../../assets/img/shopee.png */ "./src/assets/img/shopee.png");var data=[{range:'May 2020 - Now',logo:shopee,title:'Shopee',subtitle:'System Quality Assurance Engineer',collapsible:false,desc:[],tools:['Golang']},{range:'May 2019 - August 2019',logo:axa,title:'AXA Insurance Singapore',subtitle:'Full Stack Developer (Internship)',collapsible:true,desc:['Modified and implemented User Interface using SASS and ReactJS','Write and modified tests to improve coverage using cypress and jest'],tools:['SASS','ReactJS','Cypress','Jest','CSS Modules']},{range:'May 2018 - August 2018',logo:groupstar,title:'GroupStar',subtitle:'Web Developer (Internship)',collapsible:true,desc:['Implemented new features (e.g. image cropping tool, \
         automatic video stitching tool, access control)','Collaborated with team members on documentation updates','Developed documents for tests','Designed detailed UI wireframes','Communicated information and comments between the team and the developers'],tools:['PHP','Javascript','ReactJS','FFMPEG']},{range:'March 2018 - August 2015',logo:ncs,title:'NCS',subtitle:'Java Developer',collapsible:true,desc:['Developed triggers for audit trail purposes','Updated the User Manual based on the modified system','Modified functions (e.g. Retrieval and inserting of \
         clob data), developed test specification and testing \
         of those functions'],tools:['Java','Oracle Database','Batch Scripts']},{range:'April 2013 - October 2013',logo:sap,title:'SAP',subtitle:'Developer (Internship)',collapsible:true,desc:['Made suggestions on analytics to be added','Developed web services (REST API)','Developed User Interfaces based on design using SAPUI5','Conducted market survey to understand citizens’ concerns \
@@ -34046,7 +34046,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../scss/skills.scss */ "./src/app/scss/skills.scss");
 /* harmony import */ var _scss_skills_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _data_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data/constants */ "./src/app/data/constants.tsx");
-var data={skills:['Git','Cypress','Jest','ReactJs','Javascript','SASS','LESS CSS','CSS','HTML','PHP','Java','Jersey','MySQL','Oracle Database','Design Thinking'],tools:['NotePad++','Eclipse','Visual Studio Code','Jira','FileZilla']};var Skills=function Skills(){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{id:_data_constants__WEBPACK_IMPORTED_MODULE_2__["MENU"].SKILL.KEY,className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["container"]},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["content"]},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["skills"]},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["title"]},"Skillset"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["summary"]},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["skills"]},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["subtitle"]},"Skills"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul",null,data.skills.map(function(skill,i){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["item"],key:i},skill);}))),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["tools"]},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["subtitle"]},"Tools"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul",null,data.tools.map(function(skill,i){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["item"],key:i},skill);})))))));};/* harmony default export */ __webpack_exports__["default"] = (Skills);
+var data={skills:['Git','Cypress','Jest','ReactJs','Javascript','SASS','LESS CSS','CSS','HTML','PHP','Java','Jersey','Golang','MySQL','Oracle Database','Design Thinking'],tools:['NotePad++','Eclipse','Visual Studio Code','Jira','FileZilla']};var Skills=function Skills(){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{id:_data_constants__WEBPACK_IMPORTED_MODULE_2__["MENU"].SKILL.KEY,className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["container"]},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["content"]},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["skills"]},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["title"]},"Skillset"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["summary"]},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["skills"]},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["subtitle"]},"Skills"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul",null,data.skills.map(function(skill,i){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["item"],key:i},skill);}))),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["tools"]},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["subtitle"]},"Tools"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul",null,data.tools.map(function(skill,i){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li",{className:_scss_skills_scss__WEBPACK_IMPORTED_MODULE_1__["item"],key:i},skill);})))))));};/* harmony default export */ __webpack_exports__["default"] = (Skills);
 
 /***/ }),
 
@@ -34537,10 +34537,11 @@ var map = {
 	"./ncs.png": "./src/assets/img/ncs.png",
 	"./nyp.png": "./src/assets/img/nyp.png",
 	"./phone-icon.png": "./src/assets/img/phone-icon.png",
-	"./profile-pic-1.jpg": "./src/assets/img/profile-pic-1.jpg",
+	"./profile-pic-1.png": "./src/assets/img/profile-pic-1.png",
 	"./profile-pic.png": "./src/assets/img/profile-pic.png",
 	"./recommendation.jpg": "./src/assets/img/recommendation.jpg",
 	"./sap.png": "./src/assets/img/sap.png",
+	"./shopee.png": "./src/assets/img/shopee.png",
 	"./skill.jpg": "./src/assets/img/skill.jpg",
 	"./smu.png": "./src/assets/img/smu.png"
 };
@@ -34590,10 +34591,11 @@ var map = {
 	"./ncs.png": "./src/assets/img/ncs.png",
 	"./nyp.png": "./src/assets/img/nyp.png",
 	"./phone-icon.png": "./src/assets/img/phone-icon.png",
-	"./profile-pic-1.jpg": "./src/assets/img/profile-pic-1.jpg",
+	"./profile-pic-1.png": "./src/assets/img/profile-pic-1.png",
 	"./profile-pic.png": "./src/assets/img/profile-pic.png",
 	"./recommendation.jpg": "./src/assets/img/recommendation.jpg",
 	"./sap.png": "./src/assets/img/sap.png",
+	"./shopee.png": "./src/assets/img/shopee.png",
 	"./skill.jpg": "./src/assets/img/skill.jpg",
 	"./smu.png": "./src/assets/img/smu.png"
 };
@@ -34785,14 +34787,14 @@ module.exports = __webpack_require__.p + "13b4a70ec199394a1008a9d4381ead37.png";
 
 /***/ }),
 
-/***/ "./src/assets/img/profile-pic-1.jpg":
+/***/ "./src/assets/img/profile-pic-1.png":
 /*!******************************************!*\
-  !*** ./src/assets/img/profile-pic-1.jpg ***!
+  !*** ./src/assets/img/profile-pic-1.png ***!
   \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "32440345b1df5e574a3a331a8dd7e35c.jpg";
+module.exports = __webpack_require__.p + "47ecaa5d6a93f78520986a4474342443.png";
 
 /***/ }),
 
@@ -34803,7 +34805,7 @@ module.exports = __webpack_require__.p + "32440345b1df5e574a3a331a8dd7e35c.jpg";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "47ecaa5d6a93f78520986a4474342443.png";
+module.exports = __webpack_require__.p + "0dd4be083e5e994e7aba4a4d82cd4cfa.png";
 
 /***/ }),
 
@@ -34826,6 +34828,17 @@ module.exports = __webpack_require__.p + "bd466562c9eeef0d6ee1b14c7356faf3.jpg";
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "4ad08dd61d3e2d51dd4ee30abfda0a49.png";
+
+/***/ }),
+
+/***/ "./src/assets/img/shopee.png":
+/*!***********************************!*\
+  !*** ./src/assets/img/shopee.png ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "9d95313b897e9d3b4976b7fc0e269bd4.png";
 
 /***/ }),
 

@@ -16,6 +16,7 @@ const data = {
     'PHP',
     'Java',
     'Jersey',
+    'Golang',
     'MySQL',
     'Oracle Database',
     'Design Thinking',
